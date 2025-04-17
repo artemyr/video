@@ -2,6 +2,18 @@
 export default {
   content: ['./index.html'],
   theme: {
+    screens: {
+      'xs': '375px',
+      'sm': '540px',
+      'md': '720px',
+      'lg': '960px',
+      'xl': '1140px',
+      '2xl': '1200px',
+    },
+    container: {
+        center: true,
+        padding: '20px',
+    },
     extend: {
       backgroundPosition: {
         'right-top': 'right 2rem top',
