@@ -44,3 +44,7 @@ body {
     @apply font-bold text-white/50 before:content-['“'] after:content-['“'];
   }
 }
+
+.swiper .swiper-slide {
+  width: auto;
+}
