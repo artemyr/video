@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Untiled</title>
     <link rel="stylesheet" href="./style.css">
+    <link type="text/css" rel="stylesheet" href="./node_modules/lightgallery/css/lightgallery-bundle.css" />
   </head>
   <body>
     <header class="py-[15px] text-primary">
       <div class="mx-[68px] px-[25px]">
         <div class="mb-[40px] grid justify-center">
-          <img src="/images/logo.jpg" alt="daniel" />
+          <img src="/src/images/logo.jpg" alt="daniel" />
         </div>
         <ul class="grid grid-flow-col justify-center text-[12px] uppercase">
           <li class="mx-[20px] py-[8px] cursor-pointer underline">
@@ -30,16 +31,16 @@
         <div class="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="/images/slider/1.png" alt="">
+              <img src="/src/images/slider/1.png" alt="">
             </div>
             <div class="swiper-slide">
-              <img src="/images/slider/2.png" alt="">
+              <img src="/src/images/slider/2.png" alt="">
             </div>
             <div class="swiper-slide">
-              <img src="/images/slider/3.png" alt="">
+              <img src="/src/images/slider/3.png" alt="">
             </div>
             <div class="swiper-slide">
-              <img src="/images/slider/4.png" alt="">
+              <img src="/src/images/slider/4.png" alt="">
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -63,7 +64,7 @@
               </ul>
             </div>
             <div class="col-span-1 px-[25px] grid justify-center">
-              <img src="images/women.png" alt="women">
+              <img src="/src/images/women.png" alt="women">
             </div>
           </div>
         </section>
@@ -77,7 +78,7 @@
               </div>
             </div>
             <div class="col-span-1 px-[25px] grid justify-center">
-              <img src="images/women2.png" alt="women">
+              <img src="/src/images/women2.png" alt="women">
             </div>
           </div>
         </section>
@@ -86,6 +87,54 @@
     <footer class="bg-primary text-white">
       <div class="container">
         подвал
+
+        <div id="gallery-videos-demo">
+          <!-- YouTube Video --->
+          <a
+              data-lg-size="1280-720"
+              data-src="//www.youtube.com/watch?v=EIUJfXk3_3w"
+              data-poster="https://img.youtube.com/vi/EIUJfXk3_3w/maxresdefault.jpg"
+              data-sub-html="<h4>Puffin Hunts Fish To Feed Puffling | Blue Planet II | BBC Earth</h4><p>On the heels of Planet Earth II's record-breaking Emmy nominations, BBC America presents stunning visual soundscapes from the series' amazing habitats.</p>"
+          >
+              <img
+                  width="300"
+                  height="100"
+                  class="img-responsive"
+                  src="https://img.youtube.com/vi/EIUJfXk3_3w/maxresdefault.jpg"
+              />
+          </a>
+      
+          <!-- HTML5 Video --->
+          <a
+              data-lg-size="1280-720"
+              data-video='{"source": [{"src":"/src/video/sea.mp4", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
+              data-poster="/src/images/women.png"
+              data-sub-html="<h4>'Peck Pocketed' by Kevin Herron | Disney Favorite</h4>"
+          >
+              <img
+                  width="300"
+                  height="100"
+                  class="img-responsive"
+                  src="/src/images/women.png"
+              />
+          </a>
+
+          <a
+              data-lg-size="1280-720"
+              data-video='{"source": [{"src":"/src/video/river.mp4", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
+              data-poster="/src/images/women2.png"
+              data-sub-html="<h4>'Peck Pocketed' by Kevin Herron | Disney Favorite</h4>"
+          >
+              <img
+                  width="300"
+                  height="100"
+                  class="img-responsive"
+                  src="/src/images/women2.png"
+              />
+          </a>
+        </div>
+      
+      
       </div>
     </footer>
   </body>

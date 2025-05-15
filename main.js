@@ -1,6 +1,11 @@
 import Swiper from 'swiper';
 import 'swiper/css';
 
+import lightGallery from 'lightgallery';
+import lgThumbnail from 'lightgallery/plugins/thumbnail'
+import lgZoom from 'lightgallery/plugins/zoom'
+import lgVideo from 'lightgallery/plugins/video'
+
 const swiper = new Swiper('.swiper', {
   loop: true,
   pagination: {
@@ -12,4 +17,8 @@ const swiper = new Swiper('.swiper', {
     delay: 5000,
   },
   autoHeight: true
+});
+
+lightGallery(document.getElementById('gallery-videos-demo'), {
+  plugins: [lgVideo],
 });
