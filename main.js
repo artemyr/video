@@ -16,9 +16,10 @@ const swiper = new Swiper('.swiper', {
   autoplay: {
     delay: 5000,
   },
-  autoHeight: true
+  // autoHeight: true
 });
 
-lightGallery(document.getElementById('gallery-videos-demo'), {
+lightGallery(document.querySelector('.lightgalery-container'), {
   plugins: [lgVideo],
+  selector: '.lightgalery a'
 });
