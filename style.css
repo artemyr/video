@@ -48,3 +48,9 @@ body {
 .swiper .swiper-slide {
   width: auto;
 }
+
+@media (max-width: 540px) { 
+  .swiper .swiper-slide {
+    width: 100%;
+  }
+}

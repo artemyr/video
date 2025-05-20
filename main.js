@@ -12,10 +12,20 @@ const swiper = new Swiper('.swiper', {
   loop: true,
   slidesPerView: "auto",
   spaceBetween: 30,
-  autoplay: {
-    delay: 1000,
+  // autoplay: {
+  //   delay: 2000,
+  // },
+  breakpoints: {
+    540: {
+      slidesPerView: 1,
+      spaceBetween: 0
+    },
+    720: {
+      slidesPerView: "auto",
+      spaceBetween: 30
+    }
   },
-  // autoHeight: true
+  autoHeight: true
 });
 
 lightGallery(document.querySelector('.lightgalery-container'), {
