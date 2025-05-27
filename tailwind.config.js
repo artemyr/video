@@ -15,7 +15,7 @@ module.exports = {
             padding: '20px',
         },
         fontFamily: {
-            'sans': ['Gilroy', 'sans-serif'],
+            'sans': ['Ropoto', 'sans-serif'],
         },
         fontSize: {
             'xxs': ['14px', '1.6em'],
@@ -30,7 +30,7 @@ module.exports = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#2d2d2d',
+                    DEFAULT: '#000',
                     dark: '#000',
                 },
                 white: "#FFF",

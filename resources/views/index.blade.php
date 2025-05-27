@@ -92,8 +92,8 @@
             <section>
                 <div class="grid grid-cols-4 py-[25px]">
                     <div class="px-[25px] col-span-4 md:col-span-3">
-                        <p class="text-[36px] mb-[18px]">Приветствую</p>
-                        <p class="my-[14px]">Меня зовут Дарья, я SMM-менеджер и мобильный видеограф из Краснодара.</p>
+                        <p class="text-xl mb-[18px]">Приветствую</p>
+                        <p class="my-[14px] font-sec">Меня зовут Дарья, я SMM-менеджер и мобильный видеограф из Краснодара.</p>
                         <p class="my-[14px]">
                             Моя задача - сделать ваш бренд заметным и привлекательным в социальных сетях с помощью качественного видеоконтента и ведения страниц.
                             Я создаю короткометражные ролики, которые не только красиво выглядят, но и помогают продавать ваш продукт, донести его ценность до аудитории и повысить узнаваемость.
@@ -114,7 +114,7 @@
             <section>
                 <div class="grid grid-flow-col grid-cols-4 py-[25px]">
                     <div class="col-span-3 px-[25px]">
-                        <p class="text-[24px] md:text-[36px] mb-[18px]">Узнайте, свободна ли дата</p>
+                        <p class="text-[24px] md:text-xl mb-[18px]">Узнайте, свободна ли дата</p>
                         <p class="mt-[17px]">или задайте любой другой вопрос</p>
                         <div class="mt-[25px]">
                             <a href="https://wa.me/79585469791" target="_blank" class="bg-primary text-white rounded-[100px] px-[40px] py-[18px] uppercase text-[12px] hover:bg-[rgba(43,43,43,0.6)] transition-colors">свободные даты</a>

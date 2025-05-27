@@ -23,9 +23,6 @@ class RefreshCommand extends Command
 
         Cache::clear();
 
-        Storage::deleteDirectory('images/products');
-        Storage::deleteDirectory('images/brands');
-
         $this->call('migrate:fresh', ['--seed' => true]);
 
         return self::SUCCESS;

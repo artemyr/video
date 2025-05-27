@@ -65,7 +65,6 @@ class AppServiceProvider extends ServiceProvider
 
         Event::listen(
             Registered::class,
-            SendEmailNewUserListener::class
         );
     }
 }

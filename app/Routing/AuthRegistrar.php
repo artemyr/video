@@ -57,14 +57,6 @@ class AuthRegistrar implements RouteRegistrar
                         ->middleware('guest')
                         ->name('reset-password.handle');
                 });
-
-                Route::controller(SocialAuthController::class)->group(function () {
-                    Route::get('/auth/socialite/{driver}', 'redirect')
-                        ->name('socialite.redirect');
-
-                    Route::get('/auth/socialite/{driver}/callback', 'callback')
-                        ->name('socialite.callback');
-                });
             });
     }
 }

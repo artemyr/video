@@ -23,11 +23,5 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'artemymaratovitch@yandex.ru',
         ]);
-
-        Brand::factory(20)->create();
-        Category::factory(20)->create();
-        Product::factory(20)
-            ->has(Category::factory(rand(1,3)))
-            ->create();
     }
 }

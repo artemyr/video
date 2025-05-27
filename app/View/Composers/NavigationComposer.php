@@ -11,8 +11,12 @@ class NavigationComposer
     public function compose(View $view): void
     {
         $menu = Menu::make()
-            ->add(MenuItem::make(route('home'), 'Главная'));
-//            ->addIf(true, MenuItem::make(route('catalog'), 'Каталог'));
+            ->add(MenuItem::make('/test/', 'портфолио'))
+            ->addIf(true, MenuItem::make('/test/', 'стоимость'))
+            ->add(MenuItem::make(route('home'), 'главная'))
+            ->add(MenuItem::make('/test/', 'отзывы'))
+            ->add(MenuItem::make('/test/    ', 'контакты'))
+        ;
 
         $view->with('menu', $menu);
     }
