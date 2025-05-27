@@ -1,37 +1,53 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html'],
-  theme: {
-    screens: {
-      'xs': '375px',
-      'sm': '540px',
-      'md': '720px',
-      'lg': '960px',
-      'xl': '1140px',
-      '2xl': '1200px',
+module.exports = {
+    content: ["./resources/**/*.blade.php"],
+    darkMode: 'media',
+    theme: {
+        screens: {
+            'xs': '375px',
+            'sm': '540px',
+            'md': '720px',
+            'lg': '960px',
+            'xl': '1140px',
+            '2xl': '1550px',
+        },
+        container: {
+            center: true,
+            padding: '20px',
+        },
+        fontFamily: {
+            'sans': ['Gilroy', 'sans-serif'],
+        },
+        fontSize: {
+            'xxs': ['14px', '1.6em'],
+            'xs': ['16px', '1.6em'],
+            'sm': ['18px', '1.6em'],
+            'md': ['20px', '1.45em'],
+            'lg': ['26px', '1.3em'],
+            'xl': ['36px', '1.3em'],
+            '2xl': ['64px', '1.1em'],
+            '3xl': ['96px', '1.1em'],
+        },
+        extend: {
+            colors: {
+                primary: {
+                    DEFAULT: '#2d2d2d',
+                    dark: '#000',
+                },
+                white: "#FFF",
+                purple: "#7843E9",
+                pink: "#EC4176",
+                dark: "#222",
+                gray: "#454545",
+                darkblue: "#1E1F43",
+                body: '#BDBECA',
+                card: '#323359',
+            },
+        },
     },
-    container: {
-        center: true,
-        padding: '20px',
+    variants: {
+        extend: {},
     },
-    extend: {
-      backgroundPosition: {
-        'right-top': 'right 2rem top',
-      },
-      colors(theme) {
-        return {
-          primary: {
-            DEFAULT: '#2d2d2d',
-            dark: '#000',
-          },
-          gray: {
-            ...theme.colors.gray,
-            100: 'hsl(0, 0%, 81%)',
-            200: 'hsl(210, 46%, 95%)',
-          },
-        };
-      },
-    },
-  },
-  plugins: [],
-};
+    plugins: [
+        require('@tailwindcss/line-clamp'),
+    ],
+}

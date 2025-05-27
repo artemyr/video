@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+@layer base {
+    p {
+        @apply text-primary
+    }
+}
+
+@layer components {
+    .card {
+        @apply rounded-lg p-8 shadow-2xl;
+    }
+}
+
+.swiper .swiper-slide {
+    width: auto;
+}
+
+@media (max-width: 540px) {
+    .swiper .swiper-slide {
+        width: 100%;
+    }
+}
