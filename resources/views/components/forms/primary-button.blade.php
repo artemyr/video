@@ -1,3 +1,3 @@
-<button type="submit" class="w-full btn btn-pink">
+<button type="submit" class="w-full">
     {{ $slot }}
 </button>

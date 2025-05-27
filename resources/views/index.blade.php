@@ -6,6 +6,23 @@
         <section class="mb-[25px]">
             <div class="swiper">
                 <div class="swiper-wrapper lightgalery-container">
+
+                    @foreach($sliders as $slider)
+                        <div class="swiper-slide lightgalery">
+                            <a
+                                data-lg-size="1280-720"
+                                data-video='{"source": [{"src":"{{ $slider->video() }}", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
+                                data-poster="{{ $slider->makeThumbnail('500x500') }}"
+                                data-sub-html="<h4>{{ $slider->title }}</h4>"
+                            >
+                                <img
+                                    class="img-responsive"
+                                    src="{{ $slider->makeThumbnail('500x500') }}"
+                                />
+                            </a>
+                        </div>
+                    @endforeach
+
                     <div class="swiper-slide lightgalery">
                         <a
                             data-lg-size="1280-720"
@@ -42,19 +59,6 @@
                             <img
                                 class="img-responsive"
                                 src="{{ Vite::image('slider/3.png') }}"
-                            />
-                        </a>
-                    </div>
-                    <div class="swiper-slide lightgalery">
-                        <a
-                            data-lg-size="1280-720"
-                            data-video='{"source": [{"src":"{{ Vite::image('video/sea.mp4') }}", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
-                            data-poster="{{ Vite::image('slider/4.png') }}"
-                            data-sub-html="<h4>4</h4>"
-                        >
-                            <img
-                                class="img-responsive"
-                                src="{{ Vite::image('slider/4.png') }}"
                             />
                         </a>
                     </div>

@@ -7,6 +7,6 @@
 <input type="{{ $type }}" value="{{ $value }}" {{ $attributes
     ->class([
         '_is-error' => $isError,
-        '_input'
+        'border'
     ]) }}
 >
