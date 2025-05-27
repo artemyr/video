@@ -89,7 +89,7 @@ runInPhp() {
 # Функция для выполнения команд в контейнере MySQL
 runInMySql() {
     local command=$@
-    docker exec -i ${PROJECT_PREFIX}_mysql su mysql -c "$command"
+    docker exec -i ${PROJECT_PREFIX}_mysql mysqldump -u ${MYSQL_USER} ${MYSQL_DATABASE} -p > database.sql
     return $?
 }
 
