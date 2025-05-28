@@ -10,7 +10,7 @@
                     @foreach($sliders as $slider)
                         <div class="swiper-slide lightgalery">
                             <a
-                                data-lg-size="1280-720"
+                                data-lg-size="1080-1920"
                                 data-video='{"source": [{"src":"{{ $slider->video() }}", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
                                 data-poster="{{ $slider->makeThumbnail('500x500') }}"
                                 data-sub-html="<h4>{{ $slider->title }}</h4>"

@@ -45,3 +45,26 @@ lightGallery(document.querySelector('.lightgalery-container'), {
     plugins: [lgVideo],
     selector: '.lightgalery a'
 });
+
+(function () {
+    function menuHandler() {
+        const MainMenuContainer = document.getElementById('main-menu')
+        const MainMenu = MainMenuContainer.querySelector('ul')
+        const MainMenuBurger = MainMenuContainer.querySelector('#menu-burger')
+        console.log(window.innerWidth)
+        if (window.innerWidth <= 720) {
+            MainMenu.style.display = 'none'
+            MainMenuBurger.style.display = 'block'
+        } else {
+            MainMenu.style.display = 'grid'
+            MainMenuBurger.style.display = 'none'
+        }
+    }
+    document.addEventListener('DOMContentLoaded', menuHandler)
+    window.onresize = function () {
+        let timeout = setTimeout(function () {
+            clearTimeout(timeout)
+            menuHandler()
+        }, 100)
+    }
+})()

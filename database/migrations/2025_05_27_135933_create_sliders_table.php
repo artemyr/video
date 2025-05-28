@@ -15,8 +15,7 @@ return new class extends Migration
                 ->default(true);
             $table->string('photo');
             $table->string('video');
-            $table->string('thumbnail')
-                ->nullable();
+            $table->string('size');
             $table->smallInteger('sort')
                 ->default(500);
             $table->timestamps();
