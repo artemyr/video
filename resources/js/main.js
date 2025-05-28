@@ -51,13 +51,33 @@ lightGallery(document.querySelector('.lightgalery-container'), {
         const MainMenuContainer = document.getElementById('main-menu')
         const MainMenu = MainMenuContainer.querySelector('ul')
         const MainMenuBurger = MainMenuContainer.querySelector('#menu-burger')
-        console.log(window.innerWidth)
+
         if (window.innerWidth <= 720) {
-            MainMenu.style.display = 'none'
-            MainMenuBurger.style.display = 'block'
+            MainMenuBurger.classList.remove('hidden')
+
+            if (MainMenu.classList.contains('collspased')) {
+                MainMenu.style.height = '0px'
+            }
+
+            if (!window?.mainMenu?.menuLoaded) {
+                const MainMenuHeight = MainMenu.clientHeight
+                MainMenu.style.height = '0px'
+                MainMenu.classList.add('collspased')
+                MainMenuBurger.onclick = function () {
+                    MainMenu.classList.toggle('collspased')
+                    if (MainMenu.classList.contains('collspased')) {
+                        MainMenu.style.height = '0px'
+                    } else {
+                        MainMenu.style.height = MainMenuHeight + 'px'
+                    }
+                }
+
+                window.mainMenu = {}
+                window.mainMenu.menuLoaded = true
+            }
         } else {
-            MainMenu.style.display = 'grid'
-            MainMenuBurger.style.display = 'none'
+            MainMenuBurger.classList.add('hidden')
+            MainMenu.style.height = 'auto'
         }
     }
     document.addEventListener('DOMContentLoaded', menuHandler)
