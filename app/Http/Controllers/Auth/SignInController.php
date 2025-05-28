@@ -13,7 +13,7 @@ class SignInController extends Controller
 {
     public function page(): View|Factory|Application|RedirectResponse
     {
-        if (auth()->user()->role === 'admin') {
+        if (auth()->user() && auth()->user()->role === 'admin') {
             return redirect('admin');
         }
 

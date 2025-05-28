@@ -6,6 +6,9 @@ import lightGallery from 'lightgallery';
 import lgVideo from 'lightgallery/plugins/video'
 import 'lightgallery/css/lightgallery-bundle.css';
 
+import {createApp} from "vue";
+import App from "./components/admin/App.vue";
+
 const swiper = new Swiper('.swiper', {
     modules: [
         Autoplay
@@ -46,9 +49,16 @@ lightGallery(document.querySelector('.lightgalery-container'), {
     selector: '.lightgalery a'
 });
 
+createApp(App).mount('#uploadFilesComponent');
+
 (function () {
     function menuHandler() {
         const MainMenuContainer = document.getElementById('main-menu')
+
+        if (!MainMenuContainer) {
+            return
+        }
+
         const MainMenu = MainMenuContainer.querySelector('ul')
         const MainMenuBurger = MainMenuContainer.querySelector('#menu-burger')
 

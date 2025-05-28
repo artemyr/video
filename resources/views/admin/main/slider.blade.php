@@ -58,6 +58,8 @@
                     @enderror
                 </div>
 
+                <div id="uploadFilesComponent"></div>
+
                 <x-forms.primary-button>
                     Сохранить
                 </x-forms.primary-button>
