@@ -58,7 +58,7 @@
                     @enderror
                 </div>
 
-                <div id="uploadFilesComponent"></div>
+                <div id="upload-files-component" data-label="label 123" data-downloads='@json([])' data-multiply="false"></div>
 
                 <x-forms.primary-button>
                     Сохранить

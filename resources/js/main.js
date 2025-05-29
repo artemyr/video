@@ -7,7 +7,7 @@ import lgVideo from 'lightgallery/plugins/video'
 import 'lightgallery/css/lightgallery-bundle.css';
 
 import {createApp} from "vue";
-import App from "./components/admin/App.vue";
+import UploadFilesComponent from "./components/admin/UploadFilesComponent.vue";
 
 const swiper = new Swiper('.swiper', {
     modules: [
@@ -49,7 +49,15 @@ lightGallery(document.querySelector('.lightgalery-container'), {
     selector: '.lightgalery a'
 });
 
-createApp(App).mount('#uploadFilesComponent');
+const el = document.getElementById('upload-files-component');
+if (el) {
+    const app = createApp(UploadFilesComponent, {
+        label: String(el.dataset.label),
+        downloads: JSON.parse(el.dataset.downloads),
+        multiply: el.dataset.multiply === 'true'
+    }).mount(el)
+}
+
 
 (function () {
     function menuHandler() {

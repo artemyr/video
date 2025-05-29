@@ -1,10 +1,10 @@
 <template>
     <div class="admin-edit__files">
-        <p>{{ vars.name }}</p>
+        <p>{{ label }}</p>
         <div class="" v-if="fileProgress">
             <div class="progress-bar" :style="{ width: fileProgress + '%' }">{{ fileCurrent }}%</div>
         </div>
-        <div class="admin-edit__file" v-for="(download, index) in downloads">
+        <div class="admin-edit__file" v-for="(download, index) in _downloads">
             <input type="hidden" name="downloads[]" v-model="download.id">
             <div class="form-group">
                 <input type="text" placeholder="Подпись для файла" v-model="download.title">
@@ -29,46 +29,37 @@
 export default {
     data () {
         return {
-            downloads: [],
+            _downloads: [],
             fileProgress:0,
             fileCurrent:'',
         }
     },
-    props: ['vars', 'multiply'],
+    props: ['label', 'multiply', 'downloads'],
     mounted() {
-        // this.downloads = this.$parent.entity[this.vars.id];
-        // if (this.downloads.length > 0) {
-        //     this.updateList();
-        // } else {
-        //     this.addFile();
-        //     this.updateList();
-        // }
+        this._downloads = this.downloads;
+        if (this.downloads.length < 1) {
+           this.addFile();
+        }
     },
     methods: {
         addFile() {
-            this.downloads.push({id: 0, title: '', file: [], is_new: true});
-        },
-        updateList() {
-            this.$parent.entity[this.vars.id] = [];
-            this.downloads.forEach(el => {
-                this.$parent.entity[this.vars.id].push(el.id)
-            })
+            this._downloads.push({id: 0, title: '', file: [], is_new: true});
         },
         deleteFile(index) {
 
-            if (this.downloads[index].is_new){
-                this.downloads.splice(index, 1);
+            if (this._downloads[index].is_new){
+                this._downloads.splice(index, 1);
 
-                this.updateList();
+                // this.updateList();
                 return;
             }
 
-            axios.delete('/admin/download/' + this.downloads[index].id)
+            axios.delete('/admin/download/' + this._downloads[index].id)
             .then(response => {
                 if (response.data.result) {
-                    this.downloads.splice(index, 1);
+                    this._downloads.splice(index, 1);
 
-                    this.updateList();
+                    // this.updateList();
                 }
             })
         },
@@ -94,7 +85,7 @@ export default {
                 console.log(error);
             })
 
-            this.updateList();
+            // this.updateList();
 
             this.fileProgress = 0;
             this.fileCurrent = '';
