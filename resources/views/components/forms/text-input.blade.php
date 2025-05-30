@@ -6,7 +6,7 @@
 
 <input type="{{ $type }}" value="{{ $value }}" {{ $attributes
     ->class([
-        '_is-error' => $isError,
-        'border'
+        'border-red' => $isError,
+        'border block w-full rounded-md p-2 text-black'
     ]) }}
 >

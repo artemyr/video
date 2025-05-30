@@ -1,5 +1,8 @@
 module.exports = {
-    content: ["./resources/**/*.blade.php"],
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/js/components/**/*.vue"
+    ],
     darkMode: 'media',
     theme: {
         screens: {
@@ -29,18 +32,19 @@ module.exports = {
         },
         extend: {
             colors: {
-                primary: {
-                    DEFAULT: '#000',
-                    dark: '#000',
+                admin: {
+                    DEFAULT: '#2b2d30',
+                    light: '#3d3f41',
+                    dark: '#1e1f22',
                 },
-                white: "#FFF",
-                purple: "#7843E9",
-                pink: "#EC4176",
-                dark: "#222",
-                gray: "#454545",
-                darkblue: "#1E1F43",
-                body: '#BDBECA',
-                card: '#323359',
+                red: {
+                    DEFAULT: '#dc2626',
+                    dark: '#991818'
+                },
+                green: {
+                    DEFAULT: '#16a34a',
+                    dark: '#0c7432'
+                }
             },
         },
     },

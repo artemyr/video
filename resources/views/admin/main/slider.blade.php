@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div>
         <form action="{{ route('admin.main.slider.handle') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -25,12 +25,12 @@
                 </div>
 
                 <div>
-                    <label class="block">видео файл</label>
+                    <label class="block">Видео файл</label>
                     <x-forms.text-input
                         name="video"
                         type="file"
                         placeholder="видео файл"
-                        required="true"
+{{--                        required="true"--}}
                         value="{{ old('video') }}"
                         :isError="$errors->has('video')"
                     />
@@ -42,12 +42,12 @@
                 </div>
 
                 <div>
-                    <label class="block">стартовый кадр</label>
+                    <label class="block">Стартовый кадр</label>
                     <x-forms.text-input
                         name="photo"
                         type="file"
                         placeholder="стартовый кадр"
-                        required="true"
+{{--                        required="true"--}}
                         value="{{ old('photo') }}"
                         :isError="$errors->has('photo')"
                     />
@@ -60,9 +60,11 @@
 
                 <div id="upload-files-component" data-label="label 123" data-downloads='@json([])' data-multiply="false"></div>
 
-                <x-forms.primary-button>
-                    Сохранить
-                </x-forms.primary-button>
+                <div>
+                    <x-forms.primary-button class="p-2 rounded-md bg-green hover:bg-green-dark transition-colors">
+                        Сохранить
+                    </x-forms.primary-button>
+                </div>
 
             </div>
         </form>

@@ -1,23 +1,23 @@
 <template>
-    <div class="admin-edit__files">
+    <div class="">
         <p>{{ label }}</p>
-        <div class="" v-if="fileProgress">
-            <div class="progress-bar" :style="{ width: fileProgress + '%' }">{{ fileCurrent }}%</div>
+        <div class="bg-gray-600 w-full" v-if="fileProgress">
+            <div class="bg-green text-center" :style="{ width: fileProgress + '%' }">{{ fileCurrent }}%</div>
         </div>
-        <div class="admin-edit__file" v-for="(download, index) in _downloads">
+        <div class="" v-for="(download, index) in _downloads">
             <input type="hidden" name="downloads[]" v-model="download.id">
-            <div class="form-group">
+            <div class="">
                 <input type="text" placeholder="Подпись для файла" v-model="download.title">
             </div>
-            <div class="admin-edit__input-group">
+            <div class="">
                 <div>
                     <template class="" v-if="download.is_new">
                         <input type="file" id="customFile" @change="fileInputChange(download)">
-                        <button type="button" @click="uploadFile(download)">Загрузить</button>
+                        <button class="rounded-md p-2 bg-green" type="button" @click="uploadFile(download)">Загрузить</button>
                     </template>
                 </div>
                 <div>
-                    <button type="button" @click="deleteFile(index)">Удалить</button>
+                    <button class="rounded-md p-2 bg-red" type="button" @click="deleteFile(index)">Удалить</button>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@ export default {
     data () {
         return {
             _downloads: [],
-            fileProgress:0,
+            fileProgress: 0,
             fileCurrent:'',
         }
     },

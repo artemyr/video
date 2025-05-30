@@ -8,9 +8,9 @@ body {
 }
 
 @layer base {
-    p {
-        @apply text-primary
-    }
+    /*p {*/
+    /*    @apply text-black*/
+    /*}*/
 }
 
 @layer components {

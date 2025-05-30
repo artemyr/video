@@ -16,11 +16,13 @@ class AdminRegistrar implements RouteRegistrar
         Route::middleware(['web', AdminMiddleware::class])
             ->group(function() {
 
-                Route::controller(AdminController::class)
-                    ->group(function () {
-                        Route::get('/admin', 'page')
-                            ->name('admin.index');
-                    });
+                Route::get('/admin', function () {
+                    return view('admin.index');
+                })->name('admin.index');
+
+                Route::get('/admin/main', function() {
+                    return view('admin.main.index');
+                })->name('admin.main');
 
                 Route::controller(AdminSliderController::class)
                     ->group(function () {
