@@ -4,24 +4,20 @@
         <div class="bg-gray-600 w-full" v-if="fileProgress">
             <div class="bg-green text-center" :style="{ width: fileProgress + '%' }">{{ fileCurrent }}%</div>
         </div>
-        <div class="" v-for="(download, index) in _downloads">
+        <div class="grid grid-flow-col justify-start items-end gap-4" v-for="(download, index) in _downloads">
             <input type="hidden" name="downloads[]" v-model="download.id">
-            <div class="">
-                <input type="text" placeholder="Подпись для файла" v-model="download.title">
+            <div>
+                <input type="text" class="text-black" placeholder="Подпись для файла" v-model="download.title">
+                <div v-if="download.is_new">
+                    <input type="file" id="customFile" @change="fileInputChange(download)">
+                    <button class="btn-success" type="button" @click="uploadFile(download)">Загрузить</button>
+                </div>
             </div>
-            <div class="">
-                <div>
-                    <template class="" v-if="download.is_new">
-                        <input type="file" id="customFile" @change="fileInputChange(download)">
-                        <button class="rounded-md p-2 bg-green" type="button" @click="uploadFile(download)">Загрузить</button>
-                    </template>
-                </div>
-                <div>
-                    <button class="rounded-md p-2 bg-red" type="button" @click="deleteFile(index)">Удалить</button>
-                </div>
+            <div>
+                <button class="btn-danger" type="button" @click="deleteFile(index)">Удалить</button>
             </div>
         </div>
-        <button v-if="multiply" type="button" @click="addFile">Добавить</button>
+        <button v-if="multiply" type="button" class="btn-success" @click="addFile">Добавить</button>
     </div>
 </template>
 

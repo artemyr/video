@@ -61,9 +61,9 @@
                 <div id="upload-files-component" data-label="label 123" data-downloads='@json([])' data-multiply="false"></div>
 
                 <div>
-                    <x-forms.primary-button class="p-2 rounded-md bg-green hover:bg-green-dark transition-colors">
+                    <x-forms.success-button>
                         Сохранить
-                    </x-forms.primary-button>
+                    </x-forms.success-button>
                 </div>
 
             </div>

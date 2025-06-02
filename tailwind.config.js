@@ -44,10 +44,14 @@ module.exports = {
                 green: {
                     DEFAULT: '#16a34a',
                     dark: '#0c7432'
-                }
+                },
+                alert: '#c07214'
             },
         },
     },
+    safelist: [
+        'bg-alert'
+    ],
     variants: {
         extend: {},
     },

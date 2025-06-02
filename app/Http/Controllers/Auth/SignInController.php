@@ -34,6 +34,10 @@ class SignInController extends Controller
 
         $request->session()->regenerate();
 
+        if (auth()->id() > 0 && auth()->user()->role === 'admin') {
+            return redirect('admin');
+        }
+
         return redirect()->intended(route('home'));
     }
 

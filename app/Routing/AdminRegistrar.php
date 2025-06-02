@@ -5,6 +5,7 @@ namespace App\Routing;
 use App\Contracts\RouteRegistrar;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ class AdminRegistrar implements RouteRegistrar
                 Route::get('/admin/main', function() {
                     return view('admin.main.index');
                 })->name('admin.main');
+
+                Route::get('/admin/media', [MediaController::class, 'page'])->name('admin.media');
 
                 Route::controller(AdminSliderController::class)
                     ->group(function () {

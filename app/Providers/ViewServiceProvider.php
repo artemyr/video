@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Composers\AdminNavigationComposer;
 use App\View\Composers\NavigationComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
@@ -25,5 +26,6 @@ class ViewServiceProvider extends ServiceProvider
         Vite::macro('image', fn($asset) => $this->asset("resources/images/$asset"));
 
         View::composer('*', NavigationComposer::class);
+        View::composer('admin.*', AdminNavigationComposer::class);
     }
 }

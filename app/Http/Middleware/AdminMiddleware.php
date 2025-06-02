@@ -16,10 +16,12 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if(!auth()->id()) {
-            abort(401);
+            flash()->alert('Not authorized');
+            return redirect('login');
         }
-        if(auth()->user()->role !== 'admin') {
-            abort(403);
+        if(auth()->id() > 0 && auth()->user()->role !== 'admin') {
+            flash()->alert('Forbidden');
+            return redirect('login');
         }
         return $next($request);
     }

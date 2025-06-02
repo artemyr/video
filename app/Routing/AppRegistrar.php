@@ -18,7 +18,8 @@ class AppRegistrar implements RouteRegistrar
                 Route::get('/', HomeController::class)->name('home');
 
                 Route::resource('/admin/download', DownloadController::class)
-                    ->only(['store','update','destroy']);
+                    ->only(['store','update','destroy'])
+                    ->name('destroy', 'admin.download.destroy');
             });
 
         Route::get('/thumbnail/{dir}/{method}/{size}/{file}', ThumbnailController::class)

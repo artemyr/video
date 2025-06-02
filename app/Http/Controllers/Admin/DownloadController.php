@@ -38,11 +38,12 @@ class DownloadController extends Controller
     public function destroy(Download $download)
     {
         if(! Storage::disk('video')->delete($download->path)) {
-            return ['result' => false];
+            flash()->alert('Delete error');
+            return back();
         }
 
         if ($download->delete()) {
-            return ['result' => true];
+            return back();
         }
     }
 }

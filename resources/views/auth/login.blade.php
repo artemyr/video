@@ -32,9 +32,9 @@
             :isError="$errors->has('email')"
         />
 
-        <x-forms.primary-button>
+        <x-forms.success-button>
             Войти
-        </x-forms.primary-button>
+        </x-forms.success-button>
 
         <x-slot:buttons>
             <div class="space-y-3 mt-5">

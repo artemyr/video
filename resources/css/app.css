@@ -14,8 +14,11 @@ body {
 }
 
 @layer components {
-    .card {
-        @apply rounded-lg p-8 shadow-2xl;
+    .btn-success {
+        @apply p-2 rounded-md bg-green hover:bg-green-dark transition-colors;
+    }
+    .btn-danger {
+        @apply bg-red p-2 rounded-xl hover:bg-red-dark transition-colors;
     }
 }
 
