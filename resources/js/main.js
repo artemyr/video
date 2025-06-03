@@ -8,6 +8,7 @@ import 'lightgallery/css/lightgallery-bundle.css';
 
 import {createApp} from "vue";
 import UploadFilesComponent from "./components/admin/UploadFilesComponent.vue";
+import UploadVideosComponent from "./components/admin/UploadVideosComponent.vue";
 
 const swiper = new Swiper('.swiper', {
     modules: [
@@ -49,14 +50,23 @@ lightGallery(document.querySelector('.lightgalery-container'), {
     selector: '.lightgalery a'
 });
 
-const el = document.getElementById('upload-files-component');
-if (el) {
-    const app = createApp(UploadFilesComponent, {
-        label: String(el.dataset.label),
-        downloads: JSON.parse(el.dataset.downloads),
-        multiply: el.dataset.multiply === 'true'
-    }).mount(el)
-}
+(function (){
+    let el = document.getElementById('upload-files-component');
+    if (el) {
+        let app = createApp(UploadFilesComponent, {
+            label: String(el.dataset.label),
+            downloads: JSON.parse(el.dataset.downloads),
+            multiply: el.dataset.multiply === 'true'
+        }).mount(el)
+    }
+})();
+
+(function () {
+    let el = document.getElementById('upload-videos-component');
+    if (el) {
+        let app = createApp(UploadVideosComponent).mount(el)
+    }
+})();
 
 
 (function () {

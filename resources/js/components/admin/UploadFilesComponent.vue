@@ -10,7 +10,7 @@
                 <input type="text" class="text-black" placeholder="Подпись для файла" v-model="download.title">
                 <div v-if="download.is_new">
                     <input type="file" id="customFile" @change="fileInputChange(download)">
-                    <button class="btn-success" type="button" @click="uploadFile(download)">Загрузить</button>
+                    <button v-if="download.file" class="btn-success" type="button" @click="uploadFile(download)">Загрузить</button>
                 </div>
             </div>
             <div>
@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         addFile() {
-            this._downloads.push({id: 0, title: '', file: [], is_new: true});
+            this._downloads.push({id: 0, title: '', file: false, is_new: true});
         },
         deleteFile(index) {
 
@@ -81,7 +81,7 @@ export default {
                 console.log(error);
             })
 
-            // this.updateList();
+            this.$parent.updateList()
 
             this.fileProgress = 0;
             this.fileCurrent = '';

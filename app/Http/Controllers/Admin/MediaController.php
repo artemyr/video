@@ -12,10 +12,16 @@ class MediaController
 {
     public function page(): View|Factory|Application|RedirectResponse
     {
+        return view('admin.media.index');
+    }
+
+    public function handle(): View|Factory|Application|RedirectResponse
+    {
         $videos = Download::query()
             ->orderBy('id','desc')
-            ->paginate(10);
+            ->paginate(10)
+            ->withPath('/admin/media');
 
-        return view('admin.media', compact('videos'));
+        return view('admin.media.list', compact('videos'));
     }
 }

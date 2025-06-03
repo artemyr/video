@@ -11,7 +11,7 @@ class AdminNavigationComposer
     public function compose(View $view): void
     {
         $menu = Menu::make()
-            ->add(MenuItem::make(route('admin.media'), 'Медиатека'))
+            ->add(MenuItem::make(route('admin.media.index'), 'Медиатека'))
             ->add(MenuItem::make(route('admin.main'), 'Главная'))
 //            ->add(MenuItem::make(route(''), 'портфолио'))
 //            ->add(MenuItem::make(route(''), 'стоимость'))
