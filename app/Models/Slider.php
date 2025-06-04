@@ -9,14 +9,7 @@ class Slider extends Model
 {
     use HasThumbnail;
 
-    protected $fillable = [
-        'title',
-        'video',
-        'photo',
-        'thumbnail',
-        'active',
-        'sort'
-    ];
+    protected $guarded = [];
 
     protected function thumbnailDir(): string
     {
