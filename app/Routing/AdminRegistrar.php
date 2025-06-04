@@ -6,6 +6,7 @@ use App\Contracts\RouteRegistrar;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminSliderController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\TextController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ class AdminRegistrar implements RouteRegistrar
                 })->name('admin.main');
 
                 Route::get('/admin/media', [MediaController::class, 'page'])->name('admin.media');
+                Route::get('/admin/text', [TextController::class, 'page'])->name('admin.text');
 
                 Route::controller(MediaController::class)
                     ->group(function () {

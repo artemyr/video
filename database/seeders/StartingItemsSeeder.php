@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Price;
+use App\Models\Slider;
+use App\Models\Text;
 use Illuminate\Database\Seeder;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -11,7 +15,60 @@ class StartingItemsSeeder extends Seeder
 {
     public function run(): void
     {
-        $arPrices = [
+//        foreach ($this->getSliderItems() as $item) {
+//            Slider::query()->create($item);
+//        }
+//
+//        foreach ($this->getPriceItems() as $item) {
+//            Price::query()->create($item);
+//        }
+
+        foreach ($this->getTextItems() as $item) {
+            Text::query()->create($item);
+        }
+    }
+
+    private function getSliderItems(): array
+    {
+        $photosDir = resource_path('images/slider');
+        $files = scandir($photosDir);
+        $sliderPhotos = [];
+
+        foreach ($files as $file) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+
+            $filePath = $photosDir . DIRECTORY_SEPARATOR . $file;
+            $uFile = new UploadedFile($filePath,$file);
+
+            $sliderPhotos[] = Storage::disk('images')
+                ->put('slider', $uFile);
+        }
+
+        return [
+            [
+                'title' => '1',
+                'photo' => $sliderPhotos[0],
+            ],
+            [
+                'title' => '2',
+                'photo' => $sliderPhotos[1],
+            ],
+            [
+                'title' => '3',
+                'photo' => $sliderPhotos[2],
+            ],
+            [
+                'title' => '4',
+                'photo' => $sliderPhotos[3],
+            ],
+        ];
+    }
+
+    private function getPriceItems(): array
+    {
+        return [
             [
                 'title' => '3.000 р/шт.',
                 'description' => <<<END
@@ -59,8 +116,29 @@ END
 END
             ],
         ];
-        foreach ($arPrices as $price) {
-            Price::query()->create($price);
-        }
+    }
+
+    private function getTextItems(): array
+    {
+        return [
+            [
+                'code' => 'main.about',
+                'text' => <<<END
+<p class="text-xl mb-[18px]">Приветствую</p>
+<p class="my-[14px] font-sec">Меня зовут Дарья, я SMM-менеджер и мобильный видеограф из Краснодара.</p>
+<p class="my-[14px]">
+    Моя задача - сделать ваш бренд заметным и привлекательным в социальных сетях с помощью качественного видеоконтента и ведения страниц.
+    Я создаю короткометражные ролики, которые не только красиво выглядят, но и помогают продавать ваш продукт, донести его ценность до аудитории и повысить узнаваемость.
+</p>
+<p class="my-[14px]">
+    Видео - один из самых мощных инструментов современного маркетинга. Именно поэтому я предлагаю самые разнообразные форматы.
+</p>
+<p class="my-[14px]">
+    Вместе мы разработаем визуальную концепцию, наполним вашу страницу
+    оригинальным и качественным контентом, а также привлечём именно тех клиентов, которые действительно заинтересованы в вашем продукте.
+</p>
+END
+            ]
+        ];
     }
 }

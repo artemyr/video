@@ -2,7 +2,7 @@
     <div class="grid justify-center">
         <div class="hidden w-[16px] h-[16px] relative" id="menu-burger">
             <div class="h-[2px] w-[15px] rounded-2xl absolute left-0 top-0 bg-black"></div>
-            <div class="h-[2px] w-[15px] rounded-2xl absolute left-0 top-[8px] bg-black"></div>
+            <div class="h-[2px] w-[15px] rounded-2xl absolute left-0 top-[7px] bg-black"></div>
             <div class="h-[2px] w-[15px] rounded-2xl absolute left-0 bottom-0 bg-black"></div>
         </div>
     </div>

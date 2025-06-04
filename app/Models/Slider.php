@@ -21,13 +21,21 @@ class Slider extends Model
         return 'photo';
     }
 
-    public function photo(): string
+    public function photo(): ?string
     {
+        if (empty($this->photo)) {
+            return null;
+        }
+
         return asset('storage/images/' . $this->photo);
     }
 
-    public function video(): string
+    public function video(): ?string
     {
+        if (empty($this->video)) {
+            return null;
+        }
+
         return asset('storage/video/' . $this->video);
     }
 }

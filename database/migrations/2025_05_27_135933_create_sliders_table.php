@@ -14,8 +14,10 @@ return new class extends Migration
             $table->boolean('active')
                 ->default(true);
             $table->string('photo');
-            $table->string('video');
-            $table->string('size');
+            $table->string('video')
+                ->nullable();
+            $table->string('size')
+                ->nullable();
             $table->smallInteger('sort')
                 ->default(500);
             $table->timestamps();

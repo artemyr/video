@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use Database\Seeders\StartingItemsSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
 class StartItemsCommand extends Command
 {
@@ -23,6 +23,7 @@ class StartItemsCommand extends Command
 
         Cache::clear();
 
+        /** @see StartingItemsSeeder */
         $this->call('db:seed', ['class' => 'StartingItemsSeeder']);
 
         return self::SUCCESS;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Slider;
+use App\Models\Text;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -13,6 +14,8 @@ class HomeController extends Controller
     {
         $sliders = Slider::query()->limit(10)->get();
 
-        return view('index', compact('sliders'));
+        $about = Text::query()->where('code', 'main.about')->first()->text;
+
+        return view('index', compact('sliders', 'about'));
     }
 }
