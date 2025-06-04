@@ -1,7 +1,7 @@
 <header class="py-[15px] text-primary">
     <div class="mx-[68px] px-[25px]">
         <div class="md:mb-[40px] grid justify-center">
-            <img src="{{ Vite::image('logo.png') }}" alt="daniel" />
+            <img class="w-[300px]" src="{{ Vite::image('logo.jpg') }}" alt="" />
         </div>
 
         @include('shared.menu')
