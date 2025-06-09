@@ -7,7 +7,7 @@
                 <img class="rounded-full w-[400px]" src="{{ Vite::image('author.jpg') }}" alt="">
             </div>
             <p class="text-md">Фотограф</p>
-            <p class="text-xl">8-958-546-97-91</p>
+            <a href="tel:+79585469791" class="text-xl">8-958-546-97-91</a>
             <div class="py-4">
                 <a class="btn-black">Написать вконтакте</a>
             </div>

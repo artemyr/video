@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-20 mb-16">
+        <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 mb-16">
 
             @foreach($reviews as $review)
                 <div class="text-center text-brown">
