@@ -1,4 +1,4 @@
-<footer >
+<footer class="mt-8">
     <div class="grid justify-center">
         <div class="grid justify-center grid-flow-col gap-[30px] mb-[25px] mt-[18px]">
             <a href="https://wa.me/79585469791" target="_blank" class="hover:opacity-70 transition-opacity">

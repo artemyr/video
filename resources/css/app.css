@@ -8,9 +8,12 @@ body {
 }
 
 @layer base {
-    /*p {*/
-    /*    @apply text-black*/
-    /*}*/
+    ul:not(.custom) {
+        @apply list-outside list-disc ml-6
+    }
+    li:not(.custom) {
+        @apply mb-4
+    }
 }
 
 @layer components {
@@ -19,6 +22,9 @@ body {
     }
     .btn-danger {
         @apply bg-red p-2 rounded-xl hover:bg-red-dark transition-colors;
+    }
+    .btn-black {
+        @apply uppercase rounded-full bg-admin-dark hover:bg-admin-light text-white transition-colors cursor-pointer px-16 py-4;
     }
 }
 

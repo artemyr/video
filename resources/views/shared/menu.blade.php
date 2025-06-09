@@ -6,7 +6,7 @@
             <div class="h-[2px] w-[15px] rounded-2xl absolute left-0 bottom-0 bg-black"></div>
         </div>
     </div>
-    <ul class="grid grid-flow-row md:grid-flow-col justify-center text-[12px] uppercase transition-[height] duration-1000 overflow-hidden">
+    <ul class="grid grid-flow-row md:grid-flow-col justify-center text-[12px] uppercase transition-[height] duration-1000 overflow-hidden custom">
         @foreach($menu as $item)
             <li class="mx-[20px] py-[8px] cursor-pointer underline @if($item->isActive()) font-bold @endif">
                 <a href="{{ $item->link() }}">{{ $item->label() }}</a>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class StartItemsCommand extends Command
 {
-    protected $signature = 'app:starting_items_seed';
+    protected $signature = 'app:seed:start-items';
     protected $description = 'Seed starting db items';
 
     /**

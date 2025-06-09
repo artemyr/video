@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function __invoke(): Factory|View|Application
     {
-        $sliders = Slider::query()->limit(10)->get();
+        $sliders = Slider::query()->orderBy('sort')->get();
 
         $about = Text::query()->where('code', 'main.about')->first()->text;
 

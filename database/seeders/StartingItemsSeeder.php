@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Price;
+use App\Models\Review;
 use App\Models\Slider;
 use App\Models\Text;
 use Illuminate\Database\Seeder;
@@ -15,36 +16,26 @@ class StartingItemsSeeder extends Seeder
 {
     public function run(): void
     {
-//        foreach ($this->getSliderItems() as $item) {
-//            Slider::query()->create($item);
-//        }
+        foreach ($this->getSliderItems() as $item) {
+            Slider::query()->create($item);
+        }
 //
-//        foreach ($this->getPriceItems() as $item) {
-//            Price::query()->create($item);
-//        }
-
+        foreach ($this->getPriceItems() as $item) {
+            Price::query()->create($item);
+        }
+//
         foreach ($this->getTextItems() as $item) {
             Text::query()->create($item);
+        }
+
+        foreach ($this->getReviewItems() as $item) {
+            Review::query()->create($item);
         }
     }
 
     private function getSliderItems(): array
     {
-        $photosDir = resource_path('images/slider');
-        $files = scandir($photosDir);
-        $sliderPhotos = [];
-
-        foreach ($files as $file) {
-            if ($file === '.' || $file === '..') {
-                continue;
-            }
-
-            $filePath = $photosDir . DIRECTORY_SEPARATOR . $file;
-            $uFile = new UploadedFile($filePath,$file);
-
-            $sliderPhotos[] = Storage::disk('images')
-                ->put('slider', $uFile);
-        }
+        $sliderPhotos = $this->importImages('images/slider','slider');
 
         return [
             [
@@ -140,5 +131,75 @@ END
 END
             ]
         ];
+    }
+
+    private function getReviewItems(): array
+    {
+        $reviewsImages = $this->importImages('images/reviews','reviews');
+
+        return [
+            [
+                'title' => 'CYBERNET',
+                'description' => <<<END
+Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
+END,
+                'image' => $reviewsImages[0]
+            ],
+            [
+                'title' => 'CYBERNET',
+                'description' => <<<END
+Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
+END,
+                'image' => $reviewsImages[1]
+            ],
+            [
+                'title' => 'CYBERNET',
+                'description' => <<<END
+Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
+END,
+                'image' => $reviewsImages[2]
+            ],
+            [
+                'title' => 'CYBERNET',
+                'description' => <<<END
+Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
+END,
+                'image' => $reviewsImages[3]
+            ],
+            [
+                'title' => 'CYBERNET',
+                'description' => <<<END
+Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
+END,
+                'image' => $reviewsImages[4]
+            ],
+            [
+                'title' => 'CYBERNET',
+                'description' => <<<END
+Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
+END,
+                'image' => $reviewsImages[5]
+            ],
+        ];
+    }
+
+    private function importImages(string $sourceDir, string $destDir): array
+    {
+        $photosDir = resource_path($sourceDir);
+        $files = scandir($photosDir);
+        $sliderPhotos = [];
+
+        foreach ($files as $file) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+
+            $filePath = $photosDir . DIRECTORY_SEPARATOR . $file;
+            $uFile = new UploadedFile($filePath,$file);
+
+            $sliderPhotos[] = Storage::disk('images')
+                ->put($destDir, $uFile);
+        }
+        return $sliderPhotos;
     }
 }
