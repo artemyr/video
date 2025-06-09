@@ -10,27 +10,19 @@ class TableDto
     /** @var TableRowDto[] */
     public readonly array $body;
 
-    public readonly bool $needRemoveBtn;
-
-    public function __construct(TableRowDto $head, array $body, bool $needRemoveBtn = false)
+    public function __construct(TableRowDto $head, array $body)
     {
         $this->head = $head;
         $this->body = $body;
-        $this->needRemoveBtn = $needRemoveBtn;
     }
 
-    public static function make(array $head, array $body, array $options = null): TableDto
+    public static function make(array $head, array $body): TableDto
     {
         $resBody = [];
         foreach ($body as $item) {
             $resBody[] = new TableRowDto($item['values'], $item['detailUrl']);
         }
 
-        $needRemoveBtn = false;
-        if ($options['needRemoveBtn']) {
-            $needRemoveBtn = true;
-        }
-
-        return new self(new TableRowDto($head), $resBody, $needRemoveBtn);
+        return new self(new TableRowDto($head), $resBody);
     }
 }

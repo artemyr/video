@@ -3,7 +3,7 @@
 namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
-use App\Http\Controllers\Admin\MetaController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\TextController;
@@ -26,11 +26,29 @@ class AdminRegistrar implements RouteRegistrar
                     return view('admin.main.index');
                 })->name('admin.main');
 
-                Route::get('/admin/meta', [MetaController::class, 'page'])
-                    ->name('admin.main.meta');
-
                 Route::get('/admin/media', [MediaController::class, 'page'])
                     ->name('admin.media');
+
+                Route::controller(SettingsController::class)
+                    ->group(function () {
+                        Route::get('/admin/settings/add', 'pageCreate')
+                            ->name('admin.settings.create.page');
+
+                        Route::post('/admin/settings/add', 'create')
+                            ->name('admin.settings.create');
+
+                        Route::post('/admin/settings/{setting}/update', 'update')
+                            ->name('admin.settings.update');
+
+                        Route::get('/admin/settings/{id}/detail', 'detail')
+                            ->name('admin.settings.detail');
+
+                        Route::delete('/admin/settings/{text}/destroy', 'destroy')
+                            ->name('admin.settings.destroy');
+
+                        Route::get('/admin/settings/index', 'page')
+                            ->name('admin.settings.index');
+                    });
 
                 Route::controller(TextController::class)
                     ->group(function () {

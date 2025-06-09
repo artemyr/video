@@ -43,9 +43,7 @@ class TextController
             'Текст',
             'Описание',
             'Удалить',
-        ], $rows, [
-            'needRemoveBtn' => true
-        ]);
+        ], $rows);
 
         return view('admin.text.index', compact('table'));
     }
