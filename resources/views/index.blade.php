@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    123
+@endsection
+
 @section('content')
 
     <main>
@@ -15,7 +19,9 @@
             <section>
                 <div class="grid grid-cols-4 py-[25px]">
                     <div class="px-[25px] col-span-4 md:col-span-3">
-                        {!! $about !!}
+                        <x-edit-text id="{{ $about->id }}">
+                            {!! $about->text !!}
+                        </x-edit-text>
                     </div>
                     <div class="px-[25px] grid justify-center col-span-4 md:col-span-1">
                         <img src="{{ Vite::image('author.jpg') }}" alt="women">

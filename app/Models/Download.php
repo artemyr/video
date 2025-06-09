@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Download extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['created_at'];
 
     public function url(): string
     {

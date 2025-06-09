@@ -3,8 +3,8 @@
 namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\MetaController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\TextController;
 use App\Http\Middleware\AdminMiddleware;
@@ -26,9 +26,29 @@ class AdminRegistrar implements RouteRegistrar
                     return view('admin.main.index');
                 })->name('admin.main');
 
-                Route::get('/admin/media', [MediaController::class, 'page'])->name('admin.media');
+                Route::get('/admin/meta', [MetaController::class, 'page'])
+                    ->name('admin.main.meta');
 
-                Route::get('/admin/text', [TextController::class, 'page'])->name('admin.text');
+                Route::get('/admin/media', [MediaController::class, 'page'])
+                    ->name('admin.media');
+
+                Route::controller(TextController::class)
+                    ->group(function () {
+                        Route::get('/admin/text/add', 'pageCreate')
+                            ->name('admin.text.create');
+
+                        Route::post('/admin/text/{text}/update', 'update')
+                            ->name('admin.text.update');
+
+                        Route::get('/admin/text/{id}/detail', 'detail')
+                            ->name('admin.text.detail');
+
+                        Route::delete('/admin/text/{text}/destroy', 'destroy')
+                            ->name('admin.text.destroy');
+
+                        Route::get('/admin/text/index', 'page')
+                            ->name('admin.text.index');
+                    });
 
                 Route::controller(MediaController::class)
                     ->group(function () {
@@ -36,7 +56,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::get('/admin/media/list', 'handle')->name('admin.media.list');
                     });
 
-                Route::controller(AdminSliderController::class)
+                Route::controller(SliderController::class)
                     ->group(function () {
                         Route::get('/admin/main/slider', 'page')
                             ->name('admin.main.slider');

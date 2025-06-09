@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasThumbnail;
 
-    protected $guarded = [];
+    protected $guarded = ['created_at'];
 
     protected function thumbnailDir(): string
     {

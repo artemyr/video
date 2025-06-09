@@ -19,11 +19,11 @@ class StartingItemsSeeder extends Seeder
         foreach ($this->getSliderItems() as $item) {
             Slider::query()->create($item);
         }
-//
+
         foreach ($this->getPriceItems() as $item) {
             Price::query()->create($item);
         }
-//
+
         foreach ($this->getTextItems() as $item) {
             Text::query()->create($item);
         }

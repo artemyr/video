@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         $sliders = Slider::query()->orderBy('sort')->get();
 
-        $about = Text::query()->where('code', 'main.about')->first()->text;
+        $about = Text::query()->where('code', 'main.about')->first();
 
         return view('index', compact('sliders', 'about'));
     }

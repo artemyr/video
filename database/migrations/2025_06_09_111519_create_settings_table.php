@@ -8,13 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('texts', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('code')
                 ->unique();
             $table->string('sort')
                 ->default(500);
-            $table->text('text');
+            $table->string('value');
             $table->string('description')
                 ->nullable();
             $table->timestamps();
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         if (!app()->isProduction()) {
-            Schema::dropIfExists('texts');
+            Schema::dropIfExists('settings');
         }
     }
 };
