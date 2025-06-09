@@ -27,6 +27,7 @@ class AdminRegistrar implements RouteRegistrar
                 })->name('admin.main');
 
                 Route::get('/admin/media', [MediaController::class, 'page'])->name('admin.media');
+
                 Route::get('/admin/text', [TextController::class, 'page'])->name('admin.text');
 
                 Route::controller(MediaController::class)

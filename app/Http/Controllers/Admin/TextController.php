@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Download;
+use App\Models\Text;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -12,7 +13,11 @@ class TextController
 {
     public function page(): View|Factory|Application|RedirectResponse
     {
-        return view('admin.text.index');
+        $texts = Text::query()
+            ->orderBy('sort')
+            ->get();
+
+        return view('admin.text.index', compact('texts'));
     }
 
 //    public function handle(): View|Factory|Application|RedirectResponse
