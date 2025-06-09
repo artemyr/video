@@ -4,7 +4,7 @@
 ])
 
 @if(auth()->id() > 0 && auth()->user()->role === 'admin')
-    <a class="text-xs italic" href="{{ route('admin.text.detail', ['id' => $id]) }}">Редактировать</a>
+    <a class="text-xxs italic" href="{{ route('admin.text.detail', ['id' => $id]) }}">Редактировать</a>
     {{ $slot }}
 @else
     {{ $slot }}

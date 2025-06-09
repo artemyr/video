@@ -35,6 +35,9 @@ class AdminRegistrar implements RouteRegistrar
                 Route::controller(TextController::class)
                     ->group(function () {
                         Route::get('/admin/text/add', 'pageCreate')
+                            ->name('admin.text.create.page');
+
+                        Route::post('/admin/text/add', 'create')
                             ->name('admin.text.create');
 
                         Route::post('/admin/text/{text}/update', 'update')

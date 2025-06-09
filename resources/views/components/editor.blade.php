@@ -1,8 +1,12 @@
 @props([
-    'text' => '',
-    'isError' => false
+    'value' => '',
+    'isError' => false,
+    'label' => '',
+    'name' => ''
 ])
 
-<div class="bg-white text-black" {{ $attributes->class(['border-red' => $isError]) }}>
-    <textarea name="content" id="editor">{{ $text }}</textarea>
-</div>
+<label for="">{{ $label }}</label>
+<textarea {{ $attributes->class([
+    'border-red' => $isError,
+    'text-black border w-full'
+]) }} rows="20" name="{{ $name }}" id="editor">{{ $value }}</textarea>

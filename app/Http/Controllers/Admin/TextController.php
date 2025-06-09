@@ -26,7 +26,7 @@ class TextController
                     $text->id,
                     $text->code,
                     $text->sort,
-                    $text->text,
+                    str($text->text)->substr(0,300),
                     $text->description,
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.text.destroy', $text->id)
@@ -59,6 +59,13 @@ class TextController
     public function pageCreate(): View|Factory|Application|RedirectResponse
     {
         return view('admin.text.create');
+    }
+
+    public function create(TextRequest $request): View|Factory|Application|RedirectResponse
+    {
+        Text::query()->create($request->validated());
+
+        return redirect()->route('admin.text.index');
     }
 
     public function update(Text $text, TextRequest $request): View|Factory|Application|RedirectResponse
