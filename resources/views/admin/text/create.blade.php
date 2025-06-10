@@ -10,7 +10,7 @@
         </x-forms.error>
         @enderror
         <x-forms.text-input
-            :value="old('code', '')"
+            :value="old('code', request('code', ''))"
             label="Code"
             name="code"
             :isError="$errors->has('code')"

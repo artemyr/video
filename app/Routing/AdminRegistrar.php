@@ -43,7 +43,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::get('/admin/settings/{id}/detail', 'detail')
                             ->name('admin.settings.detail');
 
-                        Route::delete('/admin/settings/{text}/destroy', 'destroy')
+                        Route::delete('/admin/settings/{setting}/destroy', 'destroy')
                             ->name('admin.settings.destroy');
 
                         Route::get('/admin/settings/index', 'page')

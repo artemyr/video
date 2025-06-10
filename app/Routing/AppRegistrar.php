@@ -5,6 +5,7 @@ namespace App\Routing;
 use App\Contracts\RouteRegistrar;
 use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Pages\ContactsController;
 use App\Http\Controllers\Pages\PricesController;
 use App\Http\Controllers\Pages\ReviewsController;
 use App\Http\Controllers\ThumbnailController;
@@ -25,7 +26,7 @@ class AppRegistrar implements RouteRegistrar
                     ->name('price.page');
                 Route::get('/reviews', [ReviewsController::class, 'page'])
                     ->name('reviews.page');
-                Route::get('/contacts', fn () => view('pages.contacts'))
+                Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');
 
                 Route::resource('/admin/download', DownloadController::class)

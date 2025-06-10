@@ -6,8 +6,14 @@
             <div>
                 <img class="rounded-full w-[400px]" src="{{ Vite::image('author.jpg') }}" alt="">
             </div>
-            <p class="text-md">Фотограф</p>
-            <a href="tel:+79585469791" class="text-xl">8-958-546-97-91</a>
+            <p class="text-md">
+                <x-edit-setting :setting="$text1" :code="\Support\Enums\SettingsEnum::CONTACT_TEXT_1->value">
+                </x-edit-setting>
+            </p>
+            <a href="tel:{{ $phone }}" class="text-xl">
+                <x-edit-setting :setting="$displayPhone" :code="\Support\Enums\SettingsEnum::MAIN_PHONE->value">
+                </x-edit-setting>
+            </a>
             <div class="py-4">
                 <a class="btn-black">Написать вконтакте</a>
             </div>

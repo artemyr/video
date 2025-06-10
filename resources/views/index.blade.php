@@ -19,8 +19,7 @@
             <section>
                 <div class="grid grid-cols-4 py-[25px]">
                     <div class="px-[25px] col-span-4 md:col-span-3">
-                        <x-edit-text id="{{ $about->id }}">
-                            {!! $about->text !!}
+                        <x-edit-text :text="$about" :code="\Support\Enums\TextsEnum::MAIN_ABOUT->value">
                         </x-edit-text>
                     </div>
                     <div class="px-[25px] grid justify-center col-span-4 md:col-span-1">
@@ -34,7 +33,7 @@
                         <p class="text-[24px] md:text-xl mb-[18px]">Узнайте, свободна ли дата</p>
                         <p class="mt-[17px]">или задайте любой другой вопрос</p>
                         <div class="mt-[25px]">
-                            <a href="https://wa.me/79585469791" target="_blank" class="bg-primary text-white rounded-[100px] px-[40px] py-[18px] uppercase text-[12px] hover:bg-[rgba(43,43,43,0.6)] transition-colors">свободные даты</a>
+                            <a href="https://wa.me/79585469791" target="_blank" class="text-white rounded-[100px] px-[40px] py-[18px] uppercase text-[12px] bg-admin-dark hover:bg-admin-light transition-colors">свободные даты</a>
                         </div>
                     </div>
                 </div>
