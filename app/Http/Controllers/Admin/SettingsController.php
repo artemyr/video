@@ -13,7 +13,7 @@ use Support\DTO\Table\TableDto;
 
 class SettingsController
 {
-    public function page(): View|Factory|Application|RedirectResponse
+    public function page()
     {
         $settings = Setting::query()
             ->orderBy('sort')
@@ -48,37 +48,33 @@ class SettingsController
         return view('admin.settings.index', compact('table'));
     }
 
-    public function destroy(Setting $setting): View|Factory|Application|RedirectResponse
+    public function destroy(Setting $setting)
     {
         $setting->delete();
         return redirect()->route('admin.settings.index');
     }
 
-    public function pageCreate(): View|Factory|Application|RedirectResponse
+    public function pageCreate()
     {
         return view('admin.settings.create');
     }
 
-    public function create(SettingRequest $request): View|Factory|Application|RedirectResponse
+    public function create(SettingRequest $request)
     {
         Setting::query()->create($request->validated());
 
         return redirect()->route('admin.settings.index');
     }
 
-    public function update(Setting $setting, SettingRequest $request): View|Factory|Application|RedirectResponse
+    public function update(Setting $setting, SettingRequest $request)
     {
         $setting->update($request->validated());
 
         return redirect()->route('admin.settings.index');
     }
 
-    public function detail($id): View|Factory|Application|RedirectResponse
+    public function detail(Setting $setting)
     {
-        $setting = Setting::query()
-            ->where('id', $id)
-            ->firstOrFail();
-
         return view('admin.settings.detail', compact('setting'));
     }
 }

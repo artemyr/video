@@ -10,6 +10,8 @@ use App\Models\Text;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Support\Enums\SettingsEnum;
+use Support\Enums\TextsEnum;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -118,7 +120,7 @@ END
     {
         return [
             [
-                'code' => 'main.about',
+                'code' => TextsEnum::MAIN_ABOUT->value,
                 'description' => 'Текст на главной странице',
                 'text' => <<<END
 <p class="text-xl mb-[18px]">Приветствую</p>
@@ -137,12 +139,28 @@ END
 END
             ],
             [
-                'code' => 'main.footer.text',
+                'code' => TextsEnum::MAIN_FOOTER_TEXT->value,
                 'description' => 'Текст в подвале',
                 'text' => <<<END
 Мобильная видеосъемка и услуги SMМ-Дарья.<br>г. Краснодар<br>
 END
-            ]
+            ],
+            [
+                'code' => TextsEnum::PRICES_BOTTOM_TEXT->value,
+                'description' => 'Текст после цен на странице стоимость',
+                'text' => <<<END
+<p class="text-center text-brown text-md font-bold">ВАЖНАЯ ИНФОРМАЦИЯ:</p>
+<p class="text-center text-brown text-sm mb-10">ПРОЧИТАЙТЕ ИНФОРМАЦИЮ ПЕРЕД БРОНИРОВАНИЕМ</p>
+
+<ul>
+    <li class="">Для брони напишите мне WhatsApp или Telegram</li>
+    <li>Запись и бронирование осуществляется внесением задатка 50%,</li>
+    <li>замена основной аудиодорожки при монтаже видеоролика НЕ считается правкой (согласовывается только ПЕРЕД монажем)</li>
+    <li>Остаток оплачивается в день съемхи.</li>
+    <li>первичные видеоматериалы (исходники) не пердоставляются.</li>
+</ul>
+END
+            ],
         ];
     }
 
@@ -200,12 +218,12 @@ END,
     {
         return [
             [
-                'code' => 'main.phone',
+                'code' => SettingsEnum::MAIN_PHONE->value,
                 'value' => '8-958-546-97-91',
                 'description' => 'Номер телефона'
             ],
             [
-                'code' => 'contacts.text.1',
+                'code' => SettingsEnum::CONTACT_TEXT_1->value,
                 'value' => 'Фотограф',
                 'description' => 'Подпись картинки в контактах'
             ],

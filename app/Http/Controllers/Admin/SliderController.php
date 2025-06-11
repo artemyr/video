@@ -3,34 +3,79 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Slider;
+use App\Models\Text;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Support\DTO\Table\HtmlDto;
+use Support\DTO\Table\TableColDto;
+use Support\DTO\Table\TableComponentDto;
+use Support\DTO\Table\TableDto;
+use Support\DTO\Table\TableRowDto;
 
 class SliderController
 {
-    public function page(): Application|Factory|View
+    public function index()
     {
-        return view('admin.main.slider');
-    }
+        $sliders = Slider::query()
+            ->orderBy('sort')
+            ->get();
 
-    public function handle(Request $request): RedirectResponse
-    {
-        $videoPath = Storage::disk('video')
-            ->put('slider', $request->file('video'));
+        $body = [];
+        foreach ($sliders as $item) {
 
-        $photoPath = Storage::disk('images')
-            ->put('slider', $request->file('photo'));
+            $body[] = new TableRowDto([
+                $item->id,
+                $item->title,
+                $item->active,
+                new HtmlDto('<img width="100" src="'. asset('storage/images/'.$item->photo) .'">'),
+                $item->video,
+                $item->size,
+                $item->sort,
+                new TableComponentDto('components.forms.remove-form', [
+                    'url' => route('admin.main.slider.destroy', $item->id)
+                ]),
+            ], route('admin.main.slider.detail', $item->id));
+        }
 
-        Slider::create([
-            'title' => $request->get('title'),
-            'video' => $videoPath,
-            'photo' => $photoPath,
+        $head = new TableRowDto([
+            'ID',
+            'Название',
+            'Активность',
+            'Фото',
+            'Видео',
+            'Размер',
+            'Сортировка',
+            'Удалить',
         ]);
 
-        return redirect('admin');
+        $table = new TableDto($head, $body);
+
+        return view('admin.main.slider.index', compact('table'));
     }
+
+    public function detail(Slider $slider)
+    {
+        return view('admin.main.slider.detail', compact('slider'));
+    }
+
+//    public function handle(Request $request): RedirectResponse
+//    {
+//        $videoPath = Storage::disk('video')
+//            ->put('slider', $request->file('video'));
+//
+//        $photoPath = Storage::disk('images')
+//            ->put('slider', $request->file('photo'));
+//
+//        Slider::create([
+//            'title' => $request->get('title'),
+//            'video' => $videoPath,
+//            'photo' => $photoPath,
+//        ]);
+//
+//        return redirect('admin');
+//    }
 }

@@ -40,7 +40,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::post('/admin/settings/{setting}/update', 'update')
                             ->name('admin.settings.update');
 
-                        Route::get('/admin/settings/{id}/detail', 'detail')
+                        Route::get('/admin/settings/{setting}/detail', 'detail')
                             ->name('admin.settings.detail');
 
                         Route::delete('/admin/settings/{setting}/destroy', 'destroy')
@@ -61,7 +61,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::post('/admin/text/{text}/update', 'update')
                             ->name('admin.text.update');
 
-                        Route::get('/admin/text/{id}/detail', 'detail')
+                        Route::get('/admin/text/{text}/detail', 'detail')
                             ->name('admin.text.detail');
 
                         Route::delete('/admin/text/{text}/destroy', 'destroy')
@@ -79,11 +79,20 @@ class AdminRegistrar implements RouteRegistrar
 
                 Route::controller(SliderController::class)
                     ->group(function () {
-                        Route::get('/admin/main/slider', 'page')
-                            ->name('admin.main.slider');
+                        Route::get('/admin/main/slider', 'index')
+                            ->name('admin.main.slider.index');
 
-                        Route::post('/admin/main/slider', 'handle')
-                            ->name('admin.main.slider.handle');
+                        Route::delete('/admin/main/slider/{slider}/destroy', 'destroy')
+                            ->name('admin.main.slider.destroy');
+
+                        Route::get('/admin/main/slider/create', 'create')
+                            ->name('admin.main.slider.create');
+
+                        Route::get('/admin/main/slider/{slider}', 'detail')
+                            ->name('admin.main.slider.detail');
+
+                        Route::post('/admin/main/slider/{slider}/update', 'update')
+                            ->name('admin.main.slider.update');
                     });
 
             });

@@ -13,7 +13,7 @@ use Support\DTO\Table\TableDto;
 
 class TextController
 {
-    public function page(): View|Factory|Application|RedirectResponse
+    public function page()
     {
         $texts = Text::query()
             ->orderBy('sort')
@@ -48,37 +48,33 @@ class TextController
         return view('admin.text.index', compact('table'));
     }
 
-    public function destroy(Text $text): View|Factory|Application|RedirectResponse
+    public function destroy(Text $text)
     {
         $text->delete();
         return redirect()->route('admin.text.index');
     }
 
-    public function pageCreate(): View|Factory|Application|RedirectResponse
+    public function pageCreate()
     {
         return view('admin.text.create');
     }
 
-    public function create(TextRequest $request): View|Factory|Application|RedirectResponse
+    public function create(TextRequest $request)
     {
         Text::query()->create($request->validated());
 
         return redirect()->route('admin.text.index');
     }
 
-    public function update(Text $text, TextRequest $request): View|Factory|Application|RedirectResponse
+    public function update(Text $text, TextRequest $request)
     {
         $text->update($request->validated());
 
         return redirect()->route('admin.text.index');
     }
 
-    public function detail($id): View|Factory|Application|RedirectResponse
+    public function detail(Text $text)
     {
-        $text = Text::query()
-            ->where('id', $id)
-            ->firstOrFail();
-
         return view('admin.text.detail', compact('text'));
     }
 }

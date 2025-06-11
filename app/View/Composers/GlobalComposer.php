@@ -70,7 +70,11 @@ class GlobalComposer
 
     private function getMeta(): array
     {
-        $routeName = request()->route()->getName();
+        $routeName = request()->route()?->getName();
+
+        if (empty($routeName) || str($routeName)->startsWith('admin')) {
+            return [null, null];
+        }
 
         $title = $this->getCached('title.' . $routeName, fn() => Setting::query()
             ->where('code', 'title.' . $routeName)
