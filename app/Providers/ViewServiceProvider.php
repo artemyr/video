@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         Vite::macro('image', fn($asset) => $this->asset("resources/images/$asset"));
 
-        View::composer('*', NavigationComposer::class);
+        View::composer('shared.menu', NavigationComposer::class);
         View::composer('*', GlobalComposer::class);
         View::composer('admin.*', AdminNavigationComposer::class);
     }

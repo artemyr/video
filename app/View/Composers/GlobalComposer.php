@@ -10,6 +10,8 @@ use Support\Enums\TextsEnum;
 
 class GlobalComposer
 {
+    protected static array $register = [];
+
     public function compose(View $view): void
     {
         [$displayPhone, $phone] = $this->getPhone();
@@ -25,57 +27,78 @@ class GlobalComposer
 
     private function getPhone(): array
     {
-        $displayPhone = Setting::query()
+        $displayPhone = $this->getCached('displayPhone', fn() => Setting::query()
             ->where('code', SettingsEnum::MAIN_PHONE->value)
-            ->first();
+            ->first()
+        );
 
-        $phone = '';
-        if (!empty($displayPhone)) {
-            $phone = preg_replace('/[^0-9]/', '', $displayPhone->value);
-            if (substr($phone, 0, 1) === '8') {
-                $phone = '+7' . substr($phone, 1, strlen($phone));
+        $phone = $this->getCached('phone',
+            function() use ($displayPhone) {
+                $phone = '';
+                if (!empty($displayPhone)) {
+                    $phone = preg_replace('/[^0-9]/', '', $displayPhone->value);
+                    if (str_starts_with($phone, '8')) {
+                        $phone = '+7' . substr($phone, 1, strlen($phone));
+                    }
+                }
+                return $phone;
             }
-        }
+        );
 
         return [$displayPhone, $phone];
     }
 
     private function getEditMode(): bool
     {
-        $editMode = false;
-        $session = session();
-        if (request('edit') === 'y' && auth()->id() > 0 && auth()->user()->role === 'admin') {
-            $session->put('editMode', true);
-        }
-        if (request('edit') === 'n' && auth()->id() > 0 && auth()->user()->role === 'admin') {
-            $session->put('editMode', false);
-        }
-        if (auth()->id() > 0 && auth()->user()->role === 'admin' && $session->get('editMode') === true) {
-            $editMode = true;
-        }
-
-        return $editMode;
+        return $this->getCached('editMode',
+            function() {
+                $editMode = false;
+                $session = session();
+                if (request('edit') === 'y' && auth()->id() > 0 && auth()->user()->role === 'admin') {
+                    $session->put('editMode', true);
+                }
+                if (request('edit') === 'n' && auth()->id() > 0 && auth()->user()->role === 'admin') {
+                    $session->put('editMode', false);
+                }
+                if (auth()->id() > 0 && auth()->user()->role === 'admin' && $session->get('editMode') === true) {
+                    $editMode = true;
+                }
+                return $editMode;
+            }
+        );
     }
 
     private function getMeta(): array
     {
         $routeName = request()->route()->getName();
 
-        $title = Setting::query()
+        $title = $this->getCached('title.' . $routeName, fn() => Setting::query()
             ->where('code', 'title.' . $routeName)
-            ->first();
+            ->first()
+        );
 
-        $description = Setting::query()
+        $description = $this->getCached('description.' . $routeName, fn() => Setting::query()
             ->where('code', 'description.' . $routeName)
-            ->first();
+            ->first()
+        );
 
         return [$title?->value, $description?->value];
     }
 
     private function getFooterText()
     {
-        return Text::query()
+        return $this->getCached('footerText', fn() => Text::query()
             ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
-            ->first();
+            ->first()
+        );
+    }
+
+    private function getCached(string $name, callable $function)
+    {
+        if (!isset(static::$register[$name])) {
+            static::$register[$name] = $function();
+        }
+
+        return static::$register[$name];
     }
 }
