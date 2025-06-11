@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-    123
-@endsection
-
 @section('content')
 
     <main>

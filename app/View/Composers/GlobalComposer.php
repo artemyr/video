@@ -2,16 +2,28 @@
 
 namespace App\View\Composers;
 
-use App\Menu\Menu;
-use App\Menu\MenuItem;
 use App\Models\Setting;
-use Illuminate\Contracts\Session\Session;
+use App\Models\Text;
 use Illuminate\View\View;
 use Support\Enums\SettingsEnum;
+use Support\Enums\TextsEnum;
 
 class GlobalComposer
 {
     public function compose(View $view): void
+    {
+        [$displayPhone, $phone] = $this->getPhone();
+        [$title, $description] = $this->getMeta();
+
+        $view->with('phone', $phone);
+        $view->with('displayPhone', $displayPhone);
+        $view->with('footerText', $this->getFooterText());
+        $view->with('editMode', $this->getEditMode());
+        $view->with('title', $title);
+        $view->with('description', $description);
+    }
+
+    private function getPhone(): array
     {
         $displayPhone = Setting::query()
             ->where('code', SettingsEnum::MAIN_PHONE->value)
@@ -25,6 +37,11 @@ class GlobalComposer
             }
         }
 
+        return [$displayPhone, $phone];
+    }
+
+    private function getEditMode(): bool
+    {
         $editMode = false;
         $session = session();
         if (request('edit') === 'y' && auth()->id() > 0 && auth()->user()->role === 'admin') {
@@ -37,8 +54,28 @@ class GlobalComposer
             $editMode = true;
         }
 
-        $view->with('phone', $phone);
-        $view->with('displayPhone', $displayPhone);
-        $view->with('editMode', $editMode);
+        return $editMode;
+    }
+
+    private function getMeta(): array
+    {
+        $routeName = request()->route()->getName();
+
+        $title = Setting::query()
+            ->where('code', 'title.' . $routeName)
+            ->first();
+
+        $description = Setting::query()
+            ->where('code', 'description.' . $routeName)
+            ->first();
+
+        return [$title?->value, $description?->value];
+    }
+
+    private function getFooterText()
+    {
+        return Text::query()
+            ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
+            ->first();
     }
 }

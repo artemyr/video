@@ -9,8 +9,15 @@
             </a>
         </div>
         <p class="text-center text-[12px] mb-[20px]">
-            Мобильная видеосъемка и услуги SMМ-Дарья.<br>г. Краснодар<br>Телефон:
-            <x-edit-setting :setting="$displayPhone" :code="\Support\Enums\SettingsEnum::MAIN_PHONE->value">
+            <x-edit-text
+                :text="$footerText"
+                :code="\Support\Enums\TextsEnum::MAIN_FOOTER_TEXT->value">
+            </x-edit-text>
+
+            Телефон:
+            <x-edit-setting
+                :setting="$displayPhone"
+                :code="\Support\Enums\SettingsEnum::MAIN_PHONE->value">
             </x-edit-setting>
         </p>
     </div>

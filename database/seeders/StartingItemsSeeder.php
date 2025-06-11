@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Price;
 use App\Models\Review;
+use App\Models\Setting;
 use App\Models\Slider;
 use App\Models\Text;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,10 @@ class StartingItemsSeeder extends Seeder
 
         foreach ($this->getReviewItems() as $item) {
             Review::query()->create($item);
+        }
+
+        foreach ($this->getSettingsItems() as $item) {
+            Setting::query()->create($item);
         }
     }
 
@@ -114,6 +119,7 @@ END
         return [
             [
                 'code' => 'main.about',
+                'description' => 'Текст на главной странице',
                 'text' => <<<END
 <p class="text-xl mb-[18px]">Приветствую</p>
 <p class="my-[14px] font-sec">Меня зовут Дарья, я SMM-менеджер и мобильный видеограф из Краснодара.</p>
@@ -128,6 +134,13 @@ END
     Вместе мы разработаем визуальную концепцию, наполним вашу страницу
     оригинальным и качественным контентом, а также привлечём именно тех клиентов, которые действительно заинтересованы в вашем продукте.
 </p>
+END
+            ],
+            [
+                'code' => 'main.footer.text',
+                'description' => 'Текст в подвале',
+                'text' => <<<END
+Мобильная видеосъемка и услуги SMМ-Дарья.<br>г. Краснодар<br>
 END
             ]
         ];
@@ -179,6 +192,72 @@ END,
 Работаем с Дарьей давно, заказывали уже более 10 роликов. Комфортно работать, радует качество видео, быстрая готовность и комфортная стоимость.
 END,
                 'image' => $reviewsImages[5]
+            ],
+        ];
+    }
+
+    private function getSettingsItems(): array
+    {
+        return [
+            [
+                'code' => 'main.phone',
+                'value' => '8-958-546-97-91',
+                'description' => 'Номер телефона'
+            ],
+            [
+                'code' => 'contacts.text.1',
+                'value' => 'Фотограф',
+                'description' => 'Подпись картинки в контактах'
+            ],
+            [
+                'code' => 'title.home',
+                'value' => 'Главная',
+                'description' => 'title главной страницы'
+            ],
+            [
+                'code' => 'description.home',
+                'value' => 'Главная',
+                'description' => 'Description главной страницы'
+            ],
+            [
+                'code' => 'title.contacts.page',
+                'value' => 'Контакты',
+                'description' => 'title на странице контакты'
+            ],
+            [
+                'code' => 'description.contacts.page',
+                'value' => 'Контакты',
+                'description' => 'Description на странице контакты'
+            ],
+            [
+                'code' => 'title.reviews.page',
+                'value' => 'Отзывы',
+                'description' => 'title на странице отзывы'
+            ],
+            [
+                'code' => 'description.reviews.page',
+                'value' => 'Отзывы',
+                'description' => 'Description на странице отзывы'
+            ],
+            [
+                'code' => 'title.price.page',
+                'value' => 'Стоимость',
+                'description' => 'title на странице стоимость'
+            ],
+            [
+                'code' => 'description.price.page',
+                'value' => 'Стоимость',
+                'description' => 'Description на странице стоимость'
+            ],
+            [
+                'code' => 'title.portfolio.page',
+                'value' => 'Портфолио',
+                'description' => 'title на странице портфолио'
+            ],
+            [
+                'code' => 'description.portfolio.page',
+                'value' => 'Портфолио',
+                'description' => 'Description на странице портфолио'
             ],
         ];
     }
