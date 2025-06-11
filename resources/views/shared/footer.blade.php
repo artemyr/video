@@ -14,4 +14,7 @@
             </x-edit-setting>
         </p>
     </div>
+
+    <x-edit-mode></x-edit-mode>
+
 </footer>

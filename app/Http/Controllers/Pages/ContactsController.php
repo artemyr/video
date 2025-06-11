@@ -17,18 +17,6 @@ class ContactsController
             ->where('code', SettingsEnum::CONTACT_TEXT_1->value)
             ->first();
 
-        $displayPhone = Setting::query()
-            ->where('code', SettingsEnum::MAIN_PHONE->value)
-            ->first();
-
-        $phone = '';
-        if (!empty($displayPhone)) {
-            $phone = preg_replace('/[^0-9]/', '', $displayPhone->value);
-            if (substr($phone, 0, 1) === '8') {
-                $phone = '+7' . substr($phone, 1, strlen($phone));
-            }
-        }
-
-        return view('pages.contacts', compact('text1', 'displayPhone', 'phone'));
+        return view('pages.contacts', compact('text1'));
     }
 }

@@ -21,10 +21,6 @@ class HomeController extends Controller
             ->where('code', TextsEnum::MAIN_ABOUT->value)
             ->first();
 
-        $displayPhone = Setting::query()
-            ->where('code', SettingsEnum::MAIN_PHONE->value)
-            ->first();
-
-        return view('index', compact('sliders', 'about', 'displayPhone'));
+        return view('index', compact('sliders', 'about'));
     }
 }
