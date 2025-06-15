@@ -57,25 +57,8 @@ class SliderController
         return view('admin.main.slider.index', compact('table'));
     }
 
-    public function detail(Slider $slider)
+    public function detail(Slider $item)
     {
-        return view('admin.main.slider.detail', compact('slider'));
+        return view('admin.main.slider.detail', compact('item'));
     }
-
-//    public function handle(Request $request): RedirectResponse
-//    {
-//        $videoPath = Storage::disk('video')
-//            ->put('slider', $request->file('video'));
-//
-//        $photoPath = Storage::disk('images')
-//            ->put('slider', $request->file('photo'));
-//
-//        Slider::create([
-//            'title' => $request->get('title'),
-//            'video' => $videoPath,
-//            'photo' => $photoPath,
-//        ]);
-//
-//        return redirect('admin');
-//    }
 }

@@ -27,7 +27,7 @@ class PortfolioController
                     $item->sort,
                     $item->active,
                     new HtmlDto('<img width="100" src="'. asset('storage/images/'.$item->image) .'">'),
-                    $item->video,
+                    new HtmlDto('<a target="_blank" href="' . asset('storage/video/'.$item->video) . '">Видео</a>'),
                     $item->size,
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.portfolio.destroy', $item->id)
@@ -53,7 +53,21 @@ class PortfolioController
 
     public function destroy(Portfolio $item)
     {
+        $storageImages = Storage::disk('images');
+        $storageVideos = Storage::disk('video');
+
+        if (!empty($item->image)) {
+            $storageImages->delete($item->image);
+        }
+
+        if (!empty($item->video)) {
+            $storageVideos->delete($item->video);
+        }
+
         $item->delete();
+
+        flash()->info('Запись успешно удалена');
+
         return redirect()->route('admin.portfolio.index');
     }
 
@@ -64,7 +78,32 @@ class PortfolioController
 
     public function create(PortfolioSaveRequest $request)
     {
-        Portfolio::query()->create($request->validated());
+        $fields = $request->validated();
+        $saveFields = [
+            'active' => $request->has('active'),
+            'title' => $fields['title'],
+            'sort' => $fields['sort'],
+            'size' => $fields['size'],
+        ];
+
+        $storageImages = Storage::disk('images');
+        $storageVideos = Storage::disk('video');
+
+        if ($request->has('image')) {
+            $imagePath = $storageImages
+                ->put('portfolio', $request->file('image'));
+            $saveFields['image'] = $imagePath;
+        }
+
+        if ($request->has('video')) {
+            $videoPath = $storageVideos
+                ->put('portfolio', $request->file('video'));
+            $saveFields['video'] = $videoPath;
+        }
+
+        Portfolio::query()->create($saveFields);
+
+        flash()->info('Запись успешно создана');
 
         return redirect()->route('admin.portfolio.index');
     }
@@ -103,6 +142,8 @@ class PortfolioController
         }
 
         $item->update($saveFields);
+
+        flash()->info('Запись успешно обновлена');
 
         return redirect()->back();
     }

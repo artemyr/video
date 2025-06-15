@@ -38,13 +38,13 @@ class AdminRegistrar implements RouteRegistrar
                         Route::post('/admin/settings/add', 'create')
                             ->name('admin.settings.create');
 
-                        Route::post('/admin/settings/{setting}/update', 'update')
+                        Route::post('/admin/settings/{item}/update', 'update')
                             ->name('admin.settings.update');
 
-                        Route::get('/admin/settings/{setting}/detail', 'detail')
+                        Route::get('/admin/settings/{item}/detail', 'detail')
                             ->name('admin.settings.detail');
 
-                        Route::delete('/admin/settings/{setting}/destroy', 'destroy')
+                        Route::delete('/admin/settings/{item}/destroy', 'destroy')
                             ->name('admin.settings.destroy');
 
                         Route::get('/admin/settings/index', 'index')
@@ -59,13 +59,13 @@ class AdminRegistrar implements RouteRegistrar
                         Route::post('/admin/text/add', 'create')
                             ->name('admin.text.create');
 
-                        Route::post('/admin/text/{text}/update', 'update')
+                        Route::post('/admin/text/{item}/update', 'update')
                             ->name('admin.text.update');
 
-                        Route::get('/admin/text/{text}/detail', 'detail')
+                        Route::get('/admin/text/{item}/detail', 'detail')
                             ->name('admin.text.detail');
 
-                        Route::delete('/admin/text/{text}/destroy', 'destroy')
+                        Route::delete('/admin/text/{item}/destroy', 'destroy')
                             ->name('admin.text.destroy');
 
                         Route::get('/admin/text/index', 'index')
@@ -83,16 +83,16 @@ class AdminRegistrar implements RouteRegistrar
                         Route::get('/admin/main/slider', 'index')
                             ->name('admin.main.slider.index');
 
-                        Route::delete('/admin/main/slider/{slider}/destroy', 'destroy')
+                        Route::delete('/admin/main/slider/{item}/destroy', 'destroy')
                             ->name('admin.main.slider.destroy');
 
                         Route::get('/admin/main/slider/create', 'create')
                             ->name('admin.main.slider.create');
 
-                        Route::get('/admin/main/slider/{slider}', 'detail')
+                        Route::get('/admin/main/slider/{item}', 'detail')
                             ->name('admin.main.slider.detail');
 
-                        Route::post('/admin/main/slider/{slider}/update', 'update')
+                        Route::post('/admin/main/slider/{item}/update', 'update')
                             ->name('admin.main.slider.update');
                     });
 
@@ -107,7 +107,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::get('/admin/portfolio/add', 'pageCreate')
                             ->name('admin.portfolio.create.page');
 
-                        Route::get('/admin/portfolio/create', 'create')
+                        Route::post('/admin/portfolio/create', 'create')
                             ->name('admin.portfolio.create');
 
                         Route::get('/admin/portfolio/{item}', 'detail')

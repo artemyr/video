@@ -18,16 +18,16 @@ class Slider extends Model
 
     protected function thumbnailColumn(): string
     {
-        return 'photo';
+        return 'image';
     }
 
-    public function photo(): ?string
+    public function image(): ?string
     {
-        if (empty($this->photo)) {
+        if (empty($this->image)) {
             return null;
         }
 
-        return asset('storage/images/' . $this->photo);
+        return asset('storage/images/' . $this->image);
     }
 
     public function video(): ?string

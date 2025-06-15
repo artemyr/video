@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->boolean('active')
                 ->default(true);
-            $table->string('photo');
+            $table->string('image');
             $table->string('video')
                 ->nullable();
             $table->string('size')
