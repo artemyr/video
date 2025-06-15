@@ -15,7 +15,7 @@ class AdminNavigationComposer
             ->add(MenuItem::make(route('admin.text.index'), 'Текста'))
             ->add(MenuItem::make(route('admin.main'), 'Главная'))
             ->add(MenuItem::make(route('admin.settings.index'), 'Настройки'))
-//            ->add(MenuItem::make(route(''), 'портфолио'))
+            ->add(MenuItem::make(route('admin.portfolio.index'), 'Портфолио'))
 //            ->add(MenuItem::make(route(''), 'стоимость'))
 //            ->add(MenuItem::make(route(''), 'отзывы'))
 //            ->add(MenuItem::make(route(''), 'контакты'))

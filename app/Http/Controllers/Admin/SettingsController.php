@@ -13,7 +13,7 @@ use Support\DTO\Table\TableDto;
 
 class SettingsController
 {
-    public function page()
+    public function index()
     {
         $settings = Setting::query()
             ->orderBy('sort')

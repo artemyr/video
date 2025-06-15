@@ -13,7 +13,7 @@ use Support\DTO\Table\TableDto;
 
 class TextController
 {
-    public function page()
+    public function index()
     {
         $texts = Text::query()
             ->orderBy('sort')

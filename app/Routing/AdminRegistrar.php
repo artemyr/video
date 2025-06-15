@@ -3,6 +3,7 @@
 namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
+use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\MediaController;
@@ -46,7 +47,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::delete('/admin/settings/{setting}/destroy', 'destroy')
                             ->name('admin.settings.destroy');
 
-                        Route::get('/admin/settings/index', 'page')
+                        Route::get('/admin/settings/index', 'index')
                             ->name('admin.settings.index');
                     });
 
@@ -67,7 +68,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::delete('/admin/text/{text}/destroy', 'destroy')
                             ->name('admin.text.destroy');
 
-                        Route::get('/admin/text/index', 'page')
+                        Route::get('/admin/text/index', 'index')
                             ->name('admin.text.index');
                     });
 
@@ -93,6 +94,27 @@ class AdminRegistrar implements RouteRegistrar
 
                         Route::post('/admin/main/slider/{slider}/update', 'update')
                             ->name('admin.main.slider.update');
+                    });
+
+                Route::controller(PortfolioController::class)
+                    ->group(function () {
+                        Route::get('/admin/portfolio', 'index')
+                            ->name('admin.portfolio.index');
+
+                        Route::delete('/admin/portfolio/{item}/destroy', 'destroy')
+                            ->name('admin.portfolio.destroy');
+
+                        Route::get('/admin/portfolio/add', 'pageCreate')
+                            ->name('admin.portfolio.create.page');
+
+                        Route::get('/admin/portfolio/create', 'create')
+                            ->name('admin.portfolio.create');
+
+                        Route::get('/admin/portfolio/{item}', 'detail')
+                            ->name('admin.portfolio.detail');
+
+                        Route::post('/admin/portfolio/{item}/update', 'update')
+                            ->name('admin.portfolio.update');
                     });
 
             });

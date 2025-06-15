@@ -5,8 +5,8 @@
      class="cursor-pointer fixed right-10 bottom-10 bg-alert hover:bg-red text-white rounded-full p-4"
 >
     @if($editMode)
-        off edit
+        edit-mode off
     @else
-        on edit
+        edit-mode on
     @endif
 </div>

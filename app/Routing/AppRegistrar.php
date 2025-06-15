@@ -4,6 +4,7 @@ namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
 use App\Http\Controllers\Admin\DownloadController;
+use App\Http\Controllers\Pages\PortfolioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pages\ContactsController;
 use App\Http\Controllers\Pages\PricesController;
@@ -20,7 +21,7 @@ class AppRegistrar implements RouteRegistrar
             ->group(function() {
                 Route::get('/', HomeController::class)->name('home');
 
-                Route::get('/portfolio', fn () => view('pages.portfolio'))
+                Route::get('/portfolio', [PortfolioController::class, 'page'])
                     ->name('portfolio.page');
                 Route::get('/price', [PricesController::class, 'page'])
                     ->name('price.page');

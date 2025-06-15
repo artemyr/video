@@ -22,6 +22,7 @@
         </p>
     </div>
 
+    @auth()
     <x-edit-mode></x-edit-mode>
-
+    @endauth
 </footer>
