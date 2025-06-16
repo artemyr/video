@@ -12,5 +12,14 @@
                 <a href="{{ $item->link() }}">{{ $item->label() }}</a>
             </li>
         @endforeach
+        @if(auth()->id() > 0)
+            <form action="{{ route('logOut') }}" method="post">
+                @csrf
+                @method('DELETE')
+                <li class="mx-[20px] mt-4 sm:mt-0 py-[8px] cursor-pointer underline custom">
+                    <button type="submit">Выйти</button>
+                </li>
+            </form>
+        @endif
     </ul>
 </nav>

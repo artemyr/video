@@ -3,11 +3,12 @@
 namespace App\Providers;
 
 use App\View\Composers\AdminNavigationComposer;
-use App\View\Composers\GlobalComposer;
+use App\View\Composers\EditModeComposer;
 use App\View\Composers\NavigationComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Support\Helpers\GlobalViewVarsHelper;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -27,7 +28,11 @@ class ViewServiceProvider extends ServiceProvider
         Vite::macro('image', fn($asset) => $this->asset("resources/images/$asset"));
 
         View::composer('shared.menu', NavigationComposer::class);
-        View::composer('*', GlobalComposer::class);
         View::composer('admin.*', AdminNavigationComposer::class);
+        View::composer('*', EditModeComposer::class);
+
+        foreach( (new GlobalViewVarsHelper)->getGlobalVars() as $name => $value ) {
+            View::share($name, $value);
+        }
     }
 }

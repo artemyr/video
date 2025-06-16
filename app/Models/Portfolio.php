@@ -13,11 +13,29 @@ class Portfolio extends Model
 
     protected function thumbnailDir(): string
     {
-        return 'portfolios';
+        return 'portfolio';
     }
 
     protected function thumbnailColumn(): string
     {
         return 'image';
+    }
+
+    public function image(): ?string
+    {
+        if (empty($this->image)) {
+            return null;
+        }
+
+        return asset('storage/images/' . $this->image);
+    }
+
+    public function video(): ?string
+    {
+        if (empty($this->video)) {
+            return null;
+        }
+
+        return asset('storage/video/' . $this->video);
     }
 }

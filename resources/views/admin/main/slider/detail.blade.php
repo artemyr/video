@@ -58,7 +58,7 @@
         </x-forms.error>
         @enderror
         <x-forms.file-input
-            :image="asset('/storage/images/' . $item->image)"
+            :image="$item->image()"
             label="Картинка"
             name="image"
             :isError="$errors->has('image')"
@@ -70,7 +70,7 @@
         </x-forms.error>
         @enderror
         <x-forms.file-input
-            :link="asset('/storage/video/' . $item->video)"
+            :link="$item->video()"
             label="Видео"
             name="video"
             :isError="$errors->has('video')"

@@ -32,7 +32,7 @@ class AdminRegistrar implements RouteRegistrar
 
                 Route::controller(SettingsController::class)
                     ->group(function () {
-                        Route::get('/admin/settings/add', 'pageCreate')
+                        Route::get('/admin/settings/create', 'pageCreate')
                             ->name('admin.settings.create.page');
 
                         Route::post('/admin/settings/add', 'create')
@@ -53,7 +53,7 @@ class AdminRegistrar implements RouteRegistrar
 
                 Route::controller(TextController::class)
                     ->group(function () {
-                        Route::get('/admin/text/add', 'pageCreate')
+                        Route::get('/admin/text/create', 'pageCreate')
                             ->name('admin.text.create.page');
 
                         Route::post('/admin/text/add', 'create')
@@ -86,7 +86,10 @@ class AdminRegistrar implements RouteRegistrar
                         Route::delete('/admin/main/slider/{item}/destroy', 'destroy')
                             ->name('admin.main.slider.destroy');
 
-                        Route::get('/admin/main/slider/create', 'create')
+                        Route::get('/admin/main/slider/create', 'pageCreate')
+                            ->name('admin.main.slider.create.page');
+
+                        Route::post('/admin/main/slider/create', 'create')
                             ->name('admin.main.slider.create');
 
                         Route::get('/admin/main/slider/{item}', 'detail')
@@ -104,7 +107,7 @@ class AdminRegistrar implements RouteRegistrar
                         Route::delete('/admin/portfolio/{item}/destroy', 'destroy')
                             ->name('admin.portfolio.destroy');
 
-                        Route::get('/admin/portfolio/add', 'pageCreate')
+                        Route::get('/admin/portfolio/create', 'pageCreate')
                             ->name('admin.portfolio.create.page');
 
                         Route::post('/admin/portfolio/create', 'create')

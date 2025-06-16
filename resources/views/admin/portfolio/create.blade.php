@@ -22,7 +22,7 @@
         </x-forms.error>
         @enderror
         <x-forms.text-input
-            :value="old('sort', '')"
+            :value="old('sort', 500)"
             label="Сортировка"
             name="sort"
             :isError="$errors->has('sort')"

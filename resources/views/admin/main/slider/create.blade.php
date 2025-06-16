@@ -3,70 +3,82 @@
 @section('content')
 
     <div>
-        <form action="{{ route('admin.main.slider.handle') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.main.slider.create') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <div class="grid grid-flow-row gap-4">
-                <div>
-                    <label class="block">Заголовок</label>
-                    <x-forms.text-input
-                        name="title"
-                        type="text"
-                        placeholder="Заголовок"
-                        required="true"
-                        value="{{ old('title') }}"
-                        :isError="$errors->has('title')"
-                    />
-                    @error('title')
-                    <x-forms.error>
-                        {{ $message }}
-                    </x-forms.error>
-                    @enderror
-                </div>
+            @error('title')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+            @enderror
+            <x-forms.text-input
+                :value="old('title', '')"
+                label="Название"
+                name="title"
+                :isError="$errors->has('title')"
+            ></x-forms.text-input>
 
-                <div>
-                    <label class="block">Видео файл</label>
-                    <x-forms.text-input
-                        name="video"
-                        type="file"
-                        placeholder="видео файл"
-{{--                        required="true"--}}
-                        value="{{ old('video') }}"
-                        :isError="$errors->has('video')"
-                    />
-                    @error('video')
-                    <x-forms.error>
-                        {{ $message }}
-                    </x-forms.error>
-                    @enderror
-                </div>
+            @error('sort')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+            @enderror
+            <x-forms.text-input
+                :value="old('sort', 500)"
+                label="Сортировка"
+                name="sort"
+                :isError="$errors->has('sort')"
+            ></x-forms.text-input>
 
-                <div>
-                    <label class="block">Стартовый кадр</label>
-                    <x-forms.text-input
-                        name="photo"
-                        type="file"
-                        placeholder="стартовый кадр"
-{{--                        required="true"--}}
-                        value="{{ old('photo') }}"
-                        :isError="$errors->has('photo')"
-                    />
-                    @error('photo')
-                    <x-forms.error>
-                        {{ $message }}
-                    </x-forms.error>
-                    @enderror
-                </div>
+            @error('active')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+            @enderror
+            <x-forms.checkbox-input
+                :value="old('active', true)"
+                label="Активность"
+                name="active"
+                :isError="$errors->has('active')"
+            ></x-forms.checkbox-input>
 
-                <div id="upload-files-component" data-label="label 123" data-downloads='@json([])' data-multiply="false"></div>
+            @error('size')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+            @enderror
+            <x-forms.text-input
+                :value="old('size', '')"
+                label="Размер"
+                name="size"
+                :isError="$errors->has('size')"
+            ></x-forms.text-input>
 
-                <div>
-                    <x-forms.success-button>
-                        Сохранить
-                    </x-forms.success-button>
-                </div>
+            @error('image')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+            @enderror
+            <x-forms.file-input
+                label="Картинка"
+                name="image"
+                :isError="$errors->has('image')"
+            ></x-forms.file-input>
 
-            </div>
+            @error('video')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+            @enderror
+            <x-forms.file-input
+                label="Видео"
+                name="video"
+                :isError="$errors->has('video')"
+            ></x-forms.file-input>
+
+            <x-forms.success-button>
+                Сохранить
+            </x-forms.success-button>
         </form>
     </div>
 

@@ -18,7 +18,7 @@ class SignInController extends Controller
         }
 
         if(auth()->id() > 0) {
-            redirect('home');
+            return redirect()->route('home');
         }
 
         return view('auth.login');

@@ -47,19 +47,19 @@ class StartingItemsSeeder extends Seeder
         return [
             [
                 'title' => '1',
-                'photo' => $sliderPhotos[0],
+                'image' => $sliderPhotos[0],
             ],
             [
                 'title' => '2',
-                'photo' => $sliderPhotos[1],
+                'image' => $sliderPhotos[1],
             ],
             [
                 'title' => '3',
-                'photo' => $sliderPhotos[2],
+                'image' => $sliderPhotos[2],
             ],
             [
                 'title' => '4',
-                'photo' => $sliderPhotos[3],
+                'image' => $sliderPhotos[3],
             ],
         ];
     }
@@ -221,6 +221,11 @@ END,
                 'code' => SettingsEnum::MAIN_PHONE->value,
                 'value' => '8-958-546-97-91',
                 'description' => 'Номер телефона'
+            ],
+            [
+                'code' => SettingsEnum::MAIN_TG->value,
+                'value' => 'GK_Darya_13',
+                'description' => 'Telegram nickname'
             ],
             [
                 'code' => SettingsEnum::CONTACT_TEXT_1->value,

@@ -26,8 +26,8 @@ class PortfolioController
                     $item->title,
                     $item->sort,
                     $item->active,
-                    new HtmlDto('<img width="100" src="'. asset('storage/images/'.$item->image) .'">'),
-                    new HtmlDto('<a target="_blank" href="' . asset('storage/video/'.$item->video) . '">Видео</a>'),
+                    new HtmlDto('<img width="100" src="'. $item->image() .'">'),
+                    new HtmlDto('<a target="_blank" href="' . $item->video() . '">Видео</a>'),
                     $item->size,
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.portfolio.destroy', $item->id)
