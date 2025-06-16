@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 
-class PortfolioController
+class PortfolioController extends BasePagesController
 {
     public function page(): View|Factory|Application|RedirectResponse
     {

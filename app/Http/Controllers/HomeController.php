@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setting;
+use App\Http\Controllers\Pages\BasePagesController;
 use App\Models\Slider;
 use App\Models\Text;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Support\Enums\SettingsEnum;
 use Support\Enums\TextsEnum;
 
-class HomeController extends Controller
+class HomeController extends BasePagesController
 {
     public function __invoke(): Factory|View|Application
     {

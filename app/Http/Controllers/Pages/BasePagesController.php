@@ -1,15 +1,27 @@
 <?php
 
-namespace Support\Helpers;
+namespace App\Http\Controllers\Pages;
 
 use App\Models\Setting;
 use App\Models\Text;
 use Support\Enums\SettingsEnum;
 use Support\Enums\TextsEnum;
 
-class GlobalViewVarsHelper
+abstract class BasePagesController
 {
-    public function getGlobalVars(): array
+    public function __construct()
+    {
+        $this->initGlobalVars();
+    }
+
+    private function initGlobalVars(): void
+    {
+        foreach( $this->getGlobalVars() as $name => $value ) {
+            view()->share($name, $value);
+        }
+    }
+
+    private function getGlobalVars(): array
     {
         [$displayPhone, $phone] = $this->getPhone();
         [$title, $description] = $this->getMeta();
@@ -20,8 +32,25 @@ class GlobalViewVarsHelper
             'footerText' => $this->getFooterText(),
             'title' => $title,
             'description' => $description,
-            'tg' => $this->getTg()
+            'tg' => $this->getTg(),
+            'editMode' => $this->getEditMode()
         ];
+    }
+
+    private function getEditMode()
+    {
+        $editMode = false;
+        $session = session();
+        if (request('edit') === 'y' && auth()->id() > 0 && auth()->user()->role === 'admin') {
+            $session->put('editMode', true);
+        }
+        if (request('edit') === 'n' && auth()->id() > 0 && auth()->user()->role === 'admin') {
+            $session->put('editMode', false);
+        }
+        if (auth()->id() > 0 && auth()->user()->role === 'admin' && $session->get('editMode') === true) {
+            $editMode = true;
+        }
+        return $editMode;
     }
 
     private function getPhone(): array
