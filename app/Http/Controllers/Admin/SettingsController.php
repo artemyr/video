@@ -17,7 +17,7 @@ class SettingsController
     {
         $items = Setting::query()
             ->sorted()
-            ->get();
+            ->paginate(10);
 
         $rows = [];
         foreach ($items as $setting) {

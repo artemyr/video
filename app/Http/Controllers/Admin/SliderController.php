@@ -17,7 +17,7 @@ class SliderController
     {
         $items = Slider::query()
             ->sorted()
-            ->get();
+            ->paginate(10);
 
         $body = [];
         foreach ($items as $item) {

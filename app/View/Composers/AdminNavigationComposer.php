@@ -16,7 +16,7 @@ class AdminNavigationComposer
             ->add(MenuItem::make(route('admin.main.slider.index'), 'Главная - слайдер'))
             ->add(MenuItem::make(route('admin.settings.index'), 'Настройки'))
             ->add(MenuItem::make(route('admin.portfolio.index'), 'Портфолио'))
-//            ->add(MenuItem::make(route(''), 'стоимость'))
+            ->add(MenuItem::make(route('admin.price.index'), 'Стоимость'))
             ->add(MenuItem::make(route('admin.review.index'), 'Отзывы'))
 //            ->add(MenuItem::make(route(''), 'контакты'))
         ;

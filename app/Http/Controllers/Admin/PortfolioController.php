@@ -16,7 +16,7 @@ class PortfolioController
     {
         $items = Portfolio::query()
             ->sorted()
-            ->get();
+            ->paginate(10);
 
         $rows = [];
         foreach ($items as $item) {
