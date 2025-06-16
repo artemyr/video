@@ -15,13 +15,12 @@ class ReviewController
 {
     public function index()
     {
-        $sliders = Review::query()
-            ->orderBy('sort')
-            ->get();
+        $items = Review::query()
+            ->sorted()
+            ->paginate(10);
 
         $body = [];
-        foreach ($sliders as $item) {
-
+        foreach ($items as $item) {
             $body[] = new TableRowDto([
                 $item->id,
                 $item->title,
@@ -45,7 +44,7 @@ class ReviewController
 
         $table = new TableDto($head, $body);
 
-        return view('admin.review.index', compact('table'));
+        return view('admin.review.index', compact('table', 'items'));
     }
 
     public function destroy(Review $item)
@@ -58,7 +57,7 @@ class ReviewController
 
         $item->delete();
 
-        flash()->info('Запись успешно удалена');
+        flash()->info(__('crud.destroy.success'));
 
         return redirect()->route('admin.review.index');
     }
@@ -87,7 +86,7 @@ class ReviewController
 
         Review::query()->create($saveFields);
 
-        flash()->info('Запись успешно создана');
+        flash()->info(__('crud.create.success'));
 
         return redirect()->route('admin.review.index');
     }
@@ -115,7 +114,7 @@ class ReviewController
 
         $item->update($saveFields);
 
-        flash()->info('Запись успешно обновлена');
+        flash()->info(__('crud.update.success'));
 
         return redirect()->back();
     }

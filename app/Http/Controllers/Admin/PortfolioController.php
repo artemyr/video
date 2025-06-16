@@ -15,7 +15,7 @@ class PortfolioController
     public function index()
     {
         $items = Portfolio::query()
-            ->orderBy('sort')
+            ->sorted()
             ->get();
 
         $rows = [];
@@ -48,7 +48,7 @@ class PortfolioController
             'Удалить',
         ], $rows);
 
-        return view('admin.portfolio.index', compact('table'));
+        return view('admin.portfolio.index', compact('table', 'items'));
     }
 
     public function destroy(Portfolio $item)
@@ -66,7 +66,7 @@ class PortfolioController
 
         $item->delete();
 
-        flash()->info('Запись успешно удалена');
+        flash()->info(__('crud.destroy.success'));
 
         return redirect()->route('admin.portfolio.index');
     }
@@ -103,7 +103,7 @@ class PortfolioController
 
         Portfolio::query()->create($saveFields);
 
-        flash()->info('Запись успешно создана');
+        flash()->info(__('crud.create.success'));
 
         return redirect()->route('admin.portfolio.index');
     }
@@ -143,7 +143,7 @@ class PortfolioController
 
         $item->update($saveFields);
 
-        flash()->info('Запись успешно обновлена');
+        flash()->info(__('crud.update.success'));
 
         return redirect()->back();
     }

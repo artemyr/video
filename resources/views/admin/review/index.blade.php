@@ -10,4 +10,6 @@
         :table="$table"
     ></x-table>
 
+    {{ $sliders->links() }}
+
 @endsection

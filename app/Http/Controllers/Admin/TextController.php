@@ -15,12 +15,12 @@ class TextController
 {
     public function index()
     {
-        $texts = Text::query()
-            ->orderBy('sort')
+        $items = Text::query()
+            ->sorted()
             ->get();
 
         $rows = [];
-        foreach ($texts as $text) {
+        foreach ($items as $text) {
             $rows[] = [
                 'values' => [
                     $text->id,
@@ -45,12 +45,15 @@ class TextController
             'Удалить',
         ], $rows);
 
-        return view('admin.text.index', compact('table'));
+        return view('admin.text.index', compact('table','items'));
     }
 
     public function destroy(Text $text)
     {
         $text->delete();
+
+        flash()->info(__('crud.destroy.success'));
+
         return redirect()->route('admin.text.index');
     }
 
@@ -63,12 +66,16 @@ class TextController
     {
         Text::query()->create($request->validated());
 
+        flash()->info(__('crud.create.success'));
+
         return redirect()->route('admin.text.index');
     }
 
     public function update(Text $text, TextRequest $request)
     {
         $text->update($request->validated());
+
+        flash()->info(__('crud.update.success'));
 
         return redirect()->route('admin.text.index');
     }

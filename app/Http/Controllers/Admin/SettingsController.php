@@ -15,12 +15,12 @@ class SettingsController
 {
     public function index()
     {
-        $settings = Setting::query()
-            ->orderBy('sort')
+        $items = Setting::query()
+            ->sorted()
             ->get();
 
         $rows = [];
-        foreach ($settings as $setting) {
+        foreach ($items as $setting) {
             $rows[] = [
                 'values' => [
                     $setting->id,
@@ -45,12 +45,15 @@ class SettingsController
             'Удалить',
         ], $rows);
 
-        return view('admin.settings.index', compact('table'));
+        return view('admin.settings.index', compact('table','items'));
     }
 
     public function destroy(Setting $setting)
     {
         $setting->delete();
+
+        flash()->info(__('crud.destroy.success'));
+
         return redirect()->route('admin.settings.index');
     }
 
@@ -63,12 +66,16 @@ class SettingsController
     {
         Setting::query()->create($request->validated());
 
+        flash()->info(__('crud.create.success'));
+
         return redirect()->route('admin.settings.index');
     }
 
     public function update(Setting $setting, SettingRequest $request)
     {
         $setting->update($request->validated());
+
+        flash()->info(__('crud.update.success'));
 
         return redirect()->route('admin.settings.index');
     }

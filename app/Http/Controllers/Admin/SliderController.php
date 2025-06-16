@@ -15,13 +15,12 @@ class SliderController
 {
     public function index()
     {
-        $sliders = Slider::query()
-            ->orderBy('sort')
+        $items = Slider::query()
+            ->sorted()
             ->get();
 
         $body = [];
-        foreach ($sliders as $item) {
-
+        foreach ($items as $item) {
             $body[] = new TableRowDto([
                 $item->id,
                 $item->title,
@@ -49,7 +48,7 @@ class SliderController
 
         $table = new TableDto($head, $body);
 
-        return view('admin.main.slider.index', compact('table'));
+        return view('admin.main.slider.index', compact('table','items'));
     }
 
     public function destroy(Slider $item)
@@ -67,7 +66,7 @@ class SliderController
 
         $item->delete();
 
-        flash()->info('Запись успешно удалена');
+        flash()->info(__('crud.destroy.success'));
 
         return redirect()->route('admin.main.slider.index');
     }
@@ -104,7 +103,7 @@ class SliderController
 
         Slider::query()->create($saveFields);
 
-        flash()->info('Запись успешно создана');
+        flash()->info(__('crud.create.success'));
 
         return redirect()->route('admin.main.slider.index');
     }
@@ -144,7 +143,7 @@ class SliderController
 
         $item->update($saveFields);
 
-        flash()->info('Запись успешно обновлена');
+        flash()->info(__('crud.update.success'));
 
         return redirect()->back();
     }

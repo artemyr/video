@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Support\Traits\Models\HasThumbnail;
 
@@ -37,5 +38,11 @@ class Portfolio extends Model
         }
 
         return asset('storage/video/' . $this->video);
+    }
+
+    public function scopeSorted(Builder $query)
+    {
+        $query->orderBy('sort')
+            ->orderBy('id');
     }
 }
