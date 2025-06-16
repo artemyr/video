@@ -80,8 +80,8 @@ class TextController
         return redirect()->route('admin.text.index');
     }
 
-    public function detail(Text $text)
+    public function detail(Text $item)
     {
-        return view('admin.text.detail', compact('text'));
+        return view('admin.text.detail', compact('item'));
     }
 }

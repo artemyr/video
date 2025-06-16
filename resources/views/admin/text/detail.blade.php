@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('admin.text.update', $text->id) }}" method="post">
+    <form action="{{ route('admin.text.update', $item->id) }}" method="post">
         @csrf
 
         @error('code')
@@ -10,7 +10,7 @@
         </x-forms.error>
         @enderror
         <x-forms.text-input
-            :value="old('code', $text->code)"
+            :value="old('code', $item->code)"
             label="Code"
             name="code"
             :isError="$errors->has('code')"
@@ -22,7 +22,7 @@
         </x-forms.error>
         @enderror
         <x-forms.text-input
-            :value="old('sort', $text->sort)"
+            :value="old('sort', $item->sort)"
             label="Sort"
             name="sort"
             :isError="$errors->has('sort')"
@@ -34,7 +34,7 @@
         </x-forms.error>
         @enderror
         <x-forms.text-input
-            :value="old('description',$text->description)"
+            :value="old('description',$item->description)"
             label="Description"
             name="description"
             :isError="$errors->has('description')"
@@ -48,7 +48,7 @@
         <x-editor
             label="Текст"
             name="text"
-            :value="old('text', $text->text)"
+            :value="old('text', $item->text)"
             :isError="$errors->has('text')"
         ></x-editor>
 

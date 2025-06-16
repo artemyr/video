@@ -80,8 +80,8 @@ class SettingsController
         return redirect()->route('admin.settings.index');
     }
 
-    public function detail(Setting $setting)
+    public function detail(Setting $item)
     {
-        return view('admin.settings.detail', compact('setting'));
+        return view('admin.settings.detail', compact('item'));
     }
 }

@@ -4,7 +4,7 @@
     <div class="container">
 
         @if($editMode)
-            <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('admin.prices.index') }}">Редактировать</a>
+            <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('admin.price.index') }}">Редактировать</a>
         @endif
 
         <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
