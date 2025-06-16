@@ -20,4 +20,13 @@ class Review extends Model
     {
         return 'image';
     }
+
+    public function image(): ?string
+    {
+        if (empty($this->image)) {
+            return null;
+        }
+
+        return asset('storage/images/' . $this->image);
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PortfolioUpdateRequest extends FormRequest
+class ReviewUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,6 @@ class PortfolioUpdateRequest extends FormRequest
             'sort' => 'integer|nullable',
             'active' => 'boolean|nullable',
             'image' => 'file|nullable',
-            'video' => 'file|nullable',
             'size' => 'string|nullable',
         ];
     }

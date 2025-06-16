@@ -4,6 +4,7 @@ namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\MediaController;
@@ -97,6 +98,27 @@ class AdminRegistrar implements RouteRegistrar
 
                         Route::post('/admin/main/slider/{item}/update', 'update')
                             ->name('admin.main.slider.update');
+                    });
+
+                Route::controller(ReviewController::class)
+                    ->group(function () {
+                        Route::get('/admin/review', 'index')
+                            ->name('admin.review.index');
+
+                        Route::delete('/admin/review/{item}/destroy', 'destroy')
+                            ->name('admin.review.destroy');
+
+                        Route::get('/admin/review/create', 'pageCreate')
+                            ->name('admin.review.create.page');
+
+                        Route::post('/admin/review/create', 'create')
+                            ->name('admin.review.create');
+
+                        Route::get('/admin/review/{item}', 'detail')
+                            ->name('admin.review.detail');
+
+                        Route::post('/admin/review/{item}/update', 'update')
+                            ->name('admin.review.update');
                     });
 
                 Route::controller(PortfolioController::class)
