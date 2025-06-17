@@ -27,6 +27,7 @@ class SliderUpdateRequest extends FormRequest
             'active' => 'boolean|nullable',
             'image' => 'file|nullable',
             'video' => 'file|nullable',
+            'link' => 'string|nullable',
             'size' => 'string|nullable',
         ];
     }

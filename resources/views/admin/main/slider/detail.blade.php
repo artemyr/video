@@ -52,30 +52,14 @@
             :isError="$errors->has('image')"
         ></x-forms.file-input>
 
-        @error('video')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
-        <x-forms.file-input
+        <x-forms.video-input
             :link="$item->video()"
-            label="Видео"
-            name="video"
-            :isError="$errors->has('video')"
-        ></x-forms.file-input>
-
-        @error('size')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
-        <x-forms.size-input
-            :height="old('size', $item->size->height())"
-            :width="old('size', $item->size->width())"
-            name="size"
-            :isError="$errors->has('size')"
+            linkName="link"
+            :linkValue="old('link', $item->video())"
+            :height="old('x_size', $item->size->height())"
+            :width="old('y_size', $item->size->width())"
         >
-        </x-forms.size-input>
+        </x-forms.video-input>
 
         <x-forms.success-button>
             Сохранить

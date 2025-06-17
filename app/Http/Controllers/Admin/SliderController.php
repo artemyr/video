@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\SliderSaveRequest;
 use App\Http\Requests\SliderUpdateRequest;
 use App\Models\Slider;
-use getID3;
 use Illuminate\Support\Facades\Storage;
 use Support\DTO\Table\HtmlDto;
 use Support\DTO\Table\TableComponentDto;
 use Support\DTO\Table\TableDto;
 use Support\DTO\Table\TableRowDto;
+use Support\Helpers\Controllers\SliderControllerHelper;
 
 class SliderController
 {
@@ -79,40 +79,14 @@ class SliderController
 
     public function create(SliderSaveRequest $request)
     {
-        $fields = $request->validated();
-        $saveFields = [
-            'active' => $request->has('active'),
-            'title' => $fields['title'],
-            'sort' => $fields['sort'],
-            'size' => $fields['size'],
-        ];
-
-        $storageImages = Storage::disk('images');
-        $storageVideos = Storage::disk('video');
-
-        if ($request->has('image')) {
-            $imagePath = $storageImages
-                ->put('slider', $request->file('image'));
-            $saveFields['image'] = $imagePath;
+        if (!$request->hasFile('video') && empty($request->get('link'))) {
+            return redirect()->back()->withErrors([
+                'video' => "Укажите файл видео либо ссылку на видео",
+                'link' => "Укажите файл видео либо ссылку на видео",
+            ]);
         }
 
-        if ($request->has('video')) {
-            $videoPath = $storageVideos
-                ->put('slider', $request->file('video'));
-            $saveFields['video'] = $videoPath;
-
-            if (empty($saveFields['size'])) {
-                $getID3 = new getID3;
-                $file = $getID3->analyze($videoPath);
-
-                $width = $file['video']['resolution_x'] ?? 0;
-                $height = $file['video']['resolution_y'] ?? 0;
-
-                $saveFields['size'] = "$width-$height";
-            }
-        }
-
-        Slider::query()->create($saveFields);
+        (new SliderControllerHelper($request))->create();
 
         flash()->info(__('crud.create.success'));
 
@@ -121,48 +95,7 @@ class SliderController
 
     public function update(Slider $item, SliderUpdateRequest $request)
     {
-        $fields = $request->validated();
-        $saveFields = [
-            'active' => $request->has('active'),
-            'title' => $fields['title'],
-            'sort' => $fields['sort'],
-            'size' => $fields['size'],
-        ];
-
-        $storageImages = Storage::disk('images');
-        $storageVideos = Storage::disk('video');
-
-        if ($request->has('image') && !empty($item->image)) {
-            $storageImages->delete($item->image);
-        }
-
-        if ($request->has('video') && !empty($item->video)) {
-            $storageVideos->delete($item->video);
-        }
-
-        if ($request->has('image')) {
-            $imagePath = $storageImages
-                ->put('slider', $request->file('image'));
-            $saveFields['image'] = $imagePath;
-        }
-
-        if ($request->has('video')) {
-            $videoPath = $storageVideos
-                ->put('slider', $request->file('video'));
-            $saveFields['video'] = $videoPath;
-
-            if (empty($saveFields['size'])) {
-                $getID3 = new getID3;
-                $file = $getID3->analyze($storageVideos->path($videoPath));
-
-                $width = (int)$file['video']['resolution_x'] ?? 0;
-                $height = (int)$file['video']['resolution_y'] ?? 0;
-
-                $saveFields['size'] = "$width-$height";
-            }
-        }
-
-        $item->update($saveFields);
+        (new SliderControllerHelper($request, $item))->update();
 
         flash()->info(__('crud.update.success'));
 

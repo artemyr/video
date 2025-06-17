@@ -26,7 +26,8 @@ class SliderSaveRequest extends FormRequest
             'sort' => 'integer|nullable',
             'active' => 'boolean|nullable',
             'image' => 'file|required',
-            'video' => 'file|required',
+            'video' => 'file|nullable',
+            'link' => 'string|nullable',
             'size' => 'string|nullable',
         ];
     }
