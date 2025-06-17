@@ -1,0 +1,24 @@
+@props([
+    'type' => 'text',
+    'value' => '',
+    'height' => 0,
+    'width' => 0,
+    'isError' => false,
+    'label' => 'Размер',
+    'name' => 'size'
+])
+
+<label>{{ $label }}</label>
+<div x-data='@json([
+        'height' => $height,
+        'width' => $width,
+    ])' {{ $attributes
+    ->class([
+        'border-red' => $isError,
+        'text-black'
+    ]) }}>
+    <span class="text-white" x-text="(width && height) ? ('Ширина: '+width+' Высота: '+height) : ''"></span>
+    <input class="border block rounded-md p-2 mb-2" type="number" x-model="width" placeholder="Ширина">
+    <input class="border block rounded-md p-2 mb-2" type="number" x-model="height" placeholder="Высота">
+    <input type="hidden" name="{{ $name }}" :value="(width && height) ? (width+'-'+height) : ''">
+</div>

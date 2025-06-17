@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\SliderSaveRequest;
 use App\Http\Requests\SliderUpdateRequest;
 use App\Models\Slider;
+use getID3;
 use Illuminate\Support\Facades\Storage;
 use Support\DTO\Table\HtmlDto;
 use Support\DTO\Table\TableComponentDto;
@@ -99,6 +100,16 @@ class SliderController
             $videoPath = $storageVideos
                 ->put('slider', $request->file('video'));
             $saveFields['video'] = $videoPath;
+
+            if (empty($saveFields['size'])) {
+                $getID3 = new getID3;
+                $file = $getID3->analyze($videoPath);
+
+                $width = $file['video']['resolution_x'] ?? 0;
+                $height = $file['video']['resolution_y'] ?? 0;
+
+                $saveFields['size'] = "$width-$height";
+            }
         }
 
         Slider::query()->create($saveFields);
@@ -137,8 +148,18 @@ class SliderController
 
         if ($request->has('video')) {
             $videoPath = $storageVideos
-                ->put('slider   ', $request->file('video'));
+                ->put('slider', $request->file('video'));
             $saveFields['video'] = $videoPath;
+
+            if (empty($saveFields['size'])) {
+                $getID3 = new getID3;
+                $file = $getID3->analyze($storageVideos->path($videoPath));
+
+                $width = (int)$file['video']['resolution_x'] ?? 0;
+                $height = (int)$file['video']['resolution_y'] ?? 0;
+
+                $saveFields['size'] = "$width-$height";
+            }
         }
 
         $item->update($saveFields);

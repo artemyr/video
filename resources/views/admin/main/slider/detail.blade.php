@@ -40,18 +40,6 @@
             :isError="$errors->has('active')"
         ></x-forms.checkbox-input>
 
-        @error('size')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
-        <x-forms.text-input
-            :value="old('size', $item->size)"
-            label="Размер"
-            name="size"
-            :isError="$errors->has('size')"
-        ></x-forms.text-input>
-
         @error('image')
         <x-forms.error>
             {{ $message }}
@@ -75,6 +63,19 @@
             name="video"
             :isError="$errors->has('video')"
         ></x-forms.file-input>
+
+        @error('size')
+        <x-forms.error>
+            {{ $message }}
+        </x-forms.error>
+        @enderror
+        <x-forms.size-input
+            :height="old('size', $item->size->height())"
+            :width="old('size', $item->size->width())"
+            name="size"
+            :isError="$errors->has('size')"
+        >
+        </x-forms.size-input>
 
         <x-forms.success-button>
             Сохранить

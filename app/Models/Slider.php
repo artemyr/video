@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Support\Casts\SizeCast;
 use Support\Traits\Models\HasThumbnail;
 
 class Slider extends Model
@@ -11,6 +12,10 @@ class Slider extends Model
     use HasThumbnail;
 
     protected $guarded = ['created_at'];
+
+    protected $casts = [
+        'size' => SizeCast::class
+    ];
 
     protected function thumbnailDir(): string
     {
