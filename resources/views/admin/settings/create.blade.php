@@ -1,14 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('admin.settings.create') }}" method="post">
+    <form class="space-y-3" action="{{ route('admin.settings.create') }}" method="post">
         @csrf
 
-        @error('code')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             :value="old('code', request('code', ''))"
             label="Code"
@@ -16,11 +11,6 @@
             :isError="$errors->has('code')"
         ></x-forms.text-input>
 
-        @error('sort')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             :value="old('sort', '500')"
             label="Sort"
@@ -28,11 +18,6 @@
             :isError="$errors->has('sort')"
         ></x-forms.text-input>
 
-        @error('description')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             :value="old('description', '')"
             label="Description"
@@ -40,11 +25,6 @@
             :isError="$errors->has('description')"
         ></x-forms.text-input>
 
-        @error('value')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             label="Значение"
             name="value"

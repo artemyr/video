@@ -8,7 +8,8 @@
     'name' => 'size'
 ])
 
-<label>{{ $label }}</label>
+<label class="block">{{ $label }}</label>
+
 <div x-data='@json([
         'height' => $height,
         'width' => $width,

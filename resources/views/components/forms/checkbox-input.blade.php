@@ -2,10 +2,12 @@
     'type' => 'text',
     'value' => '',
     'isError' => false,
-    'label' => ''
+    'label' => '',
+    'name' => ''
 ])
 
-<label>{{ $label }}</label>
+<label class="block">{{ $label }}</label>
+
 <input placeholder="{{ $label }}" type="checkbox" value="1" {{ $attributes
     ->class([
         'border-red' => $isError,
@@ -13,3 +15,9 @@
     ]) }}
     @checked($value)
 >
+
+@error($name)
+<x-forms.error>
+    {{ $message }}
+</x-forms.error>
+@enderror

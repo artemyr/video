@@ -18,11 +18,6 @@
             value="{{ old('email') }}"
             :isError="$errors->has('email')"
         />
-        @error('email')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
 
         <x-forms.primary-button>
             Отправить

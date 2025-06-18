@@ -17,11 +17,6 @@
             value="{{ old('name') }}"
             :isError="$errors->has('name')"
         />
-        @error('name')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
 
         <x-forms.text-input
             name="email"
@@ -31,11 +26,6 @@
             value="{{ old('email') }}"
             :isError="$errors->has('email')"
         />
-        @error('email')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
 
         <x-forms.text-input
             name="password"

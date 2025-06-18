@@ -5,6 +5,12 @@
     'name' => ''
 ])
 
+@error($name)
+<x-forms.error>
+    {{ $message }}
+</x-forms.error>
+@enderror
+
 <label for="">{{ $label }}</label>
 <textarea {{ $attributes->class([
     'border-red' => $isError,

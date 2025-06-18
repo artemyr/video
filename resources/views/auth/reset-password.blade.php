@@ -20,11 +20,6 @@
             value="{{ request('email') }}"
             :isError="$errors->has('email')"
         />
-        @error('email')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
 
         <x-forms.text-input
             name="password"
@@ -33,11 +28,6 @@
             required="true"
             :isError="$errors->has('password')"
         />
-        @error('password')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
 
         <x-forms.text-input
             name="password_confirmation"

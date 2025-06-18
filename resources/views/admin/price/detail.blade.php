@@ -1,14 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    <form action="{{ route('admin.price.update', $item->id) }}" method="post" enctype="multipart/form-data">
+    <form class="space-y-3" action="{{ route('admin.price.update', $item->id) }}"
+          method="post" enctype="multipart/form-data">
         @csrf
 
-        @error('title')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             :value="old('title', $item->title)"
             label="Название"
@@ -16,11 +12,6 @@
             :isError="$errors->has('title')"
         ></x-forms.text-input>
 
-        @error('description')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             :value="old('description', $item->description)"
             label="Описание"
@@ -28,11 +19,6 @@
             :isError="$errors->has('description')"
         ></x-forms.text-input>
 
-        @error('sort')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.text-input
             :value="old('sort', $item->sort)"
             label="Сортировка"
@@ -40,11 +26,6 @@
             :isError="$errors->has('sort')"
         ></x-forms.text-input>
 
-        @error('active')
-        <x-forms.error>
-            {{ $message }}
-        </x-forms.error>
-        @enderror
         <x-forms.checkbox-input
             :value="old('active', $item->active)"
             label="Активность"
