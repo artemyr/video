@@ -48,9 +48,9 @@ class TextController
         return view('admin.text.index', compact('table','items'));
     }
 
-    public function destroy(Text $text)
+    public function destroy(Text $item)
     {
-        $text->delete();
+        $item->delete();
 
         flash()->info(__('crud.destroy.success'));
 
@@ -71,13 +71,13 @@ class TextController
         return redirect()->route('admin.text.index');
     }
 
-    public function update(Text $text, TextRequest $request)
+    public function update(Text $item, TextRequest $request)
     {
-        $text->update($request->validated());
+        $item->update($request->validated());
 
         flash()->info(__('crud.update.success'));
 
-        return redirect()->route('admin.text.index');
+        return back();
     }
 
     public function detail(Text $item)

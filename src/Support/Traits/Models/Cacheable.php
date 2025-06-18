@@ -10,15 +10,15 @@ trait Cacheable
     protected static function bootCacheable()
     {
         static::created(function (Model $item) {
-            $item->clearCache();
+            $item->clearCache($item);
         });
 
         static::updated(function (Model $item) {
-            $item->clearCache();
+            $item->clearCache($item);
         });
 
         static::deleted(function (Model $item) {
-            $item->clearCache();
+            $item->clearCache($item);
         });
     }
 
@@ -27,7 +27,7 @@ trait Cacheable
         return [];
     }
 
-    protected function clearCache(): void
+    protected function clearCache(Model $item): void
     {
         foreach ($this->getCacheKeys() as $cacheKey) {
             Cache::forget($cacheKey);

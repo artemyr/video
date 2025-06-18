@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use App\Models\Setting;
 use App\Models\Text;
+use Domain\Pages\SettingViewModel;
 use Support\Enums\SettingsEnum;
 use Support\Enums\TextsEnum;
 
@@ -55,9 +56,8 @@ abstract class BasePagesController
 
     private function getPhone(): array
     {
-        $displayPhone = Setting::query()
-            ->where('code', SettingsEnum::MAIN_PHONE->value)
-            ->first();
+        $displayPhone = SettingViewModel::make()
+            ->phone();
 
         $phone = '';
         if (!empty($displayPhone)) {
@@ -78,28 +78,24 @@ abstract class BasePagesController
             return [null, null];
         }
 
-        $title = Setting::query()
-            ->where('code', 'title.' . $routeName)
-            ->first();
+        $title = SettingViewModel::make()
+            ->title($routeName);
 
-        $description = Setting::query()
-            ->where('code', 'description.' . $routeName)
-            ->first();
+        $description = SettingViewModel::make()
+            ->description($routeName);
 
         return [$title?->value, $description?->value];
     }
 
     private function getFooterText()
     {
-        return Text::query()
-            ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
-            ->first();
+        return SettingViewModel::make()
+            ->footerText();
     }
 
     private function getTg()
     {
-        return Setting::query()
-            ->where('code', SettingsEnum::MAIN_TG->value)
-            ->first();
+        return SettingViewModel::make()
+            ->tg();
     }
 }

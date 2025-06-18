@@ -24,7 +24,7 @@ class PortfolioUpdateRequest extends FormRequest
         return [
             'title' => 'string|required',
             'sort' => 'integer|required',
-            'active' => 'boolean|required',
+            'active' => 'boolean|nullable',
             'image' => 'file|nullable',
             'video' => 'file|nullable',
             'link' => 'string|nullable',

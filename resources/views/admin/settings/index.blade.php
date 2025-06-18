@@ -10,4 +10,6 @@
         :table="$table"
     ></x-table>
 
+    {{ $items->links() }}
+
 @endsection

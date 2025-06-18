@@ -57,9 +57,9 @@ class SettingsController
         return view('admin.settings.index', compact('table','items'));
     }
 
-    public function destroy(Setting $setting)
+    public function destroy(Setting $item)
     {
-        $setting->delete();
+        $item->delete();
 
         flash()->info(__('crud.destroy.success'));
 
@@ -80,13 +80,13 @@ class SettingsController
         return redirect()->route('admin.settings.index');
     }
 
-    public function update(Setting $setting, SettingRequest $request)
+    public function update(Setting $item, SettingRequest $request)
     {
-        $setting->update($request->validated());
+        $item->update($request->validated());
 
         flash()->info(__('crud.update.success'));
 
-        return redirect()->route('admin.settings.index');
+        return back();
     }
 
     public function detail(Setting $item)

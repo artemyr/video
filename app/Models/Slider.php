@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Support\Casts\SizeCast;
+use Support\Traits\Models\Cacheable;
 use Support\Traits\Models\HasThumbnail;
 use Support\Traits\Models\HasVideoGallery;
 
@@ -12,6 +13,7 @@ class Slider extends Model
 {
     use HasThumbnail;
     use HasVideoGallery;
+    use Cacheable;
 
     protected $guarded = ['created_at'];
 
@@ -60,5 +62,10 @@ class Slider extends Model
     public function scopeFiltered(Builder $query)
     {
         $query->where('active', true);
+    }
+
+    protected function getCacheKeys(): array
+    {
+        return ['slider_home_page'];
     }
 }
