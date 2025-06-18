@@ -82,7 +82,7 @@ class ReviewController
 
         if ($request->has('image')) {
             $imagePath = $storageImages
-                ->put('slider', $request->file('image'));
+                ->put('reviews', $request->file('image'));
             $saveFields['image'] = $imagePath;
         }
 
@@ -112,7 +112,7 @@ class ReviewController
 
         if ($request->has('image')) {
             $imagePath = $storageImages
-                ->put('slider', $request->file('image'));
+                ->put('reviews', $request->file('image'));
             $saveFields['image'] = $imagePath;
         }
 

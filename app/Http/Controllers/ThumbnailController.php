@@ -16,6 +16,9 @@ class ThumbnailController
         string $file
     ): BinaryFileResponse
     {
+        /** Deprecated */
+        abort(403);
+
         abort_if(
             !in_array($size, config('thumbnail.allowed_sizes', [])),
             403,
