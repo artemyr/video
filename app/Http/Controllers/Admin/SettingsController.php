@@ -21,13 +21,22 @@ class SettingsController
 
         $rows = [];
         foreach ($items as $setting) {
+
+            $value = $setting->value;
+            if (str($value)->length() > 20) {
+                $value = str($value)
+                    ->substr(0,20)
+                    ->append('...')
+                    ->value();
+            }
+
             $rows[] = [
                 'values' => [
                     $setting->id,
                     $setting->code,
                     $setting->sort,
                     $setting->description,
-                    str($setting->value)->substr(0,300),
+                    $value,
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.settings.destroy', $setting->id)
                     ]),

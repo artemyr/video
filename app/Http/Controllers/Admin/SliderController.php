@@ -22,12 +22,21 @@ class SliderController
 
         $body = [];
         foreach ($items as $item) {
+
+            $video = $item->video();
+            if (str($video)->length() > 20) {
+                $video = str($video)
+                    ->substr(0,20)
+                    ->append('...')
+                    ->value();
+            }
+
             $body[] = new TableRowDto([
                 $item->id,
                 $item->title,
                 $item->active,
                 new HtmlDto('<img width="100" src="'. $item->image() .'">'),
-                str($item->video())->substr(0,20)->append('...'),
+                $video,
                 $item->size,
                 $item->sort,
                 new TableComponentDto('components.forms.remove-form', [
