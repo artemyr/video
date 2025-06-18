@@ -30,8 +30,30 @@ trait HasVideoGallery
         return 'internal';
     }
 
-    public function getExternalVideoLink(): string
+    public function getExternalVideoLink(): ?string
     {
-        return str($this->video())->ltrim('https:');
+        if (!str($this->video)->startsWith('https:')) {
+            return null;
+        }
+
+        return $this->video;
+    }
+
+    public function getInternalVideoLink(): ?string
+    {
+        if (str($this->video)->startsWith('https:')) {
+            return null;
+        }
+
+        return $this->video();
+    }
+
+    public function getExternalVideoLinkForGallery(): ?string
+    {
+        if (!str($this->video)->startsWith('https:')) {
+            return null;
+        }
+
+        return str($this->video)->ltrim('https:');
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Support\DTO\Table\HtmlDto;
 use Support\DTO\Table\TableComponentDto;
 use Support\DTO\Table\TableDto;
+use Support\Helpers\Controllers\PortfolioControllerHelper;
 
 class PortfolioController
 {
@@ -78,30 +79,14 @@ class PortfolioController
 
     public function create(PortfolioSaveRequest $request)
     {
-        $fields = $request->validated();
-        $saveFields = [
-            'active' => $request->has('active'),
-            'title' => $fields['title'],
-            'sort' => $fields['sort'],
-            'size' => $fields['size'],
-        ];
-
-        $storageImages = Storage::disk('images');
-        $storageVideos = Storage::disk('video');
-
-        if ($request->has('image')) {
-            $imagePath = $storageImages
-                ->put('portfolio', $request->file('image'));
-            $saveFields['image'] = $imagePath;
+        if (!$request->hasFile('video') && empty($request->get('link'))) {
+            return redirect()->back()->withErrors([
+                'video' => "Укажите файл видео либо ссылку на видео",
+                'link' => "Укажите файл видео либо ссылку на видео",
+            ]);
         }
 
-        if ($request->has('video')) {
-            $videoPath = $storageVideos
-                ->put('portfolio', $request->file('video'));
-            $saveFields['video'] = $videoPath;
-        }
-
-        Portfolio::query()->create($saveFields);
+        (new PortfolioControllerHelper($request))->create();
 
         flash()->info(__('crud.create.success'));
 
@@ -110,38 +95,7 @@ class PortfolioController
 
     public function update(Portfolio $item, PortfolioUpdateRequest $request)
     {
-        $fields = $request->validated();
-        $saveFields = [
-            'active' => $request->has('active'),
-            'title' => $fields['title'],
-            'sort' => $fields['sort'],
-            'size' => $fields['size'],
-        ];
-
-        $storageImages = Storage::disk('images');
-        $storageVideos = Storage::disk('video');
-
-        if ($request->has('image') && !empty($item->image)) {
-            $storageImages->delete($item->image);
-        }
-
-        if ($request->has('video') && !empty($item->video)) {
-            $storageVideos->delete($item->video);
-        }
-
-        if ($request->has('image')) {
-            $imagePath = $storageImages
-                ->put('portfolio', $request->file('image'));
-            $saveFields['image'] = $imagePath;
-        }
-
-        if ($request->has('video')) {
-            $videoPath = $storageVideos
-                ->put('portfolio', $request->file('video'));
-            $saveFields['video'] = $videoPath;
-        }
-
-        $item->update($saveFields);
+        (new PortfolioControllerHelper($request, $item))->update();
 
         flash()->info(__('crud.update.success'));
 

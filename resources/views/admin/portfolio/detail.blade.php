@@ -34,11 +34,11 @@
         ></x-forms.file-input>
 
         <x-forms.video-input
-            :link="$item->video()"
+            link="{{ $item->getInternalVideoLink() }}"
             linkName="link"
-            :linkValue="old('link', $item->video())"
-            :height="old('x_size', $item->size->height())"
-            :width="old('y_size', $item->size->width())"
+            linkValue="{{ old('link', $item->getExternalVideoLink()) }}"
+            height="{{ old('x_size', $item->size->height()) }}"
+            width="{{ old('y_size', $item->size->width()) }}"
         >
         </x-forms.video-input>
 

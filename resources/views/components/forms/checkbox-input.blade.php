@@ -8,7 +8,7 @@
 
 <label class="block">{{ $label }}</label>
 
-<input placeholder="{{ $label }}" type="checkbox" value="1" {{ $attributes
+<input placeholder="{{ $label }}" type="checkbox" name="{{ $name }}" value="1" {{ $attributes
     ->class([
         'border-red' => $isError,
         'border block rounded-md p-2 text-black mb-8'

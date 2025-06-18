@@ -9,7 +9,7 @@
     <div class="lightgalery {{ $class }}">
         <a
             data-lg-size="{{ $item->size }}"
-            data-src="{{ $item->getExternalVideoLink() }}"
+            data-src="{{ $item->getExternalVideoLinkForGallery() }}"
             data-poster="{{ $item->makeThumbnail('500x500') }}"
             data-sub-html="<h4>{{ $item->title }}</h4>"
         >

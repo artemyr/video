@@ -22,9 +22,9 @@ class PortfolioSaveRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string',
-            'sort' => 'integer|nullable',
-            'active' => 'boolean|nullable',
+            'title' => 'string|required',
+            'sort' => 'integer|required',
+            'active' => 'boolean|required',
             'image' => 'file|required',
             'video' => 'file|nullable',
             'link' => 'string|nullable',
