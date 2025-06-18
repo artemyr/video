@@ -9,7 +9,14 @@
             @endif
             <div class="swiper">
                 <div class="swiper-wrapper lightgalery-container">
-                    @each('index.shared.slider', $sliders, 'slider')
+                    @foreach($sliders as $slider)
+                        <x-front.galery-item
+                            :type="$slider->getVideoSlideType()"
+                            :item="$slider"
+                            class="swiper-slide"
+                        >
+                        </x-front.galery-item>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

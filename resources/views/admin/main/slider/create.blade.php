@@ -33,7 +33,7 @@
         ></x-forms.file-input>
 
         <x-forms.video-input
-            link=""
+            linkValue="{{ old('link','') }}"
             :height="old('x_size', 0)"
             :width="old('y_size', 0)"
         >

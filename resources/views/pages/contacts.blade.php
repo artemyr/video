@@ -15,16 +15,10 @@
                 </x-edit-setting>
             </a>
             <div class="py-4">
-                <a class="btn-black">Написать вконтакте</a>
+                <a href="https://wa.me/{{ $phone }}" class="btn-black">Написать whatsapp</a>
             </div>
             <div class="py-4">
-                <a href="https://wa.me/79585469791" class="btn-black">Написать whatsapp</a>
-            </div>
-            <div class="py-4">
-                <a class="btn-black">Написать инстаграмм</a>
-            </div>
-            <div class="py-4">
-                <a href="https://t.me/GK_Darya_13" class="btn-black">Написать телеграм</a>
+                <a href="https://t.me/{{ $tg->value }}" class="btn-black">Написать телеграм</a>
             </div>
         </div>
     </div>

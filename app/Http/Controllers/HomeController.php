@@ -14,7 +14,9 @@ class HomeController extends BasePagesController
 {
     public function __invoke(): Factory|View|Application
     {
-        $sliders = Slider::query()->orderBy('sort')->get();
+        $sliders = Slider::query()
+            ->sorted()
+            ->get();
 
         $about = Text::query()
             ->where('code', TextsEnum::MAIN_ABOUT->value)

@@ -6,10 +6,6 @@ import lightGallery from 'lightgallery';
 import lgVideo from 'lightgallery/plugins/video'
 import 'lightgallery/css/lightgallery-bundle.css';
 
-import {createApp} from "vue";
-import UploadFilesComponent from "./components/admin/UploadFilesComponent.vue";
-import UploadVideosComponent from "./components/admin/UploadVideosComponent.vue";
-
 const swiper = new Swiper('.swiper', {
     modules: [
         Autoplay
@@ -20,28 +16,6 @@ const swiper = new Swiper('.swiper', {
     // autoplay: {
     //     delay: 5000,
     // },
-    // breakpoints: {
-    //     500: {
-    //         slidesPerView: 1,
-    //         spaceBetween: 0
-    //     },
-    //     1020: {
-    //         slidesPerView: 2,
-    //         spaceBetween: 0
-    //     },
-    //     1040: {
-    //         slidesPerView: 3,
-    //         spaceBetween: 30
-    //     },
-    //     1570: {
-    //         slidesPerView: 4,
-    //         spaceBetween: 30
-    //     },
-    //     2100: {
-    //         slidesPerView: 5,
-    //         spaceBetween: 30
-    //     }
-    // },
     // autoHeight: true
 });
 
@@ -49,24 +23,6 @@ lightGallery(document.querySelector('.lightgalery-container'), {
     plugins: [lgVideo],
     selector: '.lightgalery a'
 });
-
-(function (){
-    let el = document.getElementById('upload-files-component');
-    if (el) {
-        let app = createApp(UploadFilesComponent, {
-            label: String(el.dataset.label),
-            downloads: JSON.parse(el.dataset.downloads),
-            multiply: el.dataset.multiply === 'true'
-        }).mount(el)
-    }
-})();
-
-(function () {
-    let el = document.getElementById('upload-videos-component');
-    if (el) {
-        let app = createApp(UploadVideosComponent).mount(el)
-    }
-})();
 
 
 (function () {
