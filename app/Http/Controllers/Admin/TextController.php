@@ -26,8 +26,8 @@ class TextController
                     $text->id,
                     $text->code,
                     $text->sort,
-                    str($text->text)->substr(0,300),
                     $text->description,
+                    str($text->text)->substr(0,300),
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.text.destroy', $text->id)
                     ]),
@@ -40,8 +40,8 @@ class TextController
             'ID',
             'Код',
             'Сортировка',
-            'Текст',
             'Описание',
+            'Текст',
             'Удалить',
         ], $rows);
 

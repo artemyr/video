@@ -26,8 +26,8 @@ class SettingsController
                     $setting->id,
                     $setting->code,
                     $setting->sort,
-                    str($setting->value)->substr(0,300),
                     $setting->description,
+                    str($setting->value)->substr(0,300),
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.settings.destroy', $setting->id)
                     ]),
@@ -40,8 +40,8 @@ class SettingsController
             'ID',
             'Код',
             'Сортировка',
-            'Текст',
             'Описание',
+            'Текст',
             'Удалить',
         ], $rows);
 

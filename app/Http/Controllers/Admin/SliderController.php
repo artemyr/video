@@ -27,7 +27,7 @@ class SliderController
                 $item->title,
                 $item->active,
                 new HtmlDto('<img width="100" src="'. $item->image() .'">'),
-                new HtmlDto('<a target="_blank" href="' . $item->video() . '">Видео</a>'),
+                str($item->video())->substr(0,20)->append('...'),
                 $item->size,
                 $item->sort,
                 new TableComponentDto('components.forms.remove-form', [
