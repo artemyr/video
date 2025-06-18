@@ -11,7 +11,7 @@
         <a
             data-lg-size="{{ $item->size }}"
             data-src="{{ $item->getExternalVideoLinkForGallery() }}"
-            data-poster="{{ $item->makeThumbnail('500x500') }}"
+            data-poster="{{ $item->makeThumbnail($resolution) }}"
             data-sub-html="<h4>{{ $item->title }}</h4>"
         >
 
@@ -24,7 +24,7 @@
 
             <img
                 class="img-responsive"
-                src="{{ $item->makeThumbnail('500x500') }}"
+                src="{{ $item->makeThumbnail($resolution) }}"
                 alt="{{ $item->title }}"
             />
         </a>
@@ -36,7 +36,7 @@
         <a
             data-lg-size="{{ $item->size }}"
             data-video='{"source": [{"src":"{{ $item->video() }}", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
-            data-poster="{{ $item->makeThumbnail('500x500') }}"
+            data-poster="{{ $item->makeThumbnail($resolution) }}"
             data-sub-html="<h4>{{ $item->title }}</h4>"
             class="relative hover:cursor-pointer"
         >
@@ -50,7 +50,7 @@
 
             <img
                 class="img-responsive"
-                src="{{ $item->makeThumbnail('500x500') }}"
+                src="{{ $item->makeThumbnail($resolution) }}"
                 alt="{{ $item->title }}"
             />
         </a>
@@ -59,7 +59,7 @@
 @else
 
     <div class="{{ $class }}">
-        <img src="{{ $item->makeThumbnail('500x500') }}" alt="{{ $item->title }}"/>
+        <img src="{{ $item->makeThumbnail($resolution) }}" alt="{{ $item->title }}"/>
     </div>
 
 @endif
