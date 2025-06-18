@@ -13,7 +13,7 @@ class ReviewsController extends BasePagesController
     public function page(): View|Factory|Application|RedirectResponse
     {
         $reviews = Review::query()
-            ->orderBy('sort')
+            ->sorted()
             ->get();
 
         return view('pages.reviews', compact('reviews'));

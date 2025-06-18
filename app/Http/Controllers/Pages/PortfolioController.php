@@ -13,7 +13,7 @@ class PortfolioController extends BasePagesController
     public function page(): View|Factory|Application|RedirectResponse
     {
         $portfolios = Portfolio::query()
-            ->orderBy('sort')
+            ->sorted()
             ->get();
 
         return view('pages.portfolio', compact('portfolios'));

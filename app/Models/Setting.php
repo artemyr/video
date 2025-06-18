@@ -12,6 +12,6 @@ class Setting extends Model
     public function scopeSorted(Builder $query)
     {
         $query->orderBy('sort')
-            ->orderBy('id');
+            ->orderBy('id', 'desc');
     }
 }

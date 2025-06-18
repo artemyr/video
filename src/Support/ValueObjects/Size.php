@@ -43,6 +43,11 @@ class Size implements Stringable
         return $this->width;
     }
 
+    public function empty(): bool
+    {
+        return ($this->height() === 0 || $this->width() === 0);
+    }
+
     public function __toString(): string
     {
         return $this->value;

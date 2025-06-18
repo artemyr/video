@@ -15,7 +15,7 @@ class PricesController extends BasePagesController
     public function page(): View|Factory|Application|RedirectResponse
     {
         $prices = Price::query()
-            ->orderBy('sort')
+            ->sorted()
             ->get();
 
         $bottomText = Text::query()

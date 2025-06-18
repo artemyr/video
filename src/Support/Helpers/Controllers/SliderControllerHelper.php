@@ -5,6 +5,7 @@ namespace Support\Helpers\Controllers;
 use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
 use Support\Helpers\VideoSizeHelper;
+use Support\ValueObjects\Size;
 
 class SliderControllerHelper
 {
@@ -24,7 +25,7 @@ class SliderControllerHelper
             'active' => $this->request->has('active'),
             'title' => $fields['title'],
             'sort' => $fields['sort'],
-            'size' => $fields['size'],
+            'size' => Size::make($fields['size'])
         ];
 
         $this->resolveImage();
@@ -40,7 +41,7 @@ class SliderControllerHelper
             'active' => $this->request->has('active'),
             'title' => $fields['title'],
             'sort' => $fields['sort'],
-            'size' => $fields['size'],
+            'size' => Size::make($fields['size'])
         ];
 
         $this->resolveImage();
@@ -76,8 +77,8 @@ class SliderControllerHelper
             }
         }
 
-        if ($this->request->has('link')) {
-            $this->saveFields['video'] = $this->request->has('link');
+        if (!empty($this->request->get('link'))) {
+            $this->saveFields['video'] = $this->request->get('link');
             return;
         }
 
@@ -86,7 +87,7 @@ class SliderControllerHelper
                 ->put('slider', $this->request->file('video'));
             $this->saveFields['video'] = $videoPath;
 
-            if (empty($this->saveFields['size'])) {
+            if ($this->saveFields['size']->empty()) {
                 $this->saveFields['size'] = VideoSizeHelper::analyze($storageVideos->path($videoPath));
             }
         }
