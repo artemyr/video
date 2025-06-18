@@ -75,4 +75,30 @@ class SettingViewModel
                 ->first();
         });
     }
+
+    public function contactText1OnContactsPage()
+    {
+        return Cache::rememberForever('setting_text_1_on_contact_page', function () {
+            return Setting::query()
+                ->where('code', SettingsEnum::CONTACT_TEXT_1->value)
+                ->first();
+        });
+    }
+
+    public function logoOnContactsPage()
+    {
+        return Cache::rememberForever('setting_logo_on_contact_page', function () {
+            $author = '';
+
+            $s = Setting::query()
+                ->where('code', SettingsEnum::MAIN_LOGO->value)
+                ->first();
+
+            if (!empty($s)) {
+                $author = asset('storage/images/' . $s->value);
+            }
+
+            return $author;
+        });
+    }
 }

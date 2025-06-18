@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Pages;
 
-use App\Models\Review;
+use Domain\Pages\ReviewsViewModel;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -12,10 +12,8 @@ class ReviewsController extends BasePagesController
 {
     public function page(): View|Factory|Application|RedirectResponse
     {
-        $reviews = Review::query()
-            ->sorted()
-            ->filtered()
-            ->get();
+        $reviews = ReviewsViewModel::make()
+            ->reviewsPage();
 
         return view('pages.reviews', compact('reviews'));
     }

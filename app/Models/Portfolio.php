@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Support\Casts\SizeCast;
+use Support\Traits\Models\Cacheable;
 use Support\Traits\Models\HasThumbnail;
 use Support\Traits\Models\HasVideoGallery;
 
@@ -12,6 +13,7 @@ class Portfolio extends Model
 {
     use HasThumbnail;
     use HasVideoGallery;
+    use Cacheable;
 
     protected $guarded = ['created_at'];
 
@@ -47,5 +49,10 @@ class Portfolio extends Model
     public function scopeFiltered(Builder $query)
     {
         $query->where('active', true);
+    }
+
+    protected function getCacheKeys(): array
+    {
+        return ['portfolio_on_portfolio_page'];
     }
 }

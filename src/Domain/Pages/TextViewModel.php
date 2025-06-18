@@ -19,4 +19,13 @@ class TextViewModel
                 ->first();
         });
     }
+
+    public function bottomTextOnPricePage()
+    {
+        return Cache::rememberForever('text_bottom_on_prices_page', function () {
+            return Text::query()
+                ->where('code', TextsEnum::PRICES_BOTTOM_TEXT->value)
+                ->first();
+        });
+    }
 }
