@@ -12,12 +12,12 @@
             :isError="$errors->has('title')"
         ></x-forms.text-input>
 
-        <x-forms.text-input
+        <x-editor
             :value="old('description', $item->description)"
             label="Описание"
             name="description"
             :isError="$errors->has('description')"
-        ></x-forms.text-input>
+        ></x-editor>
 
         <x-forms.text-input
             :value="old('sort', $item->sort)"
