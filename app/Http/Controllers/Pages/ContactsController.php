@@ -17,6 +17,16 @@ class ContactsController extends BasePagesController
             ->where('code', SettingsEnum::CONTACT_TEXT_1->value)
             ->first();
 
-        return view('pages.contacts', compact('text1'));
+        $author = '';
+
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_LOGO->value)
+            ->first();
+
+        if (!empty($s)) {
+            $author = asset('storage/images/' . $s->value);
+        }
+
+        return view('pages.contacts', compact('text1', 'author'));
     }
 }

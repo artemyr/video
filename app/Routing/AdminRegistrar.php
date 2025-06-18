@@ -3,6 +3,8 @@
 namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
+use App\Http\Controllers\Admin\ContactsController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -164,6 +166,21 @@ class AdminRegistrar implements RouteRegistrar
                             ->name('admin.portfolio.update');
                     });
 
+                Route::controller(HomeController::class)
+                    ->group(function () {
+                        Route::get('/admin/main', 'page')
+                            ->name('admin.main.index');
+                        Route::post('/admin/main/save', 'handle')
+                            ->name('admin.main.save');
+                    });
+
+                Route::controller(ContactsController::class)
+                    ->group(function () {
+                        Route::get('/admin/contacts', 'page')
+                            ->name('admin.contacts.index');
+                        Route::post('/admin/contacts/save', 'handle')
+                            ->name('admin.contacts.save');
+                    });
             });
     }
 }

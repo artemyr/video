@@ -4,7 +4,9 @@
     <div class="container">
         <div class="grid grid-flow-row gap-4 justify-center text-center">
             <div>
-                <img class="rounded-full w-[400px]" src="{{ Vite::image('author.jpg') }}" alt="">
+                @if(!empty($author))
+                    <img class="rounded-full w-[400px]" src="{{ $author }}" alt="">
+                @endif
             </div>
             <p class="text-md">
                 <x-edit-setting :setting="$text1" :code="\Support\Enums\SettingsEnum::CONTACT_TEXT_1->value">

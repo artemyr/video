@@ -29,7 +29,9 @@
                         </x-edit-text>
                     </div>
                     <div class="px-[25px] grid justify-center col-span-4 md:col-span-1">
-                        <img src="{{ Vite::image('author.jpg') }}" alt="women">
+                        @if(!empty($author))
+                            <img src="{{ $author }}" alt="">
+                        @endif
                     </div>
                 </div>
             </section>

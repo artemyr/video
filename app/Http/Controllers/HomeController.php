@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Pages\BasePagesController;
+use App\Models\Setting;
 use App\Models\Slider;
 use App\Models\Text;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Support\Enums\SettingsEnum;
 use Support\Enums\TextsEnum;
 
 class HomeController extends BasePagesController
@@ -22,6 +24,16 @@ class HomeController extends BasePagesController
             ->where('code', TextsEnum::MAIN_ABOUT->value)
             ->first();
 
-        return view('index', compact('sliders', 'about'));
+        $author = '';
+
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_LOGO->value)
+            ->first();
+
+        if (!empty($s)) {
+            $author = asset('storage/images/' . $s->value);
+        }
+
+        return view('index', compact('sliders', 'about', 'author'));
     }
 }
