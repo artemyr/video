@@ -1,7 +1,8 @@
 @props([
     'item' => null,
     'type' => 'simple',
-    'class' => ''
+    'class' => '',
+    'resolution' => '500x500'
 ])
 
 @if($type === 'external')

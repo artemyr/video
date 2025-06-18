@@ -14,6 +14,7 @@
                 <x-front.galery-item
                     :type="$portfolio->getVideoSlideType()"
                     :item="$portfolio"
+                    resolution="500x825"
                 >
                 </x-front.galery-item>
             @endforeach

@@ -14,6 +14,7 @@
                             :type="$slider->getVideoSlideType()"
                             :item="$slider"
                             class="swiper-slide"
+                            resolution="500x500"
                         >
                         </x-front.galery-item>
                     @endforeach
