@@ -52,7 +52,9 @@ class ReviewController
         $storageImages = Storage::disk('images');
 
         if (!empty($item->image)) {
-            $storageImages->delete($item->image);
+            if ($storageImages->exists($item->image)) {
+                $storageImages->delete($item->image);
+            }
         }
 
         $item->delete();
@@ -103,7 +105,9 @@ class ReviewController
         $storageImages = Storage::disk('images');
 
         if ($request->has('image') && !empty($item->image)) {
-            $storageImages->delete($item->image);
+            if ($storageImages->exists($item->image)) {
+                $storageImages->delete($item->image);
+            }
         }
 
         if ($request->has('image')) {
