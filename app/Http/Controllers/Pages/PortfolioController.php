@@ -14,6 +14,7 @@ class PortfolioController extends BasePagesController
     {
         $portfolios = Portfolio::query()
             ->sorted()
+            ->filtered()
             ->get();
 
         return view('pages.portfolio', compact('portfolios'));

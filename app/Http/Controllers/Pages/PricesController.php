@@ -16,6 +16,7 @@ class PricesController extends BasePagesController
     {
         $prices = Price::query()
             ->sorted()
+            ->filtered()
             ->get();
 
         $bottomText = Text::query()

@@ -43,4 +43,9 @@ class Portfolio extends Model
         $query->orderBy('sort')
             ->orderBy('id', 'desc');
     }
+
+    public function scopeFiltered(Builder $query)
+    {
+        $query->where('active', true);
+    }
 }

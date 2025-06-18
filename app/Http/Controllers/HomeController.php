@@ -18,6 +18,7 @@ class HomeController extends BasePagesController
     {
         $sliders = Slider::query()
             ->sorted()
+            ->filtered()
             ->get();
 
         $about = Text::query()

@@ -14,6 +14,7 @@ class ReviewsController extends BasePagesController
     {
         $reviews = Review::query()
             ->sorted()
+            ->filtered()
             ->get();
 
         return view('pages.reviews', compact('reviews'));
