@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers\Pages;
 
-use App\Models\Setting;
-use App\Models\Text;
 use Domain\Pages\SettingViewModel;
-use Support\Enums\SettingsEnum;
-use Support\Enums\TextsEnum;
 
 abstract class BasePagesController
 {
@@ -34,24 +30,7 @@ abstract class BasePagesController
             'title' => $title,
             'description' => $description,
             'tg' => $this->getTg(),
-            'editMode' => $this->getEditMode()
         ];
-    }
-
-    private function getEditMode()
-    {
-        $editMode = false;
-        $session = session();
-        if (request('edit') === 'y' && auth()->id() > 0 && auth()->user()->role === 'admin') {
-            $session->put('editMode', true);
-        }
-        if (request('edit') === 'n' && auth()->id() > 0 && auth()->user()->role === 'admin') {
-            $session->put('editMode', false);
-        }
-        if (auth()->id() > 0 && auth()->user()->role === 'admin' && $session->get('editMode') === true) {
-            $editMode = true;
-        }
-        return $editMode;
     }
 
     private function getPhone(): array

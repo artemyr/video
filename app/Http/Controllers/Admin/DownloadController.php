@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Middleware\AdminMiddleware;
 use App\Models\Download;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class DownloadController extends Controller
+class DownloadController
 {
-    public function __construct()
-    {
-        $this->middleware(AdminMiddleware::class);
-    }
-
     public function store(Request $request)
     {
         $path = Storage::disk('video')
