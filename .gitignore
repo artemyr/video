@@ -24,3 +24,4 @@ yarn-error.log
 .env.testing
 test.database.sqlite
 *.vue.swp
+robots.txt

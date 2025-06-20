@@ -20,6 +20,14 @@
         >
         </x-forms.file-input>
 
+        <x-editor
+            value="{{ $robots }}"
+            :isError="$errors->has('robots')"
+            label="robots.txt"
+            name="robots"
+        >
+        </x-editor>
+
         <x-forms.success-button>
             Сохранить
         </x-forms.success-button>

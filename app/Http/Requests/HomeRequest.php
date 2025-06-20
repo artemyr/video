@@ -23,7 +23,8 @@ class HomeRequest extends FormRequest
     {
         return [
             'logo' => 'file|nullable',
-            'favicon' => 'file|nullable'
+            'favicon' => 'file|nullable',
+            'robots' => 'string|nullable',
         ];
     }
 }

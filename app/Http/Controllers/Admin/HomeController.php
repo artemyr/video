@@ -31,13 +31,25 @@ class HomeController
             $favicon = asset('storage/images/' . $s->value);
         }
 
-        return view('admin.main.index', compact('image', 'favicon'));
+        $robots = '';
+
+        $robotsFile = public_path('robots.txt');
+        if (file_exists($robotsFile)) {
+            $robots = file_get_contents($robotsFile);
+        }
+
+        return view('admin.main.index', compact('image', 'favicon','robots'));
     }
 
     public function handle(HomeRequest $request)
     {
         $this->saveFileSetting($request, SettingsEnum::MAIN_LOGO->value, 'logo','logo');
         $this->saveFileSetting($request, SettingsEnum::MAIN_FAVICON->value, 'favicon','favicon');
+
+        if ($request->has('robots')) {
+            $robotsFile = public_path('robots.txt');
+            file_put_contents($robotsFile, $request->get('robots'));
+        }
 
         return back();
     }
