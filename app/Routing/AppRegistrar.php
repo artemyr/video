@@ -3,14 +3,11 @@
 namespace App\Routing;
 
 use App\Contracts\RouteRegistrar;
-use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Pages\PortfolioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pages\ContactsController;
 use App\Http\Controllers\Pages\PricesController;
 use App\Http\Controllers\Pages\ReviewsController;
-use App\Http\Controllers\ThumbnailController;
-use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\EditModeMiddleware;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Support\Facades\Route;
@@ -32,14 +29,5 @@ class AppRegistrar implements RouteRegistrar
                 Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');
             });
-
-        Route::resource('/admin/download', DownloadController::class)
-            ->only(['store', 'update', 'destroy'])
-            ->middleware('web')
-            ->middleware(AdminMiddleware::class)
-            ->name('destroy', 'admin.download.destroy');
-
-        Route::get('/thumbnail/{dir}/{method}/{size}/{file}', ThumbnailController::class)
-            ->name('thumbnail');
     }
 }

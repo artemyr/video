@@ -88,13 +88,6 @@ class PortfolioController
 
     public function create(PortfolioSaveRequest $request)
     {
-        if (!$request->hasFile('video') && empty($request->get('link'))) {
-            return redirect()->back()->withErrors([
-                'video' => "Укажите файл видео либо ссылку на видео",
-                'link' => "Укажите файл видео либо ссылку на видео",
-            ]);
-        }
-
         (new PortfolioControllerHelper($request))->create();
 
         flash()->info(__('crud.create.success'));

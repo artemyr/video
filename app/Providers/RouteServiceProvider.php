@@ -6,6 +6,14 @@ use App\Contracts\RouteRegistrar;
 use App\Routing\AdminRegistrar;
 use App\Routing\AppRegistrar;
 use App\Routing\AuthRegistrar;
+use App\Routing\Pages\{
+    PortfolioRegistrar,
+    PriceRegistrar,
+    ReviewRegistrar,
+    SettingsRegistrar,
+    SliderRegistrar,
+    TextRegistrar,
+};
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Http\Request;
@@ -19,7 +27,15 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
 
     protected array $registrars = [
-        AppRegistrar::class, AuthRegistrar::class, AdminRegistrar::class
+        AppRegistrar::class,
+        AuthRegistrar::class,
+        AdminRegistrar::class,
+        SettingsRegistrar::class,
+        TextRegistrar::class,
+        SliderRegistrar::class,
+        ReviewRegistrar::class,
+        PriceRegistrar::class,
+        PortfolioRegistrar::class,
     ];
 
     public function boot(Registrar $router): void

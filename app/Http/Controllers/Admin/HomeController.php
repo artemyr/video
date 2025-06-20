@@ -21,34 +21,52 @@ class HomeController
             $image = asset('storage/images/' . $s->value);
         }
 
-        return view('admin.main.index', compact('image'));
+        $favicon = '';
+
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_FAVICON->value)
+            ->first();
+
+        if (!empty($s)) {
+            $favicon = asset('storage/images/' . $s->value);
+        }
+
+        return view('admin.main.index', compact('image', 'favicon'));
     }
 
     public function handle(HomeRequest $request)
     {
+        $this->saveFileSetting($request, SettingsEnum::MAIN_LOGO->value, 'logo','logo');
+        $this->saveFileSetting($request, SettingsEnum::MAIN_FAVICON->value, 'favicon','favicon');
+
+        return back();
+    }
+
+    private function saveFileSetting($request, string $code, string $name, string $path)
+    {
+        if (!$request->has($name)) {
+            return;
+        }
+
         $storageImages = Storage::disk('images');
 
         $s = Setting::query()
-            ->where('code', SettingsEnum::MAIN_LOGO->value)
+            ->where('code', $code)
             ->first();
 
-        if ($request->has('logo')) {
-            if (!empty($s->value)) {
-                if ($storageImages->exists($s->value)) {
-                    $storageImages->delete($s->value);
-                }
+        if (!empty($s->value)) {
+            if ($storageImages->exists($s->value)) {
+                $storageImages->delete($s->value);
             }
         }
 
         $logoPath =$storageImages
-            ->put('main/logo', $request->file('logo'));
+            ->put("main/$path", $request->file($name));
 
         Setting::query()->updateOrCreate([
-            'code' => SettingsEnum::MAIN_LOGO->value
+            'code' => $code
         ],[
             'value' => $logoPath
         ]);
-
-        return redirect(route('admin.main.index'));
     }
 }

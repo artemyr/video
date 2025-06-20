@@ -12,6 +12,14 @@
         >
         </x-forms.file-input>
 
+        <x-forms.file-input
+            image="{{ $favicon }}"
+            :isError="$errors->has('favicon')"
+            label="Фавиконка"
+            name="favicon"
+        >
+        </x-forms.file-input>
+
         <x-forms.success-button>
             Сохранить
         </x-forms.success-button>

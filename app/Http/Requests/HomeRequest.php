@@ -22,7 +22,8 @@ class HomeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'logo' => 'file|required'
+            'logo' => 'file|nullable',
+            'favicon' => 'file|nullable'
         ];
     }
 }

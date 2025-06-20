@@ -101,4 +101,22 @@ class SettingViewModel
             return $author;
         });
     }
+
+    public function favicon()
+    {
+        return Cache::rememberForever('setting_favicon', function () {
+
+            $favicon = '';
+
+            $s = Setting::query()
+                ->where('code', SettingsEnum::MAIN_FAVICON->value)
+                ->first();
+
+            if (!empty($s)) {
+                $favicon = asset('storage/images/' . $s->value);
+            }
+
+            return $favicon;
+        });
+    }
 }

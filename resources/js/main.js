@@ -13,9 +13,10 @@ const swiper = new Swiper('.swiper', {
     loop: true,
     slidesPerView: "auto",
     spaceBetween: 30,
-    // autoplay: {
-    //     delay: 5000,
-    // },
+    autoplay: {
+        delay: 2000,
+    },
+    speed: 2000
     // autoHeight: true
 });
 
@@ -23,7 +24,6 @@ lightGallery(document.querySelector('.lightgalery-container'), {
     plugins: [lgVideo],
     selector: '.lightgalery a'
 });
-
 
 (function () {
     function menuHandler() {
@@ -71,4 +71,14 @@ lightGallery(document.querySelector('.lightgalery-container'), {
             menuHandler()
         }, 100)
     }
-})()
+})();
+
+// import {createApp} from "vue";
+// import UploadVideosComponent from "./components/admin/UploadVideosComponent.vue";
+//
+// (function () {
+//     let el = document.getElementById('upload-videos-component');
+//     if (el) {
+//         let app = createApp(UploadVideosComponent).mount(el)
+//     }
+// })();

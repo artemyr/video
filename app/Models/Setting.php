@@ -27,7 +27,8 @@ class Setting extends Model
             'setting_footer_text',
             'setting_tg',
             'setting_text_1_on_contact_page',
-            'setting_logo_on_contact_page'
+            'setting_logo_on_contact_page',
+            'setting_favicon'
         ];
     }
 

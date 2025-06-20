@@ -88,13 +88,6 @@ class SliderController
 
     public function create(SliderSaveRequest $request)
     {
-        if (!$request->hasFile('video') && empty($request->get('link'))) {
-            return redirect()->back()->withErrors([
-                'video' => "Укажите файл видео либо ссылку на видео",
-                'link' => "Укажите файл видео либо ссылку на видео",
-            ]);
-        }
-
         (new SliderControllerHelper($request))->create();
 
         flash()->info(__('crud.create.success'));
