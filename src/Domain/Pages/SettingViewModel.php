@@ -91,7 +91,7 @@ class SettingViewModel
             $author = '';
 
             $s = Setting::query()
-                ->where('code', SettingsEnum::MAIN_LOGO->value)
+                ->where('code', SettingsEnum::CONTACTS_LOGO->value)
                 ->first();
 
             if (!empty($s)) {
