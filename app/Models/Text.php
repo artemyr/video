@@ -20,6 +20,6 @@ class Text extends Model
 
     protected function getCacheKeys(): array
     {
-        return ['text_home_page'];
+        return ['text_home_page', 'text_bottom_on_prices_page'];
     }
 }

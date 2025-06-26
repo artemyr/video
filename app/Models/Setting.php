@@ -23,6 +23,7 @@ class Setting extends Model
     {
         return [
             'setting_home_page',
+            'setting_logo',
             'setting_phone',
             'setting_footer_text',
             'setting_tg',
@@ -47,7 +48,7 @@ class Setting extends Model
         if (
             str($item->code)->startsWith('description.')
         ) {
-            Cache::forget('setting_title_' . str($item->code)->ltrim('description.'));
+            Cache::forget('setting_description_' . str($item->code)->ltrim('description.'));
         }
     }
 }

@@ -20,7 +20,7 @@ class SettingViewModel
             $author = '';
 
             $s = Setting::query()
-                ->where('code', SettingsEnum::MAIN_LOGO->value)
+                ->where('code', SettingsEnum::MAIN_AUTHOR->value)
                 ->first();
 
             if (!empty($s)) {
@@ -117,6 +117,24 @@ class SettingViewModel
             }
 
             return $favicon;
+        });
+    }
+
+    public function logo()
+    {
+        return Cache::rememberForever('setting_logo', function () {
+
+            $logo = '';
+
+            $s = Setting::query()
+                ->where('code', SettingsEnum::MAIN_LOGO->value)
+                ->first();
+
+            if (!empty($s)) {
+                $logo = asset('storage/images/' . $s->value);
+            }
+
+            return $logo;
         });
     }
 }

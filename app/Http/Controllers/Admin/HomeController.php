@@ -11,14 +11,24 @@ class HomeController
 {
     public function page()
     {
-        $image = '';
+        $author = '';
+
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_AUTHOR->value)
+            ->first();
+
+        if (!empty($s)) {
+            $author = asset('storage/images/' . $s->value);
+        }
+
+        $logo = '';
 
         $s = Setting::query()
             ->where('code', SettingsEnum::MAIN_LOGO->value)
             ->first();
 
         if (!empty($s)) {
-            $image = asset('storage/images/' . $s->value);
+            $logo = asset('storage/images/' . $s->value);
         }
 
         $favicon = '';
@@ -38,12 +48,13 @@ class HomeController
             $robots = file_get_contents($robotsFile);
         }
 
-        return view('admin.main.index', compact('image', 'favicon','robots'));
+        return view('admin.main.index', compact('author', 'favicon','robots','logo'));
     }
 
     public function handle(HomeRequest $request)
     {
         $this->saveFileSetting($request, SettingsEnum::MAIN_LOGO->value, 'logo','logo');
+        $this->saveFileSetting($request, SettingsEnum::MAIN_AUTHOR->value, 'author','author');
         $this->saveFileSetting($request, SettingsEnum::MAIN_FAVICON->value, 'favicon','favicon');
 
         if ($request->has('robots')) {

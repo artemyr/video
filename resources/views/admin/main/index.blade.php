@@ -5,10 +5,18 @@
         @csrf
 
         <x-forms.file-input
-            image="{{ $image }}"
+            image="{{ $logo }}"
             :isError="$errors->has('logo')"
-            label="Автор"
+            label="Логотип"
             name="logo"
+        >
+        </x-forms.file-input>
+
+        <x-forms.file-input
+            image="{{ $author }}"
+            :isError="$errors->has('author')"
+            label="Автор"
+            name="author"
         >
         </x-forms.file-input>
 

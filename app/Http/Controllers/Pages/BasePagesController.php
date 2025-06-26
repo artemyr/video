@@ -30,7 +30,8 @@ abstract class BasePagesController
             'title' => $title,
             'description' => $description,
             'tg' => $this->getTg(),
-            'favicon' => $this->getFavicon()
+            'favicon' => $this->getFavicon(),
+            'logo' => $this->getLogo()
         ];
     }
 
@@ -83,5 +84,11 @@ abstract class BasePagesController
     {
         return SettingViewModel::make()
             ->favicon();
+    }
+
+    private function getLogo()
+    {
+        return SettingViewModel::make()
+            ->logo();
     }
 }
