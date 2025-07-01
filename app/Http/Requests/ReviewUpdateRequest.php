@@ -23,6 +23,7 @@ class ReviewUpdateRequest extends FormRequest
     {
         return [
             'title' => 'string',
+            'description' => 'string',
             'sort' => 'integer|nullable',
             'active' => 'boolean|nullable',
             'image' => 'file|nullable',

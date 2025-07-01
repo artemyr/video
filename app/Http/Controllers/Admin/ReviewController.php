@@ -99,6 +99,7 @@ class ReviewController
         $saveFields = [
             'active' => $request->has('active'),
             'title' => $fields['title'],
+            'description' => $fields['description'],
             'sort' => $fields['sort'],
         ];
 
