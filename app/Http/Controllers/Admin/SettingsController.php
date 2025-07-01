@@ -21,11 +21,10 @@ class SettingsController
 
         $rows = [];
         foreach ($items as $setting) {
-
             $value = $setting->value;
             if (str($value)->length() > 20) {
                 $value = str($value)
-                    ->substr(0,20)
+                    ->substr(0, 20)
                     ->append('...')
                     ->value();
             }
@@ -54,7 +53,7 @@ class SettingsController
             'Удалить',
         ], $rows);
 
-        return view('admin.settings.index', compact('table','items'));
+        return view('admin.settings.index', compact('table', 'items'));
     }
 
     public function destroy(Setting $item)

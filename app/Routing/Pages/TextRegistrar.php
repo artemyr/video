@@ -13,7 +13,7 @@ class TextRegistrar implements RouteRegistrar
     public function map(Registrar $registrar): void
     {
         Route::middleware(['web', AdminMiddleware::class])
-            ->group(function() {
+            ->group(function () {
 
                 Route::controller(TextController::class)
                     ->group(function () {
@@ -35,7 +35,6 @@ class TextRegistrar implements RouteRegistrar
                         Route::get('/admin/text/index', 'index')
                             ->name('admin.text.index');
                     });
-
             });
     }
 }

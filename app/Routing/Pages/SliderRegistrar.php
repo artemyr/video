@@ -13,7 +13,7 @@ class SliderRegistrar implements RouteRegistrar
     public function map(Registrar $registrar): void
     {
         Route::middleware(['web', AdminMiddleware::class])
-            ->group(function() {
+            ->group(function () {
 
                 Route::controller(SliderController::class)
                     ->group(function () {
@@ -35,7 +35,6 @@ class SliderRegistrar implements RouteRegistrar
                         Route::post('/admin/main/slider/{item}/update', 'update')
                             ->name('admin.main.slider.update');
                     });
-
             });
     }
 }

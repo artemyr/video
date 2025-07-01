@@ -13,7 +13,7 @@ class PriceRegistrar implements RouteRegistrar
     public function map(Registrar $registrar): void
     {
         Route::middleware(['web', AdminMiddleware::class])
-            ->group(function() {
+            ->group(function () {
 
                 Route::controller(PriceController::class)
                     ->group(function () {
@@ -35,7 +35,6 @@ class PriceRegistrar implements RouteRegistrar
                         Route::post('/admin/price/{item}/update', 'update')
                             ->name('admin.price.update');
                     });
-
             });
     }
 }

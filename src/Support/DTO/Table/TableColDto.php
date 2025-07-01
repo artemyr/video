@@ -12,7 +12,7 @@ class TableColDto
     {
         if ($value instanceof TableComponentDto) {
             $this->component = $value;
-        } elseif($value instanceof HtmlDto) {
+        } elseif ($value instanceof HtmlDto) {
             $this->html = $value;
         } else {
             $this->value = $value ?? 'empty';

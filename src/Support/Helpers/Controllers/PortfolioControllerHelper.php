@@ -14,8 +14,7 @@ class PortfolioControllerHelper
     public function __construct(
         private $request = null,
         private $item = null
-    )
-    {
+    ) {
     }
 
     public function create(): void

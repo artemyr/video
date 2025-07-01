@@ -34,7 +34,7 @@ class Flash
 
     public function alert(string $message): void
     {
-       $this->flash($message, 'alert');
+        $this->flash($message, 'alert');
     }
 
     private function flash(string $message, string $name): void

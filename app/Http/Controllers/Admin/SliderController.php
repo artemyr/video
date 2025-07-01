@@ -22,11 +22,10 @@ class SliderController
 
         $body = [];
         foreach ($items as $item) {
-
             $video = $item->video();
             if (str($video)->length() > 20) {
                 $video = str($video)
-                    ->substr(0,20)
+                    ->substr(0, 20)
                     ->append('...')
                     ->value();
             }
@@ -35,7 +34,7 @@ class SliderController
                 $item->id,
                 $item->title,
                 $item->active,
-                new HtmlDto('<img width="100" src="'. $item->image() .'">'),
+                new HtmlDto('<img width="100" src="' . $item->image() . '">'),
                 $video,
                 $item->size,
                 $item->sort,
@@ -58,7 +57,7 @@ class SliderController
 
         $table = new TableDto($head, $body);
 
-        return view('admin.main.slider.index', compact('table','items'));
+        return view('admin.main.slider.index', compact('table', 'items'));
     }
 
     public function destroy(Slider $item)

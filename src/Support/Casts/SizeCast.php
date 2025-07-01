@@ -15,7 +15,7 @@ class SizeCast implements CastsAttributes
 
     public function set(Model $model, string $key, mixed $value, array $attributes): string
     {
-        if ( ! $value instanceof Size) {
+        if (! $value instanceof Size) {
             $value = Size::make($value);
         }
         return $value->row();

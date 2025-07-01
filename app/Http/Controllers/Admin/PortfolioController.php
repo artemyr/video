@@ -21,11 +21,10 @@ class PortfolioController
 
         $rows = [];
         foreach ($items as $item) {
-
             $video = $item->video();
             if (str($video)->length() > 20) {
                 $video = str($video)
-                    ->substr(0,20)
+                    ->substr(0, 20)
                     ->append('...')
                     ->value();
             }
@@ -36,7 +35,7 @@ class PortfolioController
                     $item->title,
                     $item->sort,
                     $item->active,
-                    new HtmlDto('<img width="100" src="'. $item->image() .'">'),
+                    new HtmlDto('<img width="100" src="' . $item->image() . '">'),
                     $video,
                     $item->size,
                     new TableComponentDto('components.forms.remove-form', [

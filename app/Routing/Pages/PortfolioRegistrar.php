@@ -13,7 +13,7 @@ class PortfolioRegistrar implements RouteRegistrar
     public function map(Registrar $registrar): void
     {
         Route::middleware(['web', AdminMiddleware::class])
-            ->group(function() {
+            ->group(function () {
 
                 Route::controller(PortfolioController::class)
                     ->group(function () {
@@ -35,7 +35,6 @@ class PortfolioRegistrar implements RouteRegistrar
                         Route::post('/admin/portfolio/{item}/update', 'update')
                             ->name('admin.portfolio.update');
                     });
-
             });
     }
 }

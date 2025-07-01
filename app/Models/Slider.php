@@ -46,7 +46,7 @@ class Slider extends Model
             return null;
         }
 
-        if (str($this->video)->startsWith('http') ) {
+        if (str($this->video)->startsWith('http')) {
             return $this->video;
         }
 

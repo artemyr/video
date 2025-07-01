@@ -11,7 +11,7 @@ class FakerImageProvider extends Base
     {
         $storage = Storage::disk('images');
 
-        if ( ! $storage->exists($storageDir)) {
+        if (! $storage->exists($storageDir)) {
             $storage->makeDirectory($storageDir);
         }
 

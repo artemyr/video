@@ -15,6 +15,6 @@ class Download extends Model
 
     public function humanSize(): string
     {
-        return number_format($this->size / 1024 / 1024,2,'.',' ') . ' Mb';
+        return number_format($this->size / 1024 / 1024, 2, '.', ' ') . ' Mb';
     }
 }

@@ -27,7 +27,7 @@ class TextController
                     $text->code,
                     $text->sort,
                     $text->description,
-                    str($text->text)->substr(0,300),
+                    str($text->text)->substr(0, 300),
                     new TableComponentDto('components.forms.remove-form', [
                         'url' => route('admin.text.destroy', $text->id)
                     ]),
@@ -45,7 +45,7 @@ class TextController
             'Удалить',
         ], $rows);
 
-        return view('admin.text.index', compact('table','items'));
+        return view('admin.text.index', compact('table', 'items'));
     }
 
     public function destroy(Text $item)

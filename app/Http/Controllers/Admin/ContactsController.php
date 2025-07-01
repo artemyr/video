@@ -40,12 +40,12 @@ class ContactsController
             }
         }
 
-        $logoPath =$storageImages
+        $logoPath = $storageImages
             ->put('contacts/logo', $request->file('logo'));
 
         Setting::query()->updateOrCreate([
             'code' => SettingsEnum::CONTACTS_LOGO->value
-        ],[
+        ], [
             'value' => $logoPath
         ]);
 

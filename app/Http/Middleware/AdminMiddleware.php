@@ -15,11 +15,11 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!auth()->id()) {
+        if (!auth()->id()) {
             flash()->alert('Not authorized');
             return redirect('login');
         }
-        if(auth()->id() > 0 && auth()->user()->role !== 'admin') {
+        if (auth()->id() > 0 && auth()->user()->role !== 'admin') {
             flash()->alert('Forbidden');
             return redirect('login');
         }
