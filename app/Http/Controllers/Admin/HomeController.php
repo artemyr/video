@@ -48,14 +48,14 @@ class HomeController
             $robots = file_get_contents($robotsFile);
         }
 
-        return view('admin.main.index', compact('author', 'favicon','robots','logo'));
+        return view('admin.main.index', compact('author', 'favicon', 'robots', 'logo'));
     }
 
     public function handle(HomeRequest $request)
     {
-        $this->saveFileSetting($request, SettingsEnum::MAIN_LOGO->value, 'logo','logo');
-        $this->saveFileSetting($request, SettingsEnum::MAIN_AUTHOR->value, 'author','author');
-        $this->saveFileSetting($request, SettingsEnum::MAIN_FAVICON->value, 'favicon','favicon');
+        $this->saveFileSetting($request, SettingsEnum::MAIN_LOGO->value, 'logo', 'logo');
+        $this->saveFileSetting($request, SettingsEnum::MAIN_AUTHOR->value, 'author', 'author');
+        $this->saveFileSetting($request, SettingsEnum::MAIN_FAVICON->value, 'favicon', 'favicon');
 
         if ($request->has('robots')) {
             $robotsFile = public_path('robots.txt');
@@ -83,12 +83,12 @@ class HomeController
             }
         }
 
-        $logoPath =$storageImages
+        $logoPath = $storageImages
             ->put("main/$path", $request->file($name));
 
         Setting::query()->updateOrCreate([
             'code' => $code
-        ],[
+        ], [
             'value' => $logoPath
         ]);
     }

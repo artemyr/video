@@ -13,7 +13,7 @@ class ReviewRegistrar implements RouteRegistrar
     public function map(Registrar $registrar): void
     {
         Route::middleware(['web', AdminMiddleware::class])
-            ->group(function() {
+            ->group(function () {
 
                 Route::controller(ReviewController::class)
                     ->group(function () {
@@ -35,7 +35,6 @@ class ReviewRegistrar implements RouteRegistrar
                         Route::post('/admin/review/{item}/update', 'update')
                             ->name('admin.review.update');
                     });
-
             });
     }
 }

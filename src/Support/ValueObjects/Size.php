@@ -15,8 +15,7 @@ class Size implements Stringable
 
     public function __construct(
         private readonly string $value,
-    )
-    {
+    ) {
         if (empty($value)) {
             $value = '0-0';
         }

@@ -17,7 +17,7 @@ class SignInController extends Controller
             return redirect('admin');
         }
 
-        if(auth()->id() > 0) {
+        if (auth()->id() > 0) {
             return redirect()->route('home');
         }
 
@@ -26,7 +26,7 @@ class SignInController extends Controller
 
     public function handle(SignInFormRequest $request): RedirectResponse
     {
-        if ( ! auth()->attempt($request->validated())) {
+        if (! auth()->attempt($request->validated())) {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ])->onlyInput('email');

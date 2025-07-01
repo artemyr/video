@@ -25,7 +25,7 @@ class ReviewController
                 $item->id,
                 $item->title,
                 $item->active,
-                new HtmlDto('<img width="100" src="'. $item->image() .'">'),
+                new HtmlDto('<img width="100" src="' . $item->image() . '">'),
                 $item->sort,
                 new TableComponentDto('components.forms.remove-form', [
                     'url' => route('admin.review.destroy', $item->id)
@@ -99,6 +99,7 @@ class ReviewController
         $saveFields = [
             'active' => $request->has('active'),
             'title' => $fields['title'],
+            'description' => $fields['description'],
             'sort' => $fields['sort'],
         ];
 

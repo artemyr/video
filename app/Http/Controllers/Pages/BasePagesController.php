@@ -13,7 +13,7 @@ abstract class BasePagesController
 
     private function initGlobalVars(): void
     {
-        foreach( $this->getGlobalVars() as $name => $value ) {
+        foreach ($this->getGlobalVars() as $name => $value) {
             view()->share($name, $value);
         }
     }

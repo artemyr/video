@@ -10,7 +10,7 @@ trait HasVideoGallery
             return null;
         }
 
-        if (str($this->video)->startsWith('http') ) {
+        if (str($this->video)->startsWith('http')) {
             return $this->video;
         }
 
@@ -23,7 +23,7 @@ trait HasVideoGallery
             return 'no';
         }
 
-        if (str($this->video)->startsWith('http') ) {
+        if (str($this->video)->startsWith('http')) {
             return 'external';
         }
 

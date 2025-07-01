@@ -74,7 +74,7 @@ class RouteServiceProvider extends ServiceProvider
                 ));
             }
 
-            (new $registrar)->map($router);
+            (new $registrar())->map($router);
         }
     }
 }

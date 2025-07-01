@@ -13,7 +13,7 @@ class SettingsRegistrar implements RouteRegistrar
     public function map(Registrar $registrar): void
     {
         Route::middleware(['web', AdminMiddleware::class])
-            ->group(function() {
+            ->group(function () {
 
                 Route::controller(SettingsController::class)
                     ->group(function () {
@@ -35,7 +35,6 @@ class SettingsRegistrar implements RouteRegistrar
                         Route::get('/admin/settings/index', 'index')
                             ->name('admin.settings.index');
                     });
-
             });
     }
 }
