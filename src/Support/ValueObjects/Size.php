@@ -14,7 +14,7 @@ class Size implements Stringable
     private int $width;
 
     public function __construct(
-        private readonly string $value,
+        private readonly ?string $value,
     ) {
         if (empty($value)) {
             $value = '0-0';

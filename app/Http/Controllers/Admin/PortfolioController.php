@@ -87,7 +87,11 @@ class PortfolioController
 
     public function create(PortfolioSaveRequest $request)
     {
-        (new PortfolioControllerHelper($request))->create();
+        $errors = (new PortfolioControllerHelper($request))->create();
+
+        if (!empty($errors)) {
+            return $errors;
+        }
 
         flash()->info(__('crud.create.success'));
 
