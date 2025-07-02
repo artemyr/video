@@ -17,9 +17,15 @@ class PortfolioControllerHelper
     ) {
     }
 
-    public function create(): void
+    public function create()
     {
         $fields = $this->request->validated();
+
+        $validateResult = $this->validate();
+        if (!empty($validateResult)) {
+            return $validateResult;
+        }
+
         $this->saveFields = [
             'active' => $this->request->has('active'),
             'title' => $fields['title'],
@@ -47,6 +53,16 @@ class PortfolioControllerHelper
         $this->resolveVideo();
 
         $this->item->update($this->saveFields);
+    }
+
+    private function validate()
+    {
+        if (empty($this->request->get('link')) && !$this->request->has('video')) {
+            return back()->withErrors([
+                'link' => 'Прикрепите видео либо укажите ссылку на видео',
+                'video' => 'Прикрепите видео либо укажите ссылку на видео',
+            ]);
+        }
     }
 
     private function resolveImage(): void
