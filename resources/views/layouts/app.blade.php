@@ -7,7 +7,7 @@
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}">
 
-    <link rel="icon" type="image/x-icon" href="{{ $favicon }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset($favicon) }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

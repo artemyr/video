@@ -5,7 +5,7 @@
         <div class="grid grid-flow-row gap-4 justify-center text-center">
             <div>
                 @if(!empty($author))
-                    <img class="rounded-full w-[400px]" src="{{ $author }}" alt="">
+                    <img class="rounded-full w-[400px]" src="{{ asset($author) }}" alt="">
                 @endif
             </div>
             <p class="text-md">
