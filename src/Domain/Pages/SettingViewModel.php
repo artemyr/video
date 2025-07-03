@@ -24,7 +24,7 @@ class SettingViewModel
                 ->first();
 
             if (!empty($s)) {
-                $author = asset('storage/images/' . $s->value);
+                $author = 'storage/images/' . $s->value;
             }
 
             return $author;
@@ -95,7 +95,7 @@ class SettingViewModel
                 ->first();
 
             if (!empty($s)) {
-                $author = asset('storage/images/' . $s->value);
+                $author = 'storage/images/' . $s->value;
             }
 
             return $author;
@@ -113,7 +113,7 @@ class SettingViewModel
                 ->first();
 
             if (!empty($s)) {
-                $favicon = asset('storage/images/' . $s->value);
+                $favicon = 'storage/images/' . $s->value;
             }
 
             return $favicon;
@@ -131,7 +131,7 @@ class SettingViewModel
                 ->first();
 
             if (!empty($s)) {
-                $logo = asset('storage/images/' . $s->value);
+                $logo = 'storage/images/' . $s->value;
             }
 
             return $logo;

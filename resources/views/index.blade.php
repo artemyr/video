@@ -31,7 +31,7 @@
                     </div>
                     <div class="px-[25px] grid justify-center col-span-4 md:col-span-1">
                         @if(!empty($author))
-                            <img src="{{ $author }}" alt="">
+                            <img src="{{ asset($author) }}" alt="">
                         @endif
                     </div>
                 </div>

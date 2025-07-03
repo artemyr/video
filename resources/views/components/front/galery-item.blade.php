@@ -13,6 +13,7 @@
             data-src="{{ $item->getExternalVideoLinkForGallery() }}"
             data-poster="{{ $item->makeThumbnail($resolution) }}"
             data-sub-html="<h4>{{ $item->title }}</h4>"
+            class="block relative hover:cursor-pointer"
         >
 
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-opacity">
@@ -38,7 +39,7 @@
             data-video='{"source": [{"src":"{{ $item->video() }}", "type":"video/mp4"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'
             data-poster="{{ $item->makeThumbnail($resolution) }}"
             data-sub-html="<h4>{{ $item->title }}</h4>"
-            class="relative hover:cursor-pointer"
+            class="block relative hover:cursor-pointer"
         >
 
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 transition-opacity">
