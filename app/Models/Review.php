@@ -43,9 +43,4 @@ class Review extends Model
     {
         $query->where('active', true);
     }
-
-    protected function getCacheKeys(): array
-    {
-        return ['reviews_on_reviews_page'];
-    }
 }

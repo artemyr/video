@@ -15,7 +15,7 @@ class SettingViewModel
 
     public function homePage()
     {
-        return Cache::rememberForever('setting_home_page', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_home_page', function () {
 
             $author = '';
 
@@ -33,7 +33,7 @@ class SettingViewModel
 
     public function phone()
     {
-        return Cache::rememberForever('setting_phone', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_phone', function () {
             return Setting::query()
                 ->where('code', SettingsEnum::MAIN_PHONE->value)
                 ->first();
@@ -42,7 +42,7 @@ class SettingViewModel
 
     public function title(string $pageName)
     {
-        return Cache::rememberForever('setting_title_' . $pageName, function () use ($pageName) {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_title_' . $pageName, function () use ($pageName) {
             return Setting::query()
                 ->where('code', 'title.' . $pageName)
                 ->first();
@@ -51,7 +51,7 @@ class SettingViewModel
 
     public function description(string $pageName)
     {
-        return Cache::rememberForever('setting_description_' . $pageName, function () use ($pageName) {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_description_' . $pageName, function () use ($pageName) {
             return Setting::query()
                 ->where('code', 'description.' . $pageName)
                 ->first();
@@ -60,7 +60,7 @@ class SettingViewModel
 
     public function footerText()
     {
-        return Cache::rememberForever('setting_footer_text', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_footer_text', function () {
             return Text::query()
                 ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
                 ->first();
@@ -69,7 +69,7 @@ class SettingViewModel
 
     public function tg()
     {
-        return Cache::rememberForever('setting_tg', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_tg', function () {
             return Setting::query()
                 ->where('code', SettingsEnum::MAIN_TG->value)
                 ->first();
@@ -78,7 +78,7 @@ class SettingViewModel
 
     public function contactText1OnContactsPage()
     {
-        return Cache::rememberForever('setting_text_1_on_contact_page', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_text_1_on_contact_page', function () {
             return Setting::query()
                 ->where('code', SettingsEnum::CONTACT_TEXT_1->value)
                 ->first();
@@ -87,7 +87,7 @@ class SettingViewModel
 
     public function logoOnContactsPage()
     {
-        return Cache::rememberForever('setting_logo_on_contact_page', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_logo_on_contact_page', function () {
             $author = '';
 
             $s = Setting::query()
@@ -104,7 +104,7 @@ class SettingViewModel
 
     public function favicon()
     {
-        return Cache::rememberForever('setting_favicon', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_favicon', function () {
 
             $favicon = '';
 
@@ -122,7 +122,7 @@ class SettingViewModel
 
     public function logo()
     {
-        return Cache::rememberForever('setting_logo', function () {
+        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_logo', function () {
 
             $logo = '';
 

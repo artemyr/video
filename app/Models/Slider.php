@@ -63,9 +63,4 @@ class Slider extends Model
     {
         $query->where('active', true);
     }
-
-    protected function getCacheKeys(): array
-    {
-        return ['slider_home_page'];
-    }
 }

@@ -32,6 +32,10 @@ RUN chmod +x /usr/local/bin/install-php-extensions
 RUN install-php-extensions openssl pdo_mysql mbstring tokenizer xml mysqli imagick
 RUN install-php-extensions xdebug
 
+RUN apk add --no-cache libmemcached-dev zlib-dev \
+    && pecl install memcached \
+    && docker-php-ext-enable memcached
+
 ADD ./conf/php.ini /usr/local/etc/php/php.ini
 ADD ./conf/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./conf/ssmtp.conf /etc/ssmtp/ssmtp.conf

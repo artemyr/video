@@ -12,7 +12,7 @@ class PortfolioViewModel
 
     public function portfolioPage()
     {
-        return Cache::rememberForever('portfolio_on_portfolio_page', function () {
+        return Cache::tags(Portfolio::getCacheTag())->rememberForever('portfolio_on_portfolio_page', function () {
             return Portfolio::query()
                 ->sorted()
                 ->filtered()

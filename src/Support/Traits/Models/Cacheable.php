@@ -2,35 +2,22 @@
 
 namespace Support\Traits\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use App\Observers\ModelCacheObserver;
 
 trait Cacheable
 {
     protected static function bootCacheable()
     {
-        static::created(function (Model $item) {
-            $item->clearCache($item);
-        });
-
-        static::updated(function (Model $item) {
-            $item->clearCache($item);
-        });
-
-        static::deleted(function (Model $item) {
-            $item->clearCache($item);
-        });
+        static::observe(ModelCacheObserver::class);
     }
 
-    protected function getCacheKeys(): array
+    public static function getCacheKeys(): array
     {
         return [];
     }
 
-    protected function clearCache(Model $item): void
+    public static function getCacheTag(): string
     {
-        foreach ($this->getCacheKeys() as $cacheKey) {
-            Cache::forget($cacheKey);
-        }
+        return str(static::class)->slug('_')->value();
     }
 }

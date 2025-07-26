@@ -12,7 +12,7 @@ class SliderViewModel
 
     public function homePage()
     {
-        return Cache::rememberForever('slider_home_page', function () {
+        return Cache::tags(Slider::getCacheTag())->rememberForever('slider_home_page', function () {
             return Slider::query()
                 ->sorted()
                 ->filtered()

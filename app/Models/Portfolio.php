@@ -50,9 +50,4 @@ class Portfolio extends Model
     {
         $query->where('active', true);
     }
-
-    protected function getCacheKeys(): array
-    {
-        return ['portfolio_on_portfolio_page'];
-    }
 }

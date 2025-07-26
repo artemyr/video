@@ -3,6 +3,7 @@
 namespace Domain\Pages;
 
 use App\Models\Review;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Support\Traits\Makeable;
 
@@ -12,7 +13,7 @@ class ReviewsViewModel
 
     public function reviewsPage()
     {
-        return Cache::rememberForever('reviews_on_reviews_page', function () {
+        return Cache::tags(Review::getCacheTag())->rememberForever('reviews_on_reviews_page', function () {
             return Review::query()
                 ->sorted()
                 ->filtered()
