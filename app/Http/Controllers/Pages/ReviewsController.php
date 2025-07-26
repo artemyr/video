@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers\Pages;
 
-use Domain\Pages\ReviewsViewModel;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
+use App\ViewModels\ReviewsViewModel;
 
-class ReviewsController extends BasePagesController
+class ReviewsController extends Controller
 {
-    public function page(): View|Factory|Application|RedirectResponse
+    public function page()
     {
-        $reviews = ReviewsViewModel::make()
-            ->reviewsPage();
-
-        return view('pages.reviews', compact('reviews'));
+        return (new ReviewsViewModel)->view('pages.reviews');
     }
 }

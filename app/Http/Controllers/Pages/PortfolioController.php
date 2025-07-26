@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers\Pages;
 
-use Domain\Pages\PortfolioViewModel;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
+use App\ViewModels\PortfolioViewModel;
 
-class PortfolioController extends BasePagesController
+class PortfolioController extends Controller
 {
-    public function page(): View|Factory|Application|RedirectResponse
+    public function page()
     {
-        $portfolios = PortfolioViewModel::make()
-            ->portfolioPage();
-
-        return view('pages.portfolio', compact('portfolios'));
+        return (new PortfolioViewModel())->view('pages.portfolio');
     }
 }

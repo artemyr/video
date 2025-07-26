@@ -1,16 +1,13 @@
 <?php
 
-namespace Domain\Pages;
+namespace App\ViewModels;
 
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\Cache;
-use Support\Traits\Makeable;
 
-class PortfolioViewModel
+class PortfolioViewModel extends AbstractPagesViewModel
 {
-    use Makeable;
-
-    public function portfolioPage()
+    public function portfolios()
     {
         return Cache::tags(Portfolio::getCacheTag())->rememberForever('portfolio_on_portfolio_page', function () {
             return Portfolio::query()

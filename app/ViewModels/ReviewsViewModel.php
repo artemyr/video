@@ -1,17 +1,13 @@
 <?php
 
-namespace Domain\Pages;
+namespace App\ViewModels;
 
 use App\Models\Review;
-use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
-use Support\Traits\Makeable;
 
-class ReviewsViewModel
+class ReviewsViewModel extends AbstractPagesViewModel
 {
-    use Makeable;
-
-    public function reviewsPage()
+    public function reviews()
     {
         return Cache::tags(Review::getCacheTag())->rememberForever('reviews_on_reviews_page', function () {
             return Review::query()
