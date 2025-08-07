@@ -1,8 +1,10 @@
 import './bootstrap';
-
 import Alpine from 'alpinejs'
-window.Alpine = Alpine
-Alpine.start()
+
+if (!location.pathname.includes('/admin/')) {
+    window.Alpine = Alpine
+    Alpine.start()
+}
 
 import './main'
 

@@ -39,6 +39,10 @@ class AdminRegistrar implements RouteRegistrar
                         Route::post('/admin/contacts/save', 'handle')
                             ->name('admin.contacts.save');
                     });
+
+                Route::get('/admin/test', function () {
+                    return view('admin.test.index');
+                });
             });
     }
 }
