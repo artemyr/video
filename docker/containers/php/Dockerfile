@@ -29,8 +29,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions
 
 
-RUN install-php-extensions openssl pdo_mysql mbstring tokenizer xml mysqli imagick
-RUN install-php-extensions xdebug
+RUN install-php-extensions openssl pdo_mysql mbstring tokenizer xml mysqli imagick intl zip xdebug
 
 RUN apk add --no-cache libmemcached-dev zlib-dev \
     && pecl install memcached \
