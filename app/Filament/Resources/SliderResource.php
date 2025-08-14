@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ReviewResource\Pages;
-use App\Models\Review;
+use App\Filament\Resources\SliderResource\Pages;
+use App\Models\Slider;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -11,10 +11,11 @@ use Filament\Tables;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Support\ValueObjects\Size;
 
-class ReviewResource extends Resource
+class SliderResource extends Resource
 {
-    protected static ?string $model = Review::class;
+    protected static ?string $model = Slider::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,12 +27,25 @@ class ReviewResource extends Resource
                     ->default(true),
                 Forms\Components\TextInput::make('title')
                     ->required(),
+                Forms\Components\TextInput::make('size')
+                    ->afterStateHydrated(function ($component, $state) {
+                        if ($state instanceof Size) {
+                            $component->state($state->row());
+                        }
+                    })
+                    ->dehydrateStateUsing(function ($state, $component) {
+                        return new Size($state);
+                    }),
                 Forms\Components\TextInput::make('sort')
                     ->integer()
                     ->default(500),
                 Forms\Components\FileUpload::make('image')
                     ->disk('images')
-                    ->directory('reviews')
+                    ->directory('slider')
+                    ->required(),
+                Forms\Components\FileUpload::make('video')
+                    ->disk('video')
+                    ->directory('slider')
                     ->required(),
             ]);
     }
@@ -45,6 +59,7 @@ class ReviewResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('size'),
                 Tables\Columns\TextColumn::make('sort')
                     ->sortable(),
                 Tables\Columns\CheckboxColumn::make('active')
@@ -54,7 +69,6 @@ class ReviewResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
-
             ])
             ->filters([
                 Filter::make('is_active')
@@ -81,9 +95,9 @@ class ReviewResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListReviews::route('/'),
-            'create' => Pages\CreateReview::route('/create'),
-            'edit' => Pages\EditReview::route('/{record}/edit'),
+            'index' => Pages\ListSliders::route('/'),
+            'create' => Pages\CreateSlider::route('/create'),
+            'edit' => Pages\EditSlider::route('/{record}/edit'),
         ];
     }
 }

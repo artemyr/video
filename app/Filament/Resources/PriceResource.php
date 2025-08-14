@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ReviewResource\Pages;
-use App\Models\Review;
+use App\Filament\Resources\PriceResource\Pages;
+use App\Models\Price;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,9 +12,9 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class ReviewResource extends Resource
+class PriceResource extends Resource
 {
-    protected static ?string $model = Review::class;
+    protected static ?string $model = Price::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,13 +26,11 @@ class ReviewResource extends Resource
                     ->default(true),
                 Forms\Components\TextInput::make('title')
                     ->required(),
+                Forms\Components\Textarea::make('description')
+                    ->rows(20),
                 Forms\Components\TextInput::make('sort')
                     ->integer()
                     ->default(500),
-                Forms\Components\FileUpload::make('image')
-                    ->disk('images')
-                    ->directory('reviews')
-                    ->required(),
             ]);
     }
 
@@ -45,16 +43,20 @@ class ReviewResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable()
+                    ->formatStateUsing(fn ($state): string => str($state)
+                        ->stripTags()
+                        ->limit(30)
+                        ->value()
+                    ),
                 Tables\Columns\TextColumn::make('sort')
                     ->sortable(),
                 Tables\Columns\CheckboxColumn::make('active')
                     ->sortable(),
-                Tables\Columns\ImageColumn::make('image')
-                    ->disk('images'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
-
             ])
             ->filters([
                 Filter::make('is_active')
@@ -81,9 +83,9 @@ class ReviewResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListReviews::route('/'),
-            'create' => Pages\CreateReview::route('/create'),
-            'edit' => Pages\EditReview::route('/{record}/edit'),
+            'index' => Pages\ListPrices::route('/'),
+            'create' => Pages\CreatePrice::route('/create'),
+            'edit' => Pages\EditPrice::route('/{record}/edit'),
         ];
     }
 }

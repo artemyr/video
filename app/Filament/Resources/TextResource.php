@@ -2,19 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ReviewResource\Pages;
-use App\Models\Review;
+use App\Filament\Resources\TextResource\Pages;
+use App\Filament\Resources\TextResource\RelationManagers;
+use App\Models\Text;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ReviewResource extends Resource
+class TextResource extends Resource
 {
-    protected static ?string $model = Review::class;
+    protected static ?string $model = Text::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -22,16 +23,15 @@ class ReviewResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Checkbox::make('active')
-                    ->default(true),
-                Forms\Components\TextInput::make('title')
+                Forms\Components\TextInput::make('code')
                     ->required(),
                 Forms\Components\TextInput::make('sort')
                     ->integer()
                     ->default(500),
-                Forms\Components\FileUpload::make('image')
-                    ->disk('images')
-                    ->directory('reviews')
+                Forms\Components\Textarea::make('description')
+                    ->rows(6),
+                Forms\Components\Textarea::make('text')
+                    ->rows(20)
                     ->required(),
             ]);
     }
@@ -42,23 +42,28 @@ class ReviewResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('code')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('text')
                     ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('sort')
-                    ->sortable(),
-                Tables\Columns\CheckboxColumn::make('active')
-                    ->sortable(),
-                Tables\Columns\ImageColumn::make('image')
-                    ->disk('images'),
+                    ->formatStateUsing(fn ($state): string => str($state)
+                        ->stripTags()
+                        ->limit(30)
+                        ->value()
+                    ),
+                Tables\Columns\TextColumn::make('description')
+                    ->searchable()
+                    ->formatStateUsing(fn ($state): string => str($state)
+                        ->stripTags()
+                        ->limit(30)
+                        ->value()
+                    ),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
-
             ])
             ->filters([
-                Filter::make('is_active')
-                    ->query(fn (Builder $query): Builder => $query->where('active', true))
+                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -81,9 +86,9 @@ class ReviewResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListReviews::route('/'),
-            'create' => Pages\CreateReview::route('/create'),
-            'edit' => Pages\EditReview::route('/{record}/edit'),
+            'index' => Pages\ListTexts::route('/'),
+            'create' => Pages\CreateText::route('/create'),
+            'edit' => Pages\EditText::route('/{record}/edit'),
         ];
     }
 }
