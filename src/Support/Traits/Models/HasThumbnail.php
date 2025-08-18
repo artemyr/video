@@ -24,9 +24,14 @@ trait HasThumbnail
             $storage->makeDirectory($newDirPath);
         }
 
+        $originalFilePath = $storage->path($realPath);
+        if (!file_exists($originalFilePath)) {
+            return '';
+        }
+
         if (!$storage->exists($resultPath)) {
             $image = ImageManager::imagick()
-                ->read($storage->path($realPath));
+                ->read($originalFilePath);
 
             [$w, $h] = explode('x', $size);
 

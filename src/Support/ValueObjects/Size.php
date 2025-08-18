@@ -2,7 +2,6 @@
 
 namespace Support\ValueObjects;
 
-use InvalidArgumentException;
 use Stringable;
 use Support\Traits\Makeable;
 
@@ -19,7 +18,7 @@ class Size implements Stringable
         }
 
         if (!str_contains($value, '-')) {
-            throw new InvalidArgumentException('Uncorrect value: ' . $value);
+            $value = '0-0';
         }
 
         [$this->width, $this->height] = explode('-', $value);
@@ -48,5 +47,10 @@ class Size implements Stringable
     public function __toString(): string
     {
         return $this->row();
+    }
+
+    public function isEmpty(): bool
+    {
+        return (empty($this->width) && empty($this->height));
     }
 }
