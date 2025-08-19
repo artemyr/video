@@ -9,6 +9,6 @@ class ReviewsController extends Controller
 {
     public function page()
     {
-        return (new ReviewsViewModel)->view('pages.reviews');
+        return (new ReviewsViewModel())->view('pages.reviews');
     }
 }

@@ -8,6 +8,14 @@ use Filament\Schemas\Schema;
 
 class TextForm
 {
+    public const HELPER_TEXT = <<<END
+<p>...</p> - параграф;
+text-xl - большой текст;
+mb-[18px] - отступ снизу 18 пикселей;
+my-[14px] - отступ по горизонтали 14 пикселей
+END;
+
+
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -20,7 +28,7 @@ class TextForm
                     ->default('500'),
                 TextInput::make('description'),
                 Textarea::make('text')
-                    ->helperText("<p>...</p> - параграф; text-xl - большой текст; mb-[18px] - отступ снизу 18 пикселей; my-[14px] - отступ по горизонтали 14 пикселей")
+                    ->helperText(self::HELPER_TEXT)
                     ->required()
                     ->rows(20)
                     ->columnSpanFull(),

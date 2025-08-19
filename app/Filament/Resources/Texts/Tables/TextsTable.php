@@ -24,8 +24,7 @@ class TextsTable
                     ->formatStateUsing(fn ($state): string => str($state)
                         ->stripTags()
                         ->limit(30)
-                        ->value()
-                    ),
+                        ->value()),
                 TextColumn::make('sort')
                     ->sortable(),
                 TextColumn::make('description')

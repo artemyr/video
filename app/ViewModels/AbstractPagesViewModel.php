@@ -59,11 +59,12 @@ abstract class AbstractPagesViewModel extends ViewModel
 
     public function description()
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_description_' . $this->routeName, function () {
-            return Setting::query()
-                ->where('code', 'description.' . $this->routeName)
-                ->first() ?? false;
-        });
+        return Cache::tags(Setting::getCacheTag())
+            ->rememberForever('setting_description_' . $this->routeName, function () {
+                return Setting::query()
+                    ->where('code', 'description.' . $this->routeName)
+                    ->first() ?? false;
+            });
     }
 
     public function footerText()

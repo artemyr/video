@@ -12,7 +12,8 @@ class Size implements Stringable
     private int $height;
     private int $width;
 
-    public function __construct(?string $value) {
+    public function __construct(?string $value)
+    {
         if (empty($value)) {
             $value = '0-0';
         }
@@ -26,7 +27,7 @@ class Size implements Stringable
 
     public function row(): string
     {
-        return $this->width .'-'. $this->height;
+        return $this->width . '-' . $this->height;
     }
 
     public function height(): int

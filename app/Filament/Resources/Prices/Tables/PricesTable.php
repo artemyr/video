@@ -28,8 +28,7 @@ class PricesTable
                     ->formatStateUsing(fn ($state): string => str($state)
                         ->stripTags()
                         ->limit(30)
-                        ->value()
-                    ),
+                        ->value()),
                 TextColumn::make('sort')
                     ->numeric()
                     ->sortable(),

@@ -9,6 +9,6 @@ class PricesController extends Controller
 {
     public function page()
     {
-        return (new PricesViewModel)->view('pages.price');
+        return (new PricesViewModel())->view('pages.price');
     }
 }
