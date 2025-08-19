@@ -22,8 +22,10 @@ class Special extends Page
     public array $unusedFiles = [];
     public Carbon $date;
     public array $resizes = [];
-    public float $videoSize = 0;
+    public string $videoSize = '0';
     public int $resizesCount = 0;
+    public string $cacheType = '';
+    public array $errors = [];
 
     public function mount(): void
     {
@@ -32,16 +34,25 @@ class Special extends Page
 
     private function getResult(): void
     {
-        [
-            'unusedFiles' => $this->unusedFiles,
-            'countUnusedFiles' => $this->countUnusedFiles,
-            'date' => $this->date,
-            'resizes' => $this->resizes,
-            'videoSize' => $this->videoSize,
-            'resizesCount' => $this->resizesCount,
-        ] = Cache::rememberForever('system_unused_files_data', function () {
+        $this->cacheType = config('cache.default');
+
+        Cache::put('cache_test', 'ok', 10);
+        $value = Cache::get('cache_test');
+
+        if ($value !== 'ok') {
+            $this->errors[] =  "Не работает кэш!";
+        }
+
+        $res = Cache::rememberForever('system_unused_files_data', function () {
             return $this->getData();
         });
+
+        $this->unusedFiles = $res['unusedFiles'] ?? [];
+        $this->countUnusedFiles = $res['countUnusedFiles'] ?? 0;
+        $this->date = $res['date'] ?? now();
+        $this->resizes = $res['resizes'] ?? [];
+        $this->videoSize = $res['videoSize'] ?? 0;
+        $this->resizesCount = $res['resizesCount'] ?? 0;
     }
 
     public function reload(): void
@@ -67,7 +78,6 @@ class Special extends Page
         $unusedFiles = [];
         $resizes = [];
         $videoSize = 0;
-        $resizesCount = 0;
 
         Slider::query()
             ->select(['id', 'image', 'video'])
