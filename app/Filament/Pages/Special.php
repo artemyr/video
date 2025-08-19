@@ -50,6 +50,17 @@ class Special extends Page
         $this->getResult();
     }
 
+    public function clearResizes(): void
+    {
+        foreach (Storage::disk('images')->allFiles() as $file) {
+            if (str_contains($file, '/resize/')) {
+                Storage::disk('images')->delete($file);
+            }
+        }
+        Cache::forget('system_unused_files_data');
+        $this->getResult();
+    }
+
     private function getData(): array
     {
         $usedFiles = [];
@@ -116,7 +127,7 @@ class Special extends Page
             ->allFiles();
 
         foreach ($images as $imagePath) {
-            if (str_contains($imagePath, 'resize')) {
+            if (str_contains($imagePath, '/resize/')) {
                 $resizes[] = $imagePath;
                 continue;
             }

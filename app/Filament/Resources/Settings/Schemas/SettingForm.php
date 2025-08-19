@@ -12,6 +12,7 @@ class SettingForm
         return $schema
             ->components([
                 TextInput::make('code')
+                    ->default(request('code'))
                     ->required(),
                 TextInput::make('sort')
                     ->required()

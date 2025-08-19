@@ -4,7 +4,7 @@
 
     <div class="container">
         @if($editMode)
-            <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('admin.portfolio.index') }}">Редактировать</a>
+            <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('filament.admin.resources.portfolios.create') }}">Редактировать</a>
         @endif
 
         <p class="text-brown uppercase text-center mb-8 font-bold text-md">мобильная съемка:</p>

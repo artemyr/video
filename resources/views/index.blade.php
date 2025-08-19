@@ -5,7 +5,7 @@
     <main>
         <section class="mb-[25px]">
             @if($editMode)
-                <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('admin.main.slider.index') }}">Редактировать</a>
+                <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('filament.admin.resources.sliders.create') }}">Редактировать</a>
             @endif
             <div class="swiper">
                 <div class="swiper-wrapper lightgalery-container">

@@ -17,7 +17,6 @@ class ModelCacheObserver
     public function updated(Model $model): void
     {
         event(new ModelUpdatedEvent($model));
-
     }
 
     public function deleted(Model $model): void

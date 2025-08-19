@@ -68,7 +68,7 @@ abstract class AbstractPagesViewModel extends ViewModel
 
     public function footerText()
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_footer_text', function () {
+        return Cache::tags(Text::getCacheTag())->rememberForever('setting_footer_text', function () {
             return Text::query()
                 ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
                 ->first() ?? false;

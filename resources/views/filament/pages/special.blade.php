@@ -9,7 +9,7 @@
 
         <p class="mb-2 text-2xl">Video size {{ $videoSize }} mb</p>
 
-        <p class="mb-2 text-2xl">Resizes {{ $resizesCount }}</p>
+        <p class="mb-2 text-2xl">Resizes {{ $resizesCount }} <button wire:click="clearResizes">Clear resizes</button></p>
         <ul>
             @foreach($resizes as $resize)
                 <li>{{ $resize }}</li>

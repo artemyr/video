@@ -15,6 +15,7 @@ class ReviewForm
         return $schema
             ->components([
                 Toggle::make('active')
+                    ->default(true)
                     ->required(),
                 TextInput::make('title'),
                 TextInput::make('sort')
