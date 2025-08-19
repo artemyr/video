@@ -16,10 +16,10 @@ class NavigationComposer
             ->add(MenuItem::make(route('home'), 'главная'))
             ->add(MenuItem::make(route('reviews.page'), 'отзывы'))
             ->add(MenuItem::make(route('contacts.page'), 'контакты'))
-//            ->addIf(
-//                auth()->id() > 0 && auth()->user()->role === 'admin',
-//                MenuItem::make(route('admin.index'), 'админка')
-//            )
+            ->addIf(
+                auth()->id() > 0 && auth()->user()->role === 'admin',
+                MenuItem::make(route('filament.admin.pages.dashboard'), 'админка')
+            )
         ;
 
         $view->with('menu', $menu);
