@@ -2,23 +2,13 @@
 
 namespace App\Http\Controllers\Pages;
 
-use Domain\Pages\PriceViewModel;
-use Domain\Pages\TextViewModel;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
+use App\ViewModels\PricesViewModel;
 
-class PricesController extends BasePagesController
+class PricesController extends Controller
 {
-    public function page(): View|Factory|Application|RedirectResponse
+    public function page()
     {
-        $prices = PriceViewModel::make()
-            ->pricesPage();
-
-        $bottomText = TextViewModel::make()
-            ->bottomTextOnPricePage();
-
-        return view('pages.price', compact('prices', 'bottomText'));
+        return (new PricesViewModel())->view('pages.price');
     }
 }

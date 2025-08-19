@@ -59,14 +59,14 @@ return [
         'images' => [
             'driver' => 'local',
             'root' => storage_path('app/public/images'),
-            'url' => env('APP_URL') . '/storage',
+            'url' => env('APP_URL') . '/storage/images',
             'visibility' => 'public',
             'throw' => false,
         ],
         'video' => [
             'driver' => 'local',
             'root' => storage_path('app/public/video'),
-            'url' => env('APP_URL') . '/storage',
+            'url' => env('APP_URL') . '/storage/video',
             'visibility' => 'public',
             'throw' => false,
         ]

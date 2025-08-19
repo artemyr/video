@@ -17,9 +17,4 @@ class Text extends Model
         $query->orderBy('sort')
             ->orderBy('id', 'desc');
     }
-
-    protected function getCacheKeys(): array
-    {
-        return ['text_home_page', 'text_bottom_on_prices_page'];
-    }
 }

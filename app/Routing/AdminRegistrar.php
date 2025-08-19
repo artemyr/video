@@ -15,30 +15,7 @@ class AdminRegistrar implements RouteRegistrar
     {
         Route::middleware(['web', AdminMiddleware::class])
             ->group(function () {
-
-                Route::get('/admin', function () {
-                    return view('admin.index');
-                })->name('admin.index');
-
-                Route::controller(HomeController::class)
-                    ->group(function () {
-
-                        Route::get('/admin/main', 'page')
-                            ->name('admin.main.index');
-
-                        Route::post('/admin/main/save', 'handle')
-                            ->name('admin.main.save');
-                    });
-
-                Route::controller(ContactsController::class)
-                    ->group(function () {
-
-                        Route::get('/admin/contacts', 'page')
-                            ->name('admin.contacts.index');
-
-                        Route::post('/admin/contacts/save', 'handle')
-                            ->name('admin.contacts.save');
-                    });
+                //
             });
     }
 }

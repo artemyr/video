@@ -2,7 +2,6 @@
 
 namespace Support\ValueObjects;
 
-use InvalidArgumentException;
 use Stringable;
 use Support\Traits\Makeable;
 
@@ -13,15 +12,14 @@ class Size implements Stringable
     private int $height;
     private int $width;
 
-    public function __construct(
-        private readonly ?string $value,
-    ) {
+    public function __construct(?string $value)
+    {
         if (empty($value)) {
             $value = '0-0';
         }
 
         if (!str_contains($value, '-')) {
-            throw new InvalidArgumentException('Uncorrect value: ' . $value);
+            $value = '0-0';
         }
 
         [$this->width, $this->height] = explode('-', $value);
@@ -29,7 +27,7 @@ class Size implements Stringable
 
     public function row(): string
     {
-        return $this->value;
+        return $this->width . '-' . $this->height;
     }
 
     public function height(): int
@@ -49,6 +47,11 @@ class Size implements Stringable
 
     public function __toString(): string
     {
-        return $this->value;
+        return $this->row();
+    }
+
+    public function isEmpty(): bool
+    {
+        return (empty($this->width) && empty($this->height));
     }
 }

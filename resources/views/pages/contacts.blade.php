@@ -19,9 +19,11 @@
             <div class="py-4">
                 <a href="https://wa.me/{{ $phone }}" class="btn-black">Написать whatsapp</a>
             </div>
-            <div class="py-4">
-                <a href="https://t.me/{{ $tg->value }}" class="btn-black">Написать телеграм</a>
-            </div>
+            @if($tg)
+                <div class="py-4">
+                    <a href="https://t.me/{{ $tg->value }}" class="btn-black">Написать телеграм</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

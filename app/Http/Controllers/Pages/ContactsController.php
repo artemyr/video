@@ -2,22 +2,13 @@
 
 namespace App\Http\Controllers\Pages;
 
-use Domain\Pages\SettingViewModel;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
+use App\ViewModels\ContactsViewModel;
 
-class ContactsController extends BasePagesController
+class ContactsController extends Controller
 {
-    public function page(): View|Factory|Application|RedirectResponse
+    public function page()
     {
-        $text1 = SettingViewModel::make()
-            ->contactText1OnContactsPage();
-
-        $author = SettingViewModel::make()
-            ->logoOnContactsPage();
-
-        return view('pages.contacts', compact('text1', 'author'));
+        return (new ContactsViewModel())->view('pages.contacts');
     }
 }

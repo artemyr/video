@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Support\Traits\Models\Cacheable;
 use Support\Traits\Models\HasThumbnail;
 
@@ -44,8 +45,22 @@ class Review extends Model
         $query->where('active', true);
     }
 
-    protected function getCacheKeys(): array
+    protected static function booted()
     {
-        return ['reviews_on_reviews_page'];
+        static::updating(function (Review $item) {
+            if ($item->isDirty('image')) {
+                $oldFile = $item->getOriginal('image');
+
+                if ($oldFile && Storage::disk('images')->exists($oldFile)) {
+                    Storage::disk('images')->delete($oldFile);
+                }
+            }
+        });
+
+        static::deleting(function (Review $item) {
+            if ($item->image && Storage::disk('images')->exists($item->image)) {
+                Storage::disk('images')->delete($item->image);
+            }
+        });
     }
 }

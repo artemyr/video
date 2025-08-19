@@ -10,6 +10,7 @@ use App\Http\Controllers\Pages\PricesController;
 use App\Http\Controllers\Pages\ReviewsController;
 use App\Http\Middleware\EditModeMiddleware;
 use Illuminate\Contracts\Routing\Registrar;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 class AppRegistrar implements RouteRegistrar
@@ -29,5 +30,11 @@ class AppRegistrar implements RouteRegistrar
                 Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');
             });
+
+        Route::get('/test-cache', function () {
+            return Cache::remember('test_key', now()->addSeconds(5), function () {
+                return now();
+            });
+        });
     }
 }

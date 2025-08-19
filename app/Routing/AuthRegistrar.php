@@ -18,45 +18,45 @@ class AuthRegistrar implements RouteRegistrar
         Route::middleware('web')
             ->group(function () {
                 Route::controller(SignInController::class)->group(function () {
-                    Route::get('/login', 'page')
-                        ->name('login');
-
-                    Route::post('/login', 'handle')
-                        ->middleware('throttle:auth')
-                        ->name('login.handle');
+//                    Route::get('/login', 'page')
+//                        ->name('login');
+//
+//                    Route::post('/login', 'handle')
+//                        ->middleware('throttle:auth')
+//                        ->name('login.handle');
 
                     Route::delete('/logout', 'logOut')
                         ->name('logOut');
                 });
-
-                Route::controller(SignUpController::class)->group(function () {
-                    Route::get('/sign-up', 'page')
-                        ->name('register');
-
-                    Route::post('/sign-up', 'handle')
-                        ->middleware('throttle:auth')
-                        ->name('register.handle');
-                });
-
-                Route::controller(ForgotPasswordController::class)->group(function () {
-                    Route::get('/forgot-password', 'page')
-                        ->middleware('guest')
-                        ->name('forgot');
-
-                    Route::post('/forgot-password', 'handle')
-                        ->middleware('guest')
-                        ->name('forgot.handle');
-                });
-
-                Route::controller(ResetPasswordController::class)->group(function () {
-                    Route::get('/reset-password', 'page')
-                        ->middleware('guest')
-                        ->name('password.reset');
-
-                    Route::post('/reset-password', 'handle')
-                        ->middleware('guest')
-                        ->name('reset-password.handle');
-                });
+//
+//                Route::controller(SignUpController::class)->group(function () {
+//                    Route::get('/sign-up', 'page')
+//                        ->name('register');
+//
+//                    Route::post('/sign-up', 'handle')
+//                        ->middleware('throttle:auth')
+//                        ->name('register.handle');
+//                });
+//
+//                Route::controller(ForgotPasswordController::class)->group(function () {
+//                    Route::get('/forgot-password', 'page')
+//                        ->middleware('guest')
+//                        ->name('forgot');
+//
+//                    Route::post('/forgot-password', 'handle')
+//                        ->middleware('guest')
+//                        ->name('forgot.handle');
+//                });
+//
+//                Route::controller(ResetPasswordController::class)->group(function () {
+//                    Route::get('/reset-password', 'page')
+//                        ->middleware('guest')
+//                        ->name('password.reset');
+//
+//                    Route::post('/reset-password', 'handle')
+//                        ->middleware('guest')
+//                        ->name('reset-password.handle');
+//                });
             });
     }
 }

@@ -83,5 +83,11 @@ services:
 #    ports:
 #      - "1080:80"
 
+  memcached:
+      platform: linux/amd64
+      container_name: ${PROJECT_PREFIX}_memcache
+      image: memcached:latest
+      ports:
+          - "11211:11211"
 volumes:
   db-data:

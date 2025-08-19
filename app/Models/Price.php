@@ -22,12 +22,4 @@ class Price extends Model
     {
         $query->where('active', true);
     }
-
-    protected function getCacheKeys(): array
-    {
-        return [
-            'price_on_price_page',
-            'text_bottom_on_prices_page'
-        ];
-    }
 }

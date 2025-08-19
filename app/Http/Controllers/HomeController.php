@@ -2,27 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Pages\BasePagesController;
-use Domain\Pages\SettingViewModel;
-use Domain\Pages\SliderViewModel;
-use Domain\Pages\TextViewModel;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
+use App\ViewModels\HomePageViewModel;
 
-class HomeController extends BasePagesController
+class HomeController extends Controller
 {
-    public function __invoke(): Factory|View|Application
+    public function __invoke()
     {
-        $sliders = SliderViewModel::make()
-            ->homePage();
-
-        $about = TextViewModel::make()
-            ->homePage();
-
-        $author = SettingViewModel::make()
-            ->homePage();
-
-        return view('index', compact('sliders', 'about', 'author'));
+        return (new HomePageViewModel())->view('index');
     }
 }

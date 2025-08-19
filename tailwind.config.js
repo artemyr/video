@@ -51,7 +51,7 @@ module.exports = {
         },
     },
     safelist: [
-        'bg-alert'
+        'bg-alert', 'my-[14px]'
     ],
     variants: {
         extend: {},
