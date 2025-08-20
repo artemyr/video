@@ -16,7 +16,6 @@ class Slider extends Model
 {
     use HasThumbnail;
     use HasVideoGallery;
-    use Cacheable;
 
     protected $guarded = ['created_at'];
 

@@ -3,17 +3,15 @@
 namespace App\ViewModels;
 
 use App\Models\Portfolio;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Collection;
 
 class PortfolioViewModel extends AbstractPagesViewModel
 {
-    public function portfolios()
+    public function portfolios(): Collection
     {
-        return Cache::tags(Portfolio::getCacheTag())->rememberForever('portfolio_on_portfolio_page', function () {
-            return Portfolio::query()
-                ->sorted()
-                ->filtered()
-                ->get();
-        });
+        return Portfolio::query()
+            ->sorted()
+            ->filtered()
+            ->get();
     }
 }

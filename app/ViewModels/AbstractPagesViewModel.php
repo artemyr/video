@@ -4,7 +4,6 @@ namespace App\ViewModels;
 
 use App\Models\Setting;
 use App\Models\Text;
-use Illuminate\Support\Facades\Cache;
 use Spatie\ViewModels\ViewModel;
 use Support\Enums\SettingsEnum;
 use Support\Enums\TextsEnum;
@@ -15,25 +14,18 @@ abstract class AbstractPagesViewModel extends ViewModel
 
     public function __construct()
     {
-        $routeName = request()->route()?->getName();
-
-        if (empty($routeName) || str($routeName)->startsWith('admin')) {
-            return;
-        }
-
+        $routeName = request()->route()->getName();
         $this->routeName = $routeName;
     }
 
-    public function displayPhone()
+    public function displayPhone(): ?Setting
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_phone', function () {
-            return Setting::query()
-                ->where('code', SettingsEnum::MAIN_PHONE->value)
-                ->first() ?? false;
-        });
+        return Setting::query()
+            ->where('code', SettingsEnum::MAIN_PHONE->value)
+            ->first();
     }
 
-    public function phone()
+    public function phone(): string
     {
         $displayPhone = $this->displayPhone();
 
@@ -48,76 +40,61 @@ abstract class AbstractPagesViewModel extends ViewModel
         return $phone;
     }
 
-    public function title()
+    public function title(): ?Setting
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_title_' . $this->routeName, function () {
-            return Setting::query()
-                ->where('code', 'title.' . $this->routeName)
-                ->first() ?? false;
-        });
+        return Setting::query()
+            ->where('code', 'title.' . $this->routeName)
+            ->first();
     }
 
-    public function description()
+    public function description(): ?Setting
     {
-        return Cache::tags(Setting::getCacheTag())
-            ->rememberForever('setting_description_' . $this->routeName, function () {
-                return Setting::query()
-                    ->where('code', 'description.' . $this->routeName)
-                    ->first() ?? false;
-            });
+        return Setting::query()
+            ->where('code', 'description.' . $this->routeName)
+            ->first();
     }
 
-    public function footerText()
+    public function footerText(): ?Text
     {
-        return Cache::tags(Text::getCacheTag())->rememberForever('setting_footer_text', function () {
-            return Text::query()
-                ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
-                ->first() ?? false;
-        });
+        return Text::query()
+            ->where('code', TextsEnum::MAIN_FOOTER_TEXT->value)
+            ->first();
     }
 
-    public function tg()
+    public function tg(): ?Setting
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_tg', function () {
-            return Setting::query()
-                ->where('code', SettingsEnum::MAIN_TG->value)
-                ->first() ?? false;
-        });
+        return Setting::query()
+            ->where('code', SettingsEnum::MAIN_TG->value)
+            ->first();
     }
 
-    public function favicon()
+    public function favicon(): string
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_favicon', function () {
+        $favicon = '';
 
-            $favicon = '';
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_FAVICON->value)
+            ->first();
 
-            $s = Setting::query()
-                ->where('code', SettingsEnum::MAIN_FAVICON->value)
-                ->first();
+        if (!empty($s)) {
+            $favicon = 'storage/images/' . $s->value;
+        }
 
-            if (!empty($s)) {
-                $favicon = 'storage/images/' . $s->value;
-            }
-
-            return $favicon;
-        });
+        return $favicon;
     }
 
-    public function logo()
+    public function logo(): string
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_logo', function () {
+        $logo = '';
 
-            $logo = '';
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_LOGO->value)
+            ->first();
 
-            $s = Setting::query()
-                ->where('code', SettingsEnum::MAIN_LOGO->value)
-                ->first();
+        if (!empty($s)) {
+            $logo = 'storage/images/' . $s->value;
+        }
 
-            if (!empty($s)) {
-                $logo = 'storage/images/' . $s->value;
-            }
-
-            return $logo;
-        });
+        return $logo;
     }
 }

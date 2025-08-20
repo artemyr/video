@@ -5,7 +5,7 @@
 
 @if($editMode)
     <div class="group hover:border border-gray-500">
-        @if($setting)
+        @if($setting && $setting->id)
             <a class="group-hover:text-red text-xxs italic text-gray-500/80" href="{{ route('filament.admin.resources.settings.edit', $setting->id) }}">Редактировать</a>
             {!! $setting->value !!}
         @else

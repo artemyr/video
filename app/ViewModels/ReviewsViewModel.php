@@ -3,17 +3,15 @@
 namespace App\ViewModels;
 
 use App\Models\Review;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Collection;
 
 class ReviewsViewModel extends AbstractPagesViewModel
 {
-    public function reviews()
+    public function reviews(): Collection
     {
-        return Cache::tags(Review::getCacheTag())->rememberForever('reviews_on_reviews_page', function () {
-            return Review::query()
-                ->sorted()
-                ->filtered()
-                ->get();
-        });
+        return Review::query()
+            ->sorted()
+            ->filtered()
+            ->get();
     }
 }
