@@ -8,8 +8,6 @@ use Support\Traits\Models\Cacheable;
 
 class Text extends Model
 {
-    use Cacheable;
-
     protected $guarded = ['created_at'];
 
     public function scopeSorted(Builder $query)

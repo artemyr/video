@@ -11,7 +11,6 @@ use Support\Traits\Models\HasThumbnail;
 class Review extends Model
 {
     use HasThumbnail;
-    use Cacheable;
 
     protected $guarded = ['created_at'];
 

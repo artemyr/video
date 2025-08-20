@@ -1,5 +1,11 @@
 <x-filament-panels::page>
     <div>
+        @foreach($errors as $error)
+            <p class="color-red">{{ $error }}</p>
+        @endforeach
+
+        <p>Тип кеширования: {{ $cacheType }}</p>
+
         <p class="mb-2 text-2xl">Unused Files detect ({{ $countUnusedFiles }}): {{ $date }} <button wire:click="reload">reload</button></p>
         <ul>
             @foreach($unusedFiles as $filePath)

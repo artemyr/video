@@ -5,46 +5,39 @@ namespace App\ViewModels;
 use App\Models\Setting;
 use App\Models\Slider;
 use App\Models\Text;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Collection;
 use Support\Enums\SettingsEnum;
 use Support\Enums\TextsEnum;
 
 class HomePageViewModel extends AbstractPagesViewModel
 {
-    public function sliders()
+    public function sliders(): Collection
     {
-        return Cache::tags(Slider::getCacheTag())->rememberForever('slider_home_page', function () {
-            return Slider::query()
-                ->sorted()
-                ->filtered()
-                ->get();
-        });
+        return Slider::query()
+            ->sorted()
+            ->filtered()
+            ->get();
     }
 
-    public function about()
+    public function about(): Text
     {
-        return Cache::tags(Text::getCacheTag())->rememberForever('text_home_page', function () {
-            return Text::query()
-                ->where('code', TextsEnum::MAIN_ABOUT->value)
-                ->first();
-        });
+        return Text::query()
+            ->where('code', TextsEnum::MAIN_ABOUT->value)
+            ->first();
     }
 
-    public function author()
+    public function author(): string
     {
-        return Cache::tags(Setting::getCacheTag())->rememberForever('setting_home_page', function () {
+        $author = '';
 
-            $author = '';
+        $s = Setting::query()
+            ->where('code', SettingsEnum::MAIN_AUTHOR->value)
+            ->first();
 
-            $s = Setting::query()
-                ->where('code', SettingsEnum::MAIN_AUTHOR->value)
-                ->first();
+        if (!empty($s)) {
+            $author = 'storage/images/' . $s->value;
+        }
 
-            if (!empty($s)) {
-                $author = 'storage/images/' . $s->value;
-            }
-
-            return $author;
-        });
+        return $author;
     }
 }
