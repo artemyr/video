@@ -9,6 +9,10 @@
 
     <link rel="icon" type="image/x-icon" href="{{ asset($favicon) }}">
 
+    @if ($showCaptcha)
+    <script src="{{ config('captcha.js_url') }}"></script>
+    @endif
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -19,5 +23,8 @@
     @yield('content')
 
     @include('shared.footer')
+
+    @stack('scripts')
+
 </body>
 </html>

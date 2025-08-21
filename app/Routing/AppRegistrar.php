@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pages\ContactsController;
 use App\Http\Controllers\Pages\PricesController;
 use App\Http\Controllers\Pages\ReviewsController;
+use App\Http\Controllers\ReviewSendController;
 use App\Http\Middleware\EditModeMiddleware;
 use App\Http\Middleware\PageCacheMiddleware;
 use Illuminate\Contracts\Routing\Registrar;
@@ -36,6 +37,10 @@ class AppRegistrar implements RouteRegistrar
                 Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');
             });
+
+        Route::post('/review/send', [ReviewSendController::class, 'handle'])
+            ->name('review.send')
+            ->middleware(['web','throttle:1,1']);
 
         Route::get('/test-cache', function () {
             return Cache::remember('test_key', now()->addSeconds(5), function () {

@@ -30,12 +30,6 @@ class RouteServiceProvider extends ServiceProvider
         AppRegistrar::class,
         AuthRegistrar::class,
         AdminRegistrar::class,
-//        SettingsRegistrar::class,
-//        TextRegistrar::class,
-//        SliderRegistrar::class,
-//        ReviewRegistrar::class,
-//        PriceRegistrar::class,
-//        PortfolioRegistrar::class,
     ];
 
     public function boot(Registrar $router): void
