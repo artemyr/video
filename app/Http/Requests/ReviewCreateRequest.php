@@ -12,7 +12,12 @@ class ReviewCreateRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'image' => [
+                'file',
+                'image',
+                'mimes:' . config('forms.review.mimes', 'jpeg,png,jpg'),
+                'max:' . config('forms.review.max_size', 2048)
+            ],
             'g-recaptcha-response' => [new CaptchaRule()]
         ];
     }

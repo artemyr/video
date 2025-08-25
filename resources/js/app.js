@@ -1,5 +1,6 @@
 import './bootstrap';
 import Alpine from 'alpinejs'
+import '../css/app.css';
 
 if (!location.pathname.includes('/admin/')) {
     window.Alpine = Alpine

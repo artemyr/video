@@ -43,9 +43,7 @@ class AppRegistrar implements RouteRegistrar
                         Route::post('/review/send', 'send')
                             ->name('review.send')
                             ->middleware(['web','throttle:5,1']);
-
-                    }
-                );
+                    });
 
                 Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');

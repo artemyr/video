@@ -18,9 +18,17 @@ class ReviewsFormViewModel extends AbstractPagesViewModel
     public function formMessage(): string
     {
         if (!$this->showForm()) {
-            return 'Вы сможете отправить еще отзыв позже!';
+            return 'Спасибо за отзыв! Вы сможете поделиться новым мнением чуть позже.';
         }
 
         return '';
+    }
+
+    public function fileInputLabel(): string
+    {
+        return str(config('forms.review.mimes'))
+            ->upper()
+            ->replace(',', ', ')
+            ->value() . ' до ' . config('forms.review.max_size') / 1024 . ' MB';
     }
 }
