@@ -90,7 +90,7 @@
                         data-callback='onSubmit'
                         data-action='submit'
                         type="submit">
-                        Submit
+                        Отправить
                     </button>
                 </div>
 
