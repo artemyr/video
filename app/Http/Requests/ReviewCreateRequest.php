@@ -18,7 +18,7 @@ class ReviewCreateRequest extends FormRequest
                 'mimes:' . config('forms.review.mimes', 'jpeg,png,jpg'),
                 'max:' . config('forms.review.max_size', 2048)
             ],
-            'g-recaptcha-response' => [new CaptchaRule()]
+            'g-recaptcha-response' => ['required', new CaptchaRule()]
         ];
     }
 }

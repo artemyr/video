@@ -15,7 +15,9 @@
                 @csrf
 
                 @error('g-recaptcha-response')
-                {{ $message }}
+                    <x-forms.error>
+                        Ошибка валидации капчи. Попробуйте еще раз.
+                    </x-forms.error>
                 @enderror
 
                 <div class="space-y-12">
@@ -62,10 +64,10 @@
                                             clip-rule="evenodd" fill-rule="evenodd"/>
                                     </svg>
                                     <div class="mt-4 flex text-sm/6 text-gray-600">
-                                        <label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500">
+                                        <span class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-600 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-600 hover:text-indigo-500">
                                             <span>Upload a file</span>
                                             <input id="file-upload" type="file" name="image" class="sr-only"/>
-                                        </label>
+                                        </span>
                                         <p class="pl-1">or drag and drop</p>
 
                                     </div>
