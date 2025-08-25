@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Pages\ContactsController;
 use App\Http\Controllers\Pages\PricesController;
 use App\Http\Controllers\Pages\ReviewsController;
+use App\Http\Controllers\ReviewSendController;
 use App\Http\Middleware\EditModeMiddleware;
 use App\Http\Middleware\PageCacheMiddleware;
 use Illuminate\Contracts\Routing\Registrar;
@@ -30,8 +31,19 @@ class AppRegistrar implements RouteRegistrar
                 Route::get('/price', [PricesController::class, 'page'])
                     ->name('price.page');
 
-                Route::get('/reviews', [ReviewsController::class, 'page'])
-                    ->name('reviews.page');
+                Route::controller(ReviewsController::class)
+                    ->group(function () {
+
+                        Route::get('/reviews', 'page')
+                            ->name('reviews.page');
+
+                        Route::get('/reviews/form', 'form')
+                            ->name('reviews.form');
+
+                        Route::post('/review/send', 'send')
+                            ->name('review.send')
+                            ->middleware(['web','throttle:5,1']);
+                    });
 
                 Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');

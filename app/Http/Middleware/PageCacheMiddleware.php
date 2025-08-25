@@ -31,7 +31,7 @@ class PageCacheMiddleware
 
         $response = $next($request);
 
-        if ($this->isNeedCachePage) {
+        if ($this->isNeedCachePage && $response->isOk()) {
             Cache::rememberForever('page_cache_' . $this->routeName, fn(): string => $response->getContent());
         }
 

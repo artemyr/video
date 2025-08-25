@@ -5,6 +5,11 @@
         @if($editMode)
             <a class="hover:text-red text-xxs italic text-gray-500/80" href="{{ route('filament.admin.resources.reviews.create') }}">Редактировать</a>
         @endif
+
+        <div class="grid justify-center mb-8">
+            <a class="btn-success" href="{{ route('reviews.form') }}">Оставить отзыв</a>
+        </div>
+
         <div class="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 mb-16">
 
             @foreach($reviews as $review)

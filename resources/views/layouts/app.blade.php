@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{{ $title->value }}</title>
-    <meta name="description" content="{{ $description->value }}">
+    <title>{{ ($title) ? $title->value : env('APP_NAME') }}</title>
+    <meta name="description" content="{{ ($description) ? $description->value : '' }}">
 
     <link rel="icon" type="image/x-icon" href="{{ asset($favicon) }}">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @if ($showCaptcha)
+    <script src="{{ config('captcha.js_url') }}"></script>
+    @endif
+
+    @vite('resources/js/app.js')
 </head>
 <body>
     @include('shared.flash')
@@ -19,5 +23,8 @@
     @yield('content')
 
     @include('shared.footer')
+
+    @stack('scripts')
+
 </body>
 </html>

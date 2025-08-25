@@ -97,4 +97,9 @@ abstract class AbstractPagesViewModel extends ViewModel
 
         return $logo;
     }
+
+    public function showCaptcha(): bool
+    {
+        return $this->routeName === 'reviews.form';
+    }
 }
