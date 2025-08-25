@@ -100,6 +100,6 @@ abstract class AbstractPagesViewModel extends ViewModel
 
     public function showCaptcha(): bool
     {
-        return $this->routeName === 'reviews.page';
+        return $this->routeName === 'reviews.form';
     }
 }

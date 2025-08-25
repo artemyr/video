@@ -31,16 +31,25 @@ class AppRegistrar implements RouteRegistrar
                 Route::get('/price', [PricesController::class, 'page'])
                     ->name('price.page');
 
-                Route::get('/reviews', [ReviewsController::class, 'page'])
-                    ->name('reviews.page');
+                Route::controller(ReviewsController::class)
+                    ->group(function () {
+
+                        Route::get('/reviews', 'page')
+                            ->name('reviews.page');
+
+                        Route::get('/reviews/form', 'form')
+                            ->name('reviews.form');
+
+                        Route::post('/review/send', 'send')
+                            ->name('review.send')
+                            ->middleware(['web','throttle:5,1']);
+
+                    }
+                );
 
                 Route::get('/contacts', [ContactsController::class, 'page'])
                     ->name('contacts.page');
             });
-
-        Route::post('/review/send', [ReviewSendController::class, 'handle'])
-            ->name('review.send')
-            ->middleware(['web','throttle:1,1']);
 
         Route::get('/test-cache', function () {
             return Cache::remember('test_key', now()->addSeconds(5), function () {
